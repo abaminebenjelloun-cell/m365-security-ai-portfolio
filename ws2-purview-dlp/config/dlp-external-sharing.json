@@ -1,0 +1,30 @@
+{
+  "policyName": "Blueprint - DLP external sharing",
+  "mode": "TestWithNotifications",
+  "pilotGroup": "SG-Pilot-Copilot@contosofiduciaire.onmicrosoft.com",
+  "alertRecipient": "security@contosofiduciaire.onmicrosoft.com",
+  "rules": [
+    {
+      "name": "Secret - block external sharing",
+      "label": "L3-Secret",
+      "override": "none",
+      "blockAccess": true
+    },
+    {
+      "name": "Confidential - block external sharing with justification",
+      "label": "L2-Confidential",
+      "override": "WithJustification",
+      "blockAccess": true
+    },
+    {
+      "name": "Swiss sensitive data shared externally - alert only",
+      "sensitiveInfoTypes": [
+        "Swiss Social Security Number AHV",
+        "International Banking Account Number (IBAN)",
+        "Credit Card Number"
+      ],
+      "override": "none",
+      "blockAccess": false
+    }
+  ]
+}
