@@ -1,0 +1,3 @@
+AgentName,Platform,Environment,Owner,BusinessSponsor,UseCase,KnowledgeSources,Tools,DataClassificationMax,AutonomyLevel,PublishedTo,CostCentre,MonthlyCreditBudget,ApprovedOn,NextReview,Status
+HR Policy Assistant,Copilot Studio,Default,bruno@contosofiduciaire.onmicrosoft.com,Head of HR,Answer HR policy questions,SharePoint HR Policies library,None,Internal,A0,SG-HR-Staff,HR,500,2026-11-05,2027-02-05,Pilot
+Invoice Triage,Copilot Studio,Maker-Finance,alice@contosofiduciaire.onmicrosoft.com,CFO,Classify incoming supplier invoices,SharePoint Finance Invoices library,Power Automate approval flow,Confidential,A2,SG-Finance,Finance,2000,2026-11-05,2027-02-05,Pilot
