@@ -1,0 +1,23 @@
+# Outputs from real tenants must never be committed
+output/
+*.export.json
+*-snapshot-*.csv
+!**/sample-data/*.csv
+*.log
+
+# Secrets and local settings
+*.pfx
+*.cer
+*.key
+.env
+local.settings.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.vscode/
