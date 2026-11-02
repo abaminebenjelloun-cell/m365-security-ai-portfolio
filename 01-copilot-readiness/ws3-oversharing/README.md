@@ -3,7 +3,7 @@
 **Goal:** know what Copilot will be able to reach before it is turned on, fix the worst exposure, and prove the cleanup over time.
 
 **Platform:** SharePoint admin center, SharePoint Online Management Shell, SharePoint Advanced Management (where licensed).
-**Verified on:** 2026-11-02.
+**Last reviewed:** November 2026.
 
 ## Why this is load-bearing
 

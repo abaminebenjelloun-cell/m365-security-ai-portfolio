@@ -1,6 +1,17 @@
 # Lessons learned
 
-Field notes from real Copilot security and Microsoft 365 governance work. Each one cost time at least once. All are product behaviours, not client facts.
+Field notes from real Copilot, Power Platform and Microsoft 365 governance work. Each one cost time at least once. All are product behaviours, not client facts. Numbering is stable so other pages can reference a lesson.
+
+## Copilot Studio, Power Platform and cost
+
+| # | Lesson | Why it matters |
+|---|---|---|
+| L19 | A tenant without a Power Platform data policy lets **any user build an agent wired to any connector**, including HTTP and public web knowledge. | The first data policy is a quick, high-value win. |
+| L20 | Capacity is allocated **per environment**. Without allocation, the first agent that consumes wins. | Dedicated, capped environments for heavy makers. |
+| L21 | Agent flows bill **per action on every run, even when nothing happens**. A 5-minute schedule costs roughly 290 times a daily one for the same flow. | Cheap checks first, classic flows for polling, invoke the agent only when there is work. |
+| L22 | Test runs from the designer or the test chat do not bill. | Measure cost on real runs, not tests. |
+| L23 | Seeded AI Builder credits stop for new or renewed Power Platform licences from **1 November 2026**. | Inventory flows with AI actions before renewals and plan Copilot Credits capacity. |
+| L24 | Prepaid capacity and pay-as-you-go have **different unit prices**. | Check which one the tenant uses before converting credits to money. A wrong rate silently distorts every figure. |
 
 ## Purview: sensitivity labels
 
@@ -39,17 +50,6 @@ Field notes from real Copilot security and Microsoft 365 governance work. Each o
 | L16 | **Identity bleed:** the Windows Web Account Manager (WAM) silently reuses a cached account from another tenant. | Use device code flow, `-DisableWAM` where available, and always print the connected tenant ID before any change. See `common/M365Lab.Common.ps1`. |
 | L17 | `ExchangeOnlineManagement` and `Microsoft.Graph` loaded in the same session can conflict on the authentication library. | One module family per PowerShell window. |
 | L18 | On locked-down laptops (no local admin, Documents redirected to OneDrive), `Install-Module` scopes fail in surprising ways. | Use `Save-Module` to a local folder and import from there. Pin module versions that are known to work. |
-
-## Copilot Studio, Power Platform and cost
-
-| # | Lesson | Why it matters |
-|---|---|---|
-| L19 | A tenant without a Power Platform data policy lets **any user build an agent wired to any connector**, including HTTP and public web knowledge. | The first data policy is a quick, high-value win. |
-| L20 | Capacity is allocated **per environment**. Without allocation, the first agent that consumes wins. | Dedicated, capped environments for heavy makers. |
-| L21 | Agent flows bill **per action on every run, even when nothing happens**. A 5-minute schedule costs roughly 290 times a daily one for the same flow. | Cheap checks first, classic flows for polling, invoke the agent only when there is work. |
-| L22 | Test runs from the designer or the test chat do not bill. | Measure cost on real runs, not tests. |
-| L23 | Seeded AI Builder credits stop for new or renewed Power Platform licences from **1 November 2026**. | Inventory flows with AI actions before renewals and plan Copilot Credits capacity. |
-| L24 | Prepaid capacity and pay-as-you-go have **different unit prices**. | Check which one the tenant uses before converting credits to money. A wrong rate silently distorts every figure. |
 
 ## Delivery discipline
 

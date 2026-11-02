@@ -3,7 +3,7 @@
 **Goal:** know which generative AI tools employees already use outside Microsoft 365 Copilot, and decide what to sanction, monitor or block.
 
 **Platform:** Microsoft Defender portal > Cloud apps (Defender for Cloud Apps), Cloud Discovery.
-**Verified on:** 2026-11-02.
+**Last reviewed:** November 2026.
 
 ## Discovery
 

@@ -1,7 +1,7 @@
 # Layer 2: Power Platform data policy for Copilot Studio
 
 **Platform:** Power Platform admin center (admin.powerplatform.microsoft.com) > Security > **Data and privacy > Data policy** (older menus: Policies > Data policies).
-**Verified on:** 2026-11-02 against Microsoft Learn (data policies, Copilot Studio connectors).
+**Last reviewed:** November 2026 (Power Platform data policies and Copilot Studio connectors on Microsoft Learn).
 
 ## Why first
 

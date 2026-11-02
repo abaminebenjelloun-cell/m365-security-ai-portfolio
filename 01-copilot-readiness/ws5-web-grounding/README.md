@@ -3,7 +3,7 @@
 **Goal:** decide explicitly whether Microsoft 365 Copilot may send web searches, and make that decision auditable.
 
 **Platform:** Cloud Policy service for Microsoft 365 (config.office.com).
-**Verified on:** 2026-11-02. Policy names in the portal change often: search for "web" in the policy list.
+**Last reviewed:** November 2026. Policy names in the portal change often: search for "web" in the policy list.
 
 ## Why
 
