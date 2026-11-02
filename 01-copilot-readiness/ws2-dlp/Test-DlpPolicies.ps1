@@ -1,7 +1,7 @@
 #Requires -Version 7.2
 <#
 .SYNOPSIS
-    Reads the blueprint DLP policies back and checks mode, locations and rules.
+    Reads the lab DLP policies back and checks mode, locations and rules.
 
 .DESCRIPTION
     Read-only. Checks for each expected policy:
@@ -11,18 +11,18 @@
     Results are written to ./output.
 
 .EXAMPLE
-    ./ws2-purview-dlp/Test-DlpPolicies.ps1 -ExternalSharingConfig ./ws2-purview-dlp/config/dlp-external-sharing.json `
-        -CopilotPolicyName 'Blueprint - DLP for Copilot' -ExpectedCopilotRuleCount 4
+    ./01-copilot-readiness/ws2-dlp/Test-DlpPolicies.ps1 -ExternalSharingConfig ./01-copilot-readiness/ws2-dlp/config/dlp-external-sharing.json `
+        -CopilotPolicyName 'Lab - DLP for Copilot' -ExpectedCopilotRuleCount 4
 #>
 [CmdletBinding()]
 param(
     [Parameter(Mandatory)][string]$ExternalSharingConfig,
-    [string]$CopilotPolicyName = 'Blueprint - DLP for Copilot',
+    [string]$CopilotPolicyName = 'Lab - DLP for Copilot',
     [int]$ExpectedCopilotRuleCount = 4
 )
 
 $ErrorActionPreference = 'Stop'
-. (Join-Path $PSScriptRoot '../common/Blueprint.Common.ps1')
+. (Join-Path $PSScriptRoot '../../common/M365Lab.Common.ps1')
 
 $config = Get-Content -Path $ExternalSharingConfig -Raw | ConvertFrom-Json
 $results = [System.Collections.Generic.List[object]]::new()
@@ -70,7 +70,7 @@ else {
 }
 
 $results | Format-Table -AutoSize
-Export-BlueprintResult -InputObject $results -Name 'ws2-dlp-readback'
+Export-LabResult -InputObject $results -Name 'ws2-dlp-readback'
 
 $failed = @($results | Where-Object Status -eq 'FAIL').Count
-if ($failed -gt 0) { Write-BlueprintLog "$failed check(s) failed" 'ERROR' } else { Write-BlueprintLog 'All DLP checks passed' 'OK' }
+if ($failed -gt 0) { Write-LabLog "$failed check(s) failed" 'ERROR' } else { Write-LabLog 'All DLP checks passed' 'OK' }

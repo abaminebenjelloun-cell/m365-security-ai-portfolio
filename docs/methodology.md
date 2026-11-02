@@ -47,7 +47,7 @@ A decision gate is a short written proposal to the sponsor with: the finding, th
 
 Every engagement keeps:
 
-- A **change log** (`ws8-secure-score-governance/change-log-template.csv` format): date, control, before, after, scope, user impact, rollback, who decided.
+- A **change log** (`04-secure-score-governance/change-log-template.csv` format): date, control, before, after, scope, user impact, rollback, who decided.
 - **Read-back output** from each `Test-*` script, stored with the date.
 - **Simulation reports** used for each decision gate.
 - An **exception register** for any exclusion from a protective control (who, why, residual risk, review date).

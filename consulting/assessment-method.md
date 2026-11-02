@@ -52,7 +52,7 @@ Microsoft 365 Copilot is used to **extract** counts and lists from the exports i
 
 Copilot never assigns a priority or writes a conclusion on its own. That keeps the assessment fast without delegating judgment.
 
-## 7. Link to the rest of the blueprint
+## 7. Link to the rest of the portfolio
 
 | Assessment finding | Workstream |
 |---|---|

@@ -1,6 +1,6 @@
 # Decision log
 
-Architecture decisions behind the blueprint, written as short ADRs. Each one records the context, the decision, the alternatives and the consequences, so a client or a successor can see why, not only what.
+Architecture decisions behind this portfolio, written as short ADRs. Each one records the context, the decision, the alternatives and the consequences, so a client or a successor can see why, not only what.
 
 ---
 

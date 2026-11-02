@@ -33,7 +33,7 @@ Synthetic identifiers only. Use test values that match the format of sensitive i
 
 ## 4. Connection rules
 
-Use the helpers in `common/Blueprint.Common.ps1`:
+Use the helpers in `common/M365Lab.Common.ps1`:
 
 - Device code or browser flow, no cached broker account.
 - Print the tenant ID after connecting and compare it with the expected lab tenant before any change.

@@ -35,16 +35,16 @@ Why the `EXTRACT` right matters: Copilot needs it to use the content of an encry
 ## Run
 
 ```powershell
-. ./common/Blueprint.Common.ps1
-Connect-BlueprintIPPS -UserPrincipalName admin@contosofiduciaire.onmicrosoft.com
-Assert-BlueprintTenant -ExpectedTenantId <lab-tenant-guid> -Service ExchangeOnline
+. ./common/M365Lab.Common.ps1
+Connect-LabIPPS -UserPrincipalName admin@contosofiduciaire.onmicrosoft.com
+Assert-LabTenant -ExpectedTenantId <lab-tenant-guid> -Service ExchangeOnline
 
-./ws1-purview-sensitivity-labels/Deploy-SensitivityLabels.ps1 -ConfigPath ./ws1-purview-sensitivity-labels/config/labels.json -WhatIf
-./ws1-purview-sensitivity-labels/Deploy-SensitivityLabels.ps1 -ConfigPath ./ws1-purview-sensitivity-labels/config/labels.json
-./ws1-purview-sensitivity-labels/Test-SensitivityLabels.ps1   -ConfigPath ./ws1-purview-sensitivity-labels/config/labels.json
+./01-copilot-readiness/ws1-sensitivity-labels/Deploy-SensitivityLabels.ps1 -ConfigPath ./01-copilot-readiness/ws1-sensitivity-labels/config/labels.json -WhatIf
+./01-copilot-readiness/ws1-sensitivity-labels/Deploy-SensitivityLabels.ps1 -ConfigPath ./01-copilot-readiness/ws1-sensitivity-labels/config/labels.json
+./01-copilot-readiness/ws1-sensitivity-labels/Test-SensitivityLabels.ps1   -ConfigPath ./01-copilot-readiness/ws1-sensitivity-labels/config/labels.json
 ```
 
-Portal step after deployment: **Purview > Information protection > Policies > Label publishing policies > Blueprint - Sensitivity labels > Edit**, set the default label for documents and emails to **Internal**.
+Portal step after deployment: **Purview > Information protection > Policies > Label publishing policies > Lab - Sensitivity labels > Edit**, set the default label for documents and emails to **Internal**.
 
 ## Tests to run in the lab
 

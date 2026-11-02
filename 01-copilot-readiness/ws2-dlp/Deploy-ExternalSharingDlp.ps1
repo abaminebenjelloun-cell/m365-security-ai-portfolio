@@ -23,7 +23,7 @@
     when the Teams chat and channel location is selected (lesson L8).
 
 .EXAMPLE
-    ./ws2-purview-dlp/Deploy-ExternalSharingDlp.ps1 -ConfigPath ./ws2-purview-dlp/config/dlp-external-sharing.json -WhatIf
+    ./01-copilot-readiness/ws2-dlp/Deploy-ExternalSharingDlp.ps1 -ConfigPath ./01-copilot-readiness/ws2-dlp/config/dlp-external-sharing.json -WhatIf
 #>
 [CmdletBinding(SupportsShouldProcess)]
 param(
@@ -31,7 +31,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-. (Join-Path $PSScriptRoot '../common/Blueprint.Common.ps1')
+. (Join-Path $PSScriptRoot '../../common/M365Lab.Common.ps1')
 
 $config = Get-Content -Path $ConfigPath -Raw | ConvertFrom-Json
 
@@ -54,18 +54,18 @@ foreach ($rule in $config.rules) {
         }
     }
 }
-Write-BlueprintLog 'Pre-checks passed'
+Write-LabLog 'Pre-checks passed'
 
 # ---------- ACTION ----------
 if (-not $PSCmdlet.ShouldProcess($config.policyName, 'Create DLP policy and rules in simulation mode')) { return }
 
 New-DlpCompliancePolicy -Name $config.policyName `
-    -Comment 'Copilot Security Blueprint - external sharing. Created in simulation mode.' `
+    -Comment 'Copilot Security Lab - external sharing. Created in simulation mode.' `
     -ExchangeLocation All -ExchangeSenderMemberOf $config.pilotGroup `
     -SharePointLocation All `
     -OneDriveLocation All -OneDriveSharedByMemberOf $config.pilotGroup `
     -Mode $config.mode | Out-Null
-Write-BlueprintLog "Created policy '$($config.policyName)' in mode $($config.mode)" 'OK'
+Write-LabLog "Created policy '$($config.policyName)' in mode $($config.mode)" 'OK'
 
 try {
     foreach ($rule in $config.rules) {
@@ -101,13 +101,13 @@ try {
         }
 
         New-DlpComplianceRule @ruleParams | Out-Null
-        Write-BlueprintLog "Created rule '$($rule.name)'" 'OK'
+        Write-LabLog "Created rule '$($rule.name)'" 'OK'
     }
 }
 catch {
-    Write-BlueprintLog "Rule creation failed: $($_.Exception.Message). Rolling back the policy." 'ERROR'
+    Write-LabLog "Rule creation failed: $($_.Exception.Message). Rolling back the policy." 'ERROR'
     Remove-DlpCompliancePolicy -Identity $config.policyName -Confirm:$false
     throw
 }
 
-Write-BlueprintLog 'Done. Run Test-DlpPolicies.ps1, then review simulation results in Purview > Data loss prevention > Policies before any enforcement decision.'
+Write-LabLog 'Done. Run Test-DlpPolicies.ps1, then review simulation results in Purview > Data loss prevention > Policies before any enforcement decision.'

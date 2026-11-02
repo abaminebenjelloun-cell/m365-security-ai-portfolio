@@ -20,7 +20,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-. (Join-Path $PSScriptRoot '../common/Blueprint.Common.ps1')
+. (Join-Path $PSScriptRoot '../../common/M365Lab.Common.ps1')
 
 $config = Get-Content -Path $ConfigPath -Raw | ConvertFrom-Json
 $results = [System.Collections.Generic.List[object]]::new()
@@ -70,7 +70,7 @@ else {
 }
 
 $results | Format-Table -AutoSize
-Export-BlueprintResult -InputObject $results -Name 'ws1-label-readback'
+Export-LabResult -InputObject $results -Name 'ws1-label-readback'
 
 $failed = @($results | Where-Object Status -eq 'FAIL').Count
-if ($failed -gt 0) { Write-BlueprintLog "$failed check(s) failed" 'ERROR' } else { Write-BlueprintLog 'All label checks passed' 'OK' }
+if ($failed -gt 0) { Write-LabLog "$failed check(s) failed" 'ERROR' } else { Write-LabLog 'All label checks passed' 'OK' }

@@ -1,6 +1,6 @@
 # References
 
-Official Microsoft sources used to design and verify the blueprint. Check them again before production use: these areas change often.
+Official Microsoft sources used to design and verify this portfolio. Check them again before production use: these areas change often.
 
 ## Purview
 

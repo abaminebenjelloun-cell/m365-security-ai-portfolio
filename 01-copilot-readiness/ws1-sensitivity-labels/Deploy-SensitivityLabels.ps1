@@ -12,14 +12,14 @@
     The script is idempotent: existing labels are reported, never overwritten.
     Use -WhatIf first.
 
-    Requires a session opened with Connect-BlueprintIPPS (common/Blueprint.Common.ps1)
+    Requires a session opened with Connect-LabIPPS (common/M365Lab.Common.ps1)
     and the Compliance Administrator or Information Protection Admin role.
 
 .EXAMPLE
-    . ./common/Blueprint.Common.ps1
-    Connect-BlueprintIPPS -UserPrincipalName admin@contosofiduciaire.onmicrosoft.com
-    Assert-BlueprintTenant -ExpectedTenantId <lab-tenant-guid> -Service ExchangeOnline
-    ./ws1-purview-sensitivity-labels/Deploy-SensitivityLabels.ps1 -ConfigPath ./ws1-purview-sensitivity-labels/config/labels.json -WhatIf
+    . ./common/M365Lab.Common.ps1
+    Connect-LabIPPS -UserPrincipalName admin@contosofiduciaire.onmicrosoft.com
+    Assert-LabTenant -ExpectedTenantId <lab-tenant-guid> -Service ExchangeOnline
+    ./01-copilot-readiness/ws1-sensitivity-labels/Deploy-SensitivityLabels.ps1 -ConfigPath ./01-copilot-readiness/ws1-sensitivity-labels/config/labels.json -WhatIf
 #>
 [CmdletBinding(SupportsShouldProcess)]
 param(
@@ -27,21 +27,21 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-. (Join-Path $PSScriptRoot '../common/Blueprint.Common.ps1')
+. (Join-Path $PSScriptRoot '../../common/M365Lab.Common.ps1')
 
 $config = Get-Content -Path $ConfigPath -Raw | ConvertFrom-Json
 
 # ---------- PRE-CHECK ----------
 if (-not (Get-Command -Name Get-Label -ErrorAction SilentlyContinue)) {
-    throw 'Get-Label not available. Connect with Connect-BlueprintIPPS first.'
+    throw 'Get-Label not available. Connect with Connect-LabIPPS first.'
 }
 $existing = @(Get-Label | Select-Object -ExpandProperty Name)
-Write-BlueprintLog ("{0} labels already in the tenant" -f $existing.Count)
+Write-LabLog ("{0} labels already in the tenant" -f $existing.Count)
 
 # ---------- ACTION: labels ----------
 foreach ($label in $config.labels) {
     if ($existing -contains $label.name) {
-        Write-BlueprintLog "Label '$($label.name)' already exists, left unchanged" 'WARN'
+        Write-LabLog "Label '$($label.name)' already exists, left unchanged" 'WARN'
         continue
     }
 
@@ -73,7 +73,7 @@ foreach ($label in $config.labels) {
 
     if ($PSCmdlet.ShouldProcess($label.name, 'New-Label')) {
         New-Label @params | Out-Null
-        Write-BlueprintLog "Created label '$($label.name)'" 'OK'
+        Write-LabLog "Created label '$($label.name)'" 'OK'
     }
 }
 
@@ -88,13 +88,13 @@ foreach ($label in ($config.labels | Sort-Object priority)) {
 # Lesson L2: one policy must publish every label a user needs.
 $policy = Get-LabelPolicy -ErrorAction SilentlyContinue | Where-Object Name -eq $config.policyName
 if ($policy) {
-    Write-BlueprintLog "Label policy '$($config.policyName)' already exists, left unchanged" 'WARN'
+    Write-LabLog "Label policy '$($config.policyName)' already exists, left unchanged" 'WARN'
 }
 elseif ($PSCmdlet.ShouldProcess($config.policyName, 'New-LabelPolicy')) {
     New-LabelPolicy -Name $config.policyName `
         -Labels ($config.labels.name) `
         -ExchangeLocation $config.pilotGroup | Out-Null
-    Write-BlueprintLog "Created label policy '$($config.policyName)' scoped to $($config.pilotGroup)" 'OK'
+    Write-LabLog "Created label policy '$($config.policyName)' scoped to $($config.pilotGroup)" 'OK'
 }
 
-Write-BlueprintLog 'Done. Set the default label (Internal) in the policy settings in the Purview portal, then run Test-SensitivityLabels.ps1.'
+Write-LabLog 'Done. Set the default label (Internal) in the policy settings in the Purview portal, then run Test-SensitivityLabels.ps1.'

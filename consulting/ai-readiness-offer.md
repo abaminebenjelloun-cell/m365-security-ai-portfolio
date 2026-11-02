@@ -52,4 +52,4 @@ Licensing changes often. Confirm against the current Microsoft licensing guidanc
 
 | Entry offer | Core offer | Follow-up offers |
 |---|---|---|
-| Flash assessment (docs/assessment-method.md) | AI readiness (this page) | Agent governance (WS4), FinOps for AI (WS7), managed run (WS8) |
+| Flash assessment ([assessment-method.md](assessment-method.md)) | AI readiness (this page) | Agent governance (WS4), FinOps for AI (WS7), managed run (WS8) |

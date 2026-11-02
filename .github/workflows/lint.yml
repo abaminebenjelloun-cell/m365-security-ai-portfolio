@@ -26,9 +26,9 @@ jobs:
           python-version: '3.12'
       - name: Compile and run on synthetic data
         run: |
-          python -m py_compile ws4-agents-and-connectors/analyze_agent_inventory.py ws7-finops-ai/analyze_credits.py
-          python ws4-agents-and-connectors/analyze_agent_inventory.py ws4-agents-and-connectors/sample-data/agent_inventory_synthetic.csv
-          python ws7-finops-ai/analyze_credits.py ws7-finops-ai/sample-data/copilot_credits_synthetic.csv
+          python -m py_compile 02-agent-governance/analyze_agent_inventory.py 03-finops-ai/analyze_credits.py
+          python 02-agent-governance/analyze_agent_inventory.py 02-agent-governance/sample-data/agent_inventory_synthetic.csv
+          python 03-finops-ai/analyze_credits.py 03-finops-ai/sample-data/copilot_credits_synthetic.csv
 
   confidentiality:
     runs-on: ubuntu-latest

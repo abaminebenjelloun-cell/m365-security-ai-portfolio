@@ -9,8 +9,8 @@
 
 | Policy | Locations | Built with | Mode at start |
 |---|---|---|---|
-| `Blueprint - DLP for Copilot` | Microsoft 365 Copilot and Copilot Chat only | Purview portal (see [runbook](copilot-dlp-runbook.md)), exported as code | Simulation |
-| `Blueprint - DLP external sharing` | Exchange, SharePoint, OneDrive (Teams excluded) | `Deploy-ExternalSharingDlp.ps1` | Simulation |
+| `Lab - DLP for Copilot` | Microsoft 365 Copilot and Copilot Chat only | Purview portal (see [runbook](copilot-dlp-runbook.md)), exported as code | Simulation |
+| `Lab - DLP external sharing` | Exchange, SharePoint, OneDrive (Teams excluded) | `Deploy-ExternalSharingDlp.ps1` | Simulation |
 
 ### DLP for Copilot
 
@@ -49,14 +49,14 @@
 ## Run
 
 ```powershell
-. ./common/Blueprint.Common.ps1
-Connect-BlueprintIPPS -UserPrincipalName admin@contosofiduciaire.onmicrosoft.com
-Assert-BlueprintTenant -ExpectedTenantId <lab-tenant-guid> -Service ExchangeOnline
+. ./common/M365Lab.Common.ps1
+Connect-LabIPPS -UserPrincipalName admin@contosofiduciaire.onmicrosoft.com
+Assert-LabTenant -ExpectedTenantId <lab-tenant-guid> -Service ExchangeOnline
 
-./ws2-purview-dlp/Deploy-ExternalSharingDlp.ps1 -ConfigPath ./ws2-purview-dlp/config/dlp-external-sharing.json -WhatIf
-./ws2-purview-dlp/Deploy-ExternalSharingDlp.ps1 -ConfigPath ./ws2-purview-dlp/config/dlp-external-sharing.json
+./01-copilot-readiness/ws2-dlp/Deploy-ExternalSharingDlp.ps1 -ConfigPath ./01-copilot-readiness/ws2-dlp/config/dlp-external-sharing.json -WhatIf
+./01-copilot-readiness/ws2-dlp/Deploy-ExternalSharingDlp.ps1 -ConfigPath ./01-copilot-readiness/ws2-dlp/config/dlp-external-sharing.json
 # Build the Copilot policy in the portal (runbook), then:
-./ws2-purview-dlp/Test-DlpPolicies.ps1 -ExternalSharingConfig ./ws2-purview-dlp/config/dlp-external-sharing.json
+./01-copilot-readiness/ws2-dlp/Test-DlpPolicies.ps1 -ExternalSharingConfig ./01-copilot-readiness/ws2-dlp/config/dlp-external-sharing.json
 ```
 
 Sensitive information type names differ slightly between tenants and languages. The deploy script checks each name with `Get-DlpSensitiveInformationType` before creating anything.

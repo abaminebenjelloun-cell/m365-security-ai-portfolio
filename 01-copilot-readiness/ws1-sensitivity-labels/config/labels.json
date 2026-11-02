@@ -1,7 +1,7 @@
 {
   "organizationDomain": "contosofiduciaire.onmicrosoft.com",
   "pilotGroup": "SG-Pilot-Copilot@contosofiduciaire.onmicrosoft.com",
-  "policyName": "Blueprint - Sensitivity labels",
+  "policyName": "Lab - Sensitivity labels",
   "labels": [
     {
       "name": "L0-Public",

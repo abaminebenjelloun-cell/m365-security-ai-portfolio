@@ -12,7 +12,7 @@
     real tenant contain object IDs and names.
 
 .EXAMPLE
-    ./ws2-purview-dlp/Export-DlpPolicyAsCode.ps1 -PolicyName 'Blueprint - DLP for Copilot'
+    ./01-copilot-readiness/ws2-dlp/Export-DlpPolicyAsCode.ps1 -PolicyName 'Lab - DLP for Copilot'
 #>
 [CmdletBinding()]
 param(
@@ -20,7 +20,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-. (Join-Path $PSScriptRoot '../common/Blueprint.Common.ps1')
+. (Join-Path $PSScriptRoot '../../common/M365Lab.Common.ps1')
 
 $export = foreach ($name in $PolicyName) {
     $policy = Get-DlpCompliancePolicy -Identity $name
@@ -37,4 +37,4 @@ $dir = Join-Path (Get-Location) 'output'
 if (-not (Test-Path $dir)) { New-Item -ItemType Directory -Path $dir | Out-Null }
 $file = Join-Path $dir ("dlp-export-{0}.json" -f (Get-Date -Format 'yyyyMMdd-HHmm'))
 $export | ConvertTo-Json -Depth 10 | Set-Content -Path $file -Encoding utf8
-Write-BlueprintLog "Exported $($PolicyName.Count) policy(ies) to $file" 'OK'
+Write-LabLog "Exported $($PolicyName.Count) policy(ies) to $file" 'OK'

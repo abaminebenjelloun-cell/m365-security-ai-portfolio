@@ -1,101 +1,93 @@
-# Copilot Security Blueprint
+# Microsoft 365 Security & AI Governance Portfolio
 
-A field-tested, reproducible method to make a Microsoft 365 tenant **ready for Copilot and AI agents**: protect the data, govern the agents, control the cost, and prove it.
+Field-tested methods, scripts and decisions from Microsoft 365 security and AI governance work in Swiss organisations: making tenants ready for **Microsoft 365 Copilot**, governing **Copilot Studio and agents**, controlling **AI costs**, and running **security posture** with evidence.
 
-Built from real Microsoft 365 Copilot security engagements in Swiss organisations (industrial group, public sector, SMEs, financial sector context), rewritten from scratch and validated in a personal lab tenant. **No client data, names or identifiers appear in this repository.**
+Everything here is rewritten from scratch and validated on a personal lab tenant with synthetic data. **No client data, names or identifiers appear in this repository.**
 
 ---
 
-## Why this exists
+## What you will find
 
-Microsoft 365 Copilot answers with everything a user can already reach. In most tenants that means overshared SharePoint sites, unlabelled sensitive files, ungoverned connectors and agents nobody owns. Turning Copilot on without preparing the data turns old permission debt into a new data leak, and agents without capacity rules turn into a surprise bill.
-
-This blueprint covers the full path:
-
-```
- Assess  ->  Make data ready  ->  Protect  ->  Govern agents  ->  Control cost  ->  Prove it
- (WS3,WS8)    (WS1, WS3)         (WS2,WS5,WS6)   (WS4)              (WS7)           (tests, evaluation)
-```
-
-## Workstreams
-
-| # | Workstream | What it delivers | Main platform |
+| # | Section | In one line | Main platforms |
 |---|---|---|---|
-| [WS1](ws1-purview-sensitivity-labels/) | Sensitivity labels | 4-level taxonomy where the top level is excluded from Copilot grounding (no `EXTRACT` right) | Microsoft Purview |
-| [WS2](ws2-purview-dlp/) | Data Loss Prevention | DLP for Microsoft 365 Copilot and Copilot Chat, plus external sharing DLP with tiered enforcement | Microsoft Purview |
-| [WS3](ws3-oversharing/) | Oversharing | SharePoint and OneDrive inventory, exposure flags, delta report between two snapshots | SharePoint admin, PowerShell |
-| [WS4](ws4-agents-and-connectors/) | Agents and connectors | Power Platform data policy for Copilot Studio, agent access group, Agent 365 lifecycle, agent inventory analysis, Power Automate governance | M365 admin center, Power Platform admin center, Entra |
-| [WS5](ws5-web-grounding/) | Web grounding | Explicit, auditable control of web search in Copilot | Cloud Policy service |
-| [WS6](ws6-shadow-ai/) | Shadow AI | Discovery of generative AI apps and a sanction decision tree | Defender for Cloud Apps |
-| [WS7](ws7-finops-ai/) | FinOps for AI | Copilot Credits consumption analysis, cost per use in CHF, capacity caps, telemetry | Power Platform admin center, Azure Application Insights |
-| [WS8](ws8-secure-score-governance/) | Secure Score governance | Baseline, target, waves, change log, risk acceptance, monthly snapshot | Microsoft Defender portal, Microsoft Graph |
-| [Reference agent](reference-agent/) | A Copilot Studio agent built under these rules | Design, guardrails, 20-query evaluation | Copilot Studio |
+| 01 | [Copilot readiness](01-copilot-readiness/) | Protect and prepare the data before Copilot sees it: labels, DLP for Copilot, oversharing, web grounding, shadow AI | Microsoft Purview, SharePoint, Defender for Cloud Apps |
+| 02 | [Agent governance](02-agent-governance/) | Control who builds agents, with which connectors, who owns them, and when they retire | M365 admin center, Agent 365, Power Platform admin center, Entra ID |
+| 03 | [FinOps for AI](03-finops-ai/) | Turn Copilot Credits into CHF per use, cap capacity, avoid silent burn | Power Platform admin center, Application Insights |
+| 04 | [Secure Score governance](04-secure-score-governance/) | Raise Microsoft Secure Score by waves, with a change log and accepted risks | Microsoft Defender portal, Microsoft Graph |
+| 05 | [Reference agent](05-reference-agent-copilot-studio/) | A Copilot Studio agent built under all the rules above, with a 20-query evaluation | Copilot Studio |
+| | [Consulting offers](consulting/) | How the work is packaged: flash assessment and AI readiness offer | |
+| | [Docs](docs/) | Methodology, decision log (ADRs), lessons learned, lab setup, references | |
 
-## Method in one page
-
-- **Assess before you build.** A scored assessment (see [assessment method](docs/assessment-method.md)) and an AI readiness diagnostic (see [AI readiness method](docs/ai-readiness-method.md)) come first.
-- **Ring 0 first.** Every control starts on a pilot group, in simulation mode where the product allows it.
-- **Decision gates.** Enforcement is a client decision taken on simulation data, never a default.
-- **Configured is not verified.** Every workstream ships a `Test-*` script or a written check that reads the configuration back from the tenant. A setting only counts once it has been read back.
-- **Everything is logged.** Each change goes into a change log with before state, after state, user impact and rollback.
-
-Details: [docs/methodology.md](docs/methodology.md).
-
-## Repository layout
+## How the pieces fit
 
 ```
-copilot-security-blueprint/
-├── docs/                              method, decisions, lessons learned, lab setup
-├── common/                            shared PowerShell helpers (connection, tenant check, logging)
-├── ws1-purview-sensitivity-labels/
-├── ws2-purview-dlp/
-├── ws3-oversharing/
-├── ws4-agents-and-connectors/
-├── ws5-web-grounding/
-├── ws6-shadow-ai/
-├── ws7-finops-ai/
-├── ws8-secure-score-governance/
-├── reference-agent/
-└── .github/workflows/                 lint for PowerShell and Python
+  Flash assessment  ->  AI readiness  ->  Agent governance  ->  FinOps for AI  ->  Run
+  (consulting/)         (01)              (02)                  (03)               (04, monthly)
+                                     \_____ proven with the reference agent (05) _____/
 ```
+
+The Copilot readiness engagement is organised in workstreams, referenced throughout the repository:
+
+| ID | Workstream | Folder |
+|---|---|---|
+| WS1 | Sensitivity labels | `01-copilot-readiness/ws1-sensitivity-labels` |
+| WS2 | DLP (Copilot and external sharing) | `01-copilot-readiness/ws2-dlp` |
+| WS3 | Oversharing | `01-copilot-readiness/ws3-oversharing` |
+| WS4 | Agents and connectors | `02-agent-governance` |
+| WS5 | Web grounding | `01-copilot-readiness/ws5-web-grounding` |
+| WS6 | Shadow AI | `01-copilot-readiness/ws6-shadow-ai` |
+| WS7 | FinOps for AI | `03-finops-ai` |
+| WS8 | Secure Score governance | `04-secure-score-governance` |
+
+## Working principles
+
+- **Assess before you build.** Every engagement starts with a scored diagnostic.
+- **Ring 0 first.** Controls start on a pilot group, in simulation where the product allows it.
+- **Decision gates.** Enforcement is a sponsor decision taken on simulation data, never a default.
+- **Configured is not verified.** Each section ships a `Test-*` script or a written check that reads the configuration back from the tenant.
+- **Everything is logged.** Change log with before, after, user impact and rollback.
+
+Details: [docs/methodology.md](docs/methodology.md) · Why each choice was made: [docs/decision-log.md](docs/decision-log.md) · What went wrong before: [docs/lessons-learned.md](docs/lessons-learned.md)
 
 ## Quick start (lab)
 
 1. Build a lab tenant with synthetic data: [docs/lab-setup.md](docs/lab-setup.md).
-2. Read [docs/methodology.md](docs/methodology.md) and the README of the workstream you need.
-3. Every script starts in **read-only or `-WhatIf` mode**. Review the configuration file in `config/` before you deploy.
+2. Read the README of the section you need.
+3. Every change script supports `-WhatIf`. Every `Test-*` script is read-only.
 
 ```powershell
-# Example: deploy the label taxonomy to the lab, then verify it
-. ./common/Blueprint.Common.ps1
-./ws1-purview-sensitivity-labels/Deploy-SensitivityLabels.ps1 -ConfigPath ./ws1-purview-sensitivity-labels/config/labels.json -WhatIf
-./ws1-purview-sensitivity-labels/Test-SensitivityLabels.ps1 -ConfigPath ./ws1-purview-sensitivity-labels/config/labels.json
+. ./common/M365Lab.Common.ps1
+Connect-LabIPPS -UserPrincipalName admin@contosofiduciaire.onmicrosoft.com
+Assert-LabTenant -ExpectedTenantId <lab-tenant-guid> -Service ExchangeOnline
+./01-copilot-readiness/ws1-sensitivity-labels/Deploy-SensitivityLabels.ps1 -ConfigPath ./01-copilot-readiness/ws1-sensitivity-labels/config/labels.json -WhatIf
 ```
 
 ```bash
-# Example: FinOps analysis on the synthetic dataset
-python3 ws7-finops-ai/analyze_credits.py ws7-finops-ai/sample-data/copilot_credits_synthetic.csv
+# FinOps analysis and agent inventory analysis on synthetic data (Python 3, standard library only)
+python3 03-finops-ai/analyze_credits.py 03-finops-ai/sample-data/copilot_credits_synthetic.csv
+python3 02-agent-governance/analyze_agent_inventory.py 02-agent-governance/sample-data/agent_inventory_synthetic.csv
 ```
 
-## What this repository is and is not
+## Scope and honesty
 
-| It is | It is not |
+| This repository is | It is not |
 |---|---|
-| A method and working lab code you can adapt | A compliance certification or legal advice |
+| Methods and working lab code you can adapt | Legal advice or a compliance certification |
 | Results from a synthetic lab tenant | A copy of any client deliverable or employer material |
-| Explicit about preview vs generally available features | A guarantee that Microsoft menus, rates or licences have not changed since the "verified on" date |
+| Explicit about **preview** vs generally available features | A guarantee that menus, rates or licences have not changed since each "verified on" date |
 
-Fast-moving areas (Copilot, Copilot Studio billing, Agent 365, Purview DLP for Copilot) carry a **verified on** date in each README. Check Microsoft Learn before production use.
+Fast-moving areas (Copilot, Copilot Studio billing, Agent 365, DLP for Copilot) carry a **verified on** date. Check Microsoft Learn before production use.
 
 ## Swiss context
 
-Designed for organisations subject to the revised Swiss Federal Act on Data Protection (revDSG / nFADP) and, where relevant, FINMA expectations on outsourcing and operational resilience. The repository gives the technical and architectural perspective only. Interpretation of the law or of contracts belongs to legal counsel or the compliance officer.
+Designed for organisations under the revised Swiss Federal Act on Data Protection (revDSG / nFADP) and, where relevant, FINMA expectations on outsourcing and operational resilience. Data residency defaults to Switzerland North and Switzerland West. The repository gives the technical perspective; interpretation of law and contracts belongs to legal counsel or the compliance officer.
 
 ## Roadmap
 
-- Same reference use case rebuilt on Microsoft Foundry with Azure AI Search, deployed in Switzerland North, with an automated evaluation pipeline.
-- Purview Endpoint DLP for Windows devices, then mobile.
-- Data Security Posture Management (DSPM) for AI as the continuous version of the WS3 diagnostic.
+- The reference use case rebuilt on **Microsoft Foundry** with Azure AI Search in Switzerland North, with an automated evaluation pipeline.
+- **Purview Endpoint DLP** for Windows devices, then mobile.
+- **DSPM for AI** as the continuous version of the oversharing diagnostic.
+- Infrastructure as code (Bicep) for the Azure resources used by FinOps telemetry.
 
 ## License
 

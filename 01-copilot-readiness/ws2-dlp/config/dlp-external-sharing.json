@@ -1,5 +1,5 @@
 {
-  "policyName": "Blueprint - DLP external sharing",
+  "policyName": "Lab - DLP external sharing",
   "mode": "TestWithNotifications",
   "pilotGroup": "SG-Pilot-Copilot@contosofiduciaire.onmicrosoft.com",
   "alertRecipient": "security@contosofiduciaire.onmicrosoft.com",

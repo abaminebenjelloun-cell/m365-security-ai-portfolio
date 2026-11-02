@@ -15,7 +15,7 @@ The Copilot location is configured in the portal, then exported for review with 
 
 | Setting | Value |
 |---|---|
-| Name | `Blueprint - DLP for Copilot` |
+| Name | `Lab - DLP for Copilot` |
 | Template | Custom |
 | Location | Microsoft 365 Copilot and Copilot Chat only |
 | Scope | Pilot group (ring 0) |
@@ -38,7 +38,7 @@ Optional, **preview**: a rule that blocks **prompts** containing sensitive infor
 2. Run the test matrix (`test-matrix.md`) with `pilot.copilot`.
 3. Export for review:
    ```powershell
-   ./ws2-purview-dlp/Export-DlpPolicyAsCode.ps1 -PolicyName 'Blueprint - DLP for Copilot'
+   ./01-copilot-readiness/ws2-dlp/Export-DlpPolicyAsCode.ps1 -PolicyName 'Lab - DLP for Copilot'
    ```
 4. Read back with `Test-DlpPolicies.ps1`.
 5. After two to four weeks of simulation, bring the volumes to the decision gate.

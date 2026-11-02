@@ -36,7 +36,7 @@ Field notes from real Copilot security and Microsoft 365 governance work. Each o
 
 | # | Lesson | Why it matters |
 |---|---|---|
-| L16 | **Identity bleed:** the Windows Web Account Manager (WAM) silently reuses a cached account from another tenant. | Use device code flow, `-DisableWAM` where available, and always print the connected tenant ID before any change. See `common/Blueprint.Common.ps1`. |
+| L16 | **Identity bleed:** the Windows Web Account Manager (WAM) silently reuses a cached account from another tenant. | Use device code flow, `-DisableWAM` where available, and always print the connected tenant ID before any change. See `common/M365Lab.Common.ps1`. |
 | L17 | `ExchangeOnlineManagement` and `Microsoft.Graph` loaded in the same session can conflict on the authentication library. | One module family per PowerShell window. |
 | L18 | On locked-down laptops (no local admin, Documents redirected to OneDrive), `Install-Module` scopes fail in surprising ways. | Use `Save-Module` to a local folder and import from there. Pin module versions that are known to work. |
 
