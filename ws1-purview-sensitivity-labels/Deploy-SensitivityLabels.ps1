@@ -1,0 +1,100 @@
+#Requires -Version 7.2
+<#
+.SYNOPSIS
+    Creates the four-level sensitivity label taxonomy and publishes it to a pilot group.
+
+.DESCRIPTION
+    PRE-CHECK  : tenant check, reads existing labels, reports what already exists.
+    ACTION     : creates missing labels (encryption, footer, dynamic watermark), sets priority,
+                 creates the label policy scoped to the pilot group.
+    POST-VERIFY: run Test-SensitivityLabels.ps1 to read the configuration back.
+
+    The script is idempotent: existing labels are reported, never overwritten.
+    Use -WhatIf first.
+
+    Requires a session opened with Connect-BlueprintIPPS (common/Blueprint.Common.ps1)
+    and the Compliance Administrator or Information Protection Admin role.
+
+.EXAMPLE
+    . ./common/Blueprint.Common.ps1
+    Connect-BlueprintIPPS -UserPrincipalName admin@contosofiduciaire.onmicrosoft.com
+    Assert-BlueprintTenant -ExpectedTenantId <lab-tenant-guid> -Service ExchangeOnline
+    ./ws1-purview-sensitivity-labels/Deploy-SensitivityLabels.ps1 -ConfigPath ./ws1-purview-sensitivity-labels/config/labels.json -WhatIf
+#>
+[CmdletBinding(SupportsShouldProcess)]
+param(
+    [Parameter(Mandatory)][string]$ConfigPath
+)
+
+$ErrorActionPreference = 'Stop'
+. (Join-Path $PSScriptRoot '../common/Blueprint.Common.ps1')
+
+$config = Get-Content -Path $ConfigPath -Raw | ConvertFrom-Json
+
+# ---------- PRE-CHECK ----------
+if (-not (Get-Command -Name Get-Label -ErrorAction SilentlyContinue)) {
+    throw 'Get-Label not available. Connect with Connect-BlueprintIPPS first.'
+}
+$existing = @(Get-Label | Select-Object -ExpandProperty Name)
+Write-BlueprintLog ("{0} labels already in the tenant" -f $existing.Count)
+
+# ---------- ACTION: labels ----------
+foreach ($label in $config.labels) {
+    if ($existing -contains $label.name) {
+        Write-BlueprintLog "Label '$($label.name)' already exists, left unchanged" 'WARN'
+        continue
+    }
+
+    $params = @{
+        Name        = $label.name
+        DisplayName = $label.displayName
+        Tooltip     = $label.tooltip
+        ContentType = $label.contentType
+    }
+
+    if ($label.encryption) {
+        $params.EncryptionEnabled            = $true
+        $params.EncryptionProtectionType     = 'Template'
+        $params.EncryptionRightsDefinitions  = '{0}:{1}' -f $config.organizationDomain, $label.encryption.rights
+        $params.EncryptionOfflineAccessDays  = [int]$label.encryption.offlineAccessDays
+    }
+
+    if ($label.footer) {
+        $params.ApplyContentMarkingFooterEnabled   = $true
+        $params.ApplyContentMarkingFooterText      = $label.footer
+        $params.ApplyContentMarkingFooterAlignment = 'Center'
+    }
+
+    if ($label.PSObject.Properties.Name -contains 'dynamicWatermark' -and $label.dynamicWatermark) {
+        # Dynamic watermarking is generally available only for labels with admin-defined permissions
+        $params.ApplyDynamicWatermarkingEnabled = $true
+        $params.DynamicWatermarkDisplay         = $label.dynamicWatermark
+    }
+
+    if ($PSCmdlet.ShouldProcess($label.name, 'New-Label')) {
+        New-Label @params | Out-Null
+        Write-BlueprintLog "Created label '$($label.name)'" 'OK'
+    }
+}
+
+# ---------- ACTION: priority ----------
+foreach ($label in ($config.labels | Sort-Object priority)) {
+    if ($PSCmdlet.ShouldProcess($label.name, "Set priority $($label.priority)")) {
+        Set-Label -Identity $label.name -Priority $label.priority
+    }
+}
+
+# ---------- ACTION: label policy (ring 0) ----------
+# Lesson L2: one policy must publish every label a user needs.
+$policy = Get-LabelPolicy -ErrorAction SilentlyContinue | Where-Object Name -eq $config.policyName
+if ($policy) {
+    Write-BlueprintLog "Label policy '$($config.policyName)' already exists, left unchanged" 'WARN'
+}
+elseif ($PSCmdlet.ShouldProcess($config.policyName, 'New-LabelPolicy')) {
+    New-LabelPolicy -Name $config.policyName `
+        -Labels ($config.labels.name) `
+        -ExchangeLocation $config.pilotGroup | Out-Null
+    Write-BlueprintLog "Created label policy '$($config.policyName)' scoped to $($config.pilotGroup)" 'OK'
+}
+
+Write-BlueprintLog 'Done. Set the default label (Internal) in the policy settings in the Purview portal, then run Test-SensitivityLabels.ps1.'

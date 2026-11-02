@@ -1,0 +1,53 @@
+{
+  "organizationDomain": "contosofiduciaire.onmicrosoft.com",
+  "pilotGroup": "SG-Pilot-Copilot@contosofiduciaire.onmicrosoft.com",
+  "policyName": "Blueprint - Sensitivity labels",
+  "labels": [
+    {
+      "name": "L0-Public",
+      "displayName": "Public",
+      "tooltip": "Information approved for public release.",
+      "priority": 0,
+      "contentType": "File, Email",
+      "encryption": null,
+      "footer": null
+    },
+    {
+      "name": "L1-Internal",
+      "displayName": "Internal",
+      "tooltip": "Day-to-day business information for employees. Default label.",
+      "priority": 1,
+      "contentType": "File, Email",
+      "encryption": null,
+      "footer": null
+    },
+    {
+      "name": "L2-Confidential",
+      "displayName": "Confidential",
+      "tooltip": "Sensitive business information for employees only. Copilot can still use it for authorised users.",
+      "priority": 2,
+      "contentType": "File, Email",
+      "encryption": {
+        "rights": "VIEW,VIEWRIGHTSDATA,DOCEDIT,EDIT,PRINT,EXTRACT,REPLY,REPLYALL,FORWARD,OBJMODEL",
+        "offlineAccessDays": 7
+      },
+      "footer": "Confidential",
+      "dynamicWatermark": null,
+      "copilotGrounding": "allowed"
+    },
+    {
+      "name": "L3-Secret",
+      "displayName": "Secret",
+      "tooltip": "Highly sensitive information. Excluded from Copilot. No print, no forward, no copy.",
+      "priority": 3,
+      "contentType": "File, Email",
+      "encryption": {
+        "rights": "VIEW,VIEWRIGHTSDATA,DOCEDIT,EDIT,REPLY,REPLYALL",
+        "offlineAccessDays": 0
+      },
+      "footer": "Secret",
+      "dynamicWatermark": "SECRET ${Consumer.PrincipalName} ${Device.DateTime}",
+      "copilotGrounding": "blocked"
+    }
+  ]
+}
