@@ -4,7 +4,7 @@ Copilot Studio is available to every Microsoft 365 user. Without governance, a t
 
 **Experience behind it:** first Power Platform data policy on a tenant that had none, agent access restricted through a dynamic Entra group, analysis of an inventory of several hundred agents (duplicates, admin-owned agents, MCP preview servers, sensitive files uploaded as agent knowledge outside SharePoint permissions), Agent 365 hardening split into "no extra licence" and "licensed" layers, and a Power Automate governance guideline approved by the client.
 
-**Verified on:** 2026-11-02. Agent settings in the Microsoft 365 admin center moved several times in 2026: look for the closest equivalent if a label differs.
+**Last reviewed:** November 2026. Agent settings in the Microsoft 365 admin center moved several times in 2026: look for the closest equivalent if a label differs.
 
 ## The three layers
 
@@ -28,6 +28,8 @@ Copilot Studio is available to every Microsoft 365 user. Without governance, a t
 | `analyze_agent_inventory.py` | Analyses an agent inventory export: duplicates, ownership, inactivity, MCP, uploaded files |
 | `sample-data/agent_inventory_synthetic.csv` | Synthetic inventory to run the analysis |
 | [power-automate-governance.md](power-automate-governance.md) | Flow ownership, offboarding, unused flows, service account |
+| [agent-registry-solution.md](agent-registry-solution.md) | Dataverse, model-driven and canvas apps, approval flows: the request and registry solution (build in progress) |
+| [mcp-governance.md](mcp-governance.md) | How data policies and tool selection govern MCP servers in Copilot Studio |
 
 ## Run
 
