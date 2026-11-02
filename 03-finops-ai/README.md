@@ -32,7 +32,7 @@ python3 03-finops-ai/analyze_credits.py 03-finops-ai/sample-data/copilot_credits
 
 ## What the synthetic month shows
 
-One agent flow polling a mailbox all day, every day, consumes more than half of the capacity, while the agents users actually value cost a few francs per active day. That pattern (a frequent schedule billing actions on every run, even when there is nothing to do) is the most common silent cost driver, and the first thing to look for in a real tenant.
+One agent flow polling a mailbox all day, every day, accounts for more than half of all consumption, while the agents users actually value cost about a franc or less per active day. That pattern (a frequent schedule billing actions on every run, even when there is nothing to do) is the most common silent cost driver, and the first thing to look for in a real tenant.
 
 ## How it is used in a proposal
 

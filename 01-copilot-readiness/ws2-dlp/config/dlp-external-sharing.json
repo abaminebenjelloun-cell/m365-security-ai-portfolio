@@ -17,7 +17,7 @@
       "blockAccess": true
     },
     {
-      "name": "Swiss sensitive data shared externally - alert only",
+      "name": "Swiss sensitive data shared externally - incident report",
       "sensitiveInfoTypes": [
         "Swiss Social Security Number AHV",
         "International Banking Account Number (IBAN)",

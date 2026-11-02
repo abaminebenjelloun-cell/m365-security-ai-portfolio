@@ -31,7 +31,7 @@ Full design: [agent-design.md](agent-design.md).
 
 ## Evaluation
 
-The agent is tested with [evaluation/test-set.csv](evaluation/test-set.csv): 20 cases, two personas, covering grounded answers, permissions, labels, refusals, prompt injection and languages. Runs use the **Evaluation** page of Copilot Studio (test sets, pass or fail per case with the reasoning, comparison between runs). Evaluations can also be triggered through the Power Platform API or a flow, which is the path to running them automatically after every change.
+The agent is tested with 20 cases covering grounded answers, permissions, labels, refusals, prompt injection and languages. An evaluation runs as the signed-in user, so there is **one test set per persona**: [employee](evaluation/test-set-employee.csv) (18 cases), [HR](evaluation/test-set-hr.csv) (1 case) and [HR lead](evaluation/test-set-hr-lead.csv) (1 case, Secret exclusion), each run while signed in as that persona. Runs use the **Evaluation** page of Copilot Studio (test sets, pass or fail per case with the reasoning, comparison between runs). Evaluations can also be triggered through the Power Platform API or a flow, which is the path to running them automatically after every change.
 
 Results: [evaluation/results.md](evaluation/results.md).
 
@@ -40,7 +40,7 @@ Results: [evaluation/results.md](evaluation/results.md).
 1. Create the dedicated environment and allocate capacity (03-finops-ai).
 2. Create the agent, add the SharePoint knowledge source, set instructions from `agent-design.md`.
 3. Turn off general knowledge and web search for the agent.
-4. Import the test set, run the evaluation as each persona, record results.
+4. Import each persona's test set and run it while signed in as that persona, record results.
 5. Fix the failures (instructions, knowledge scope, topics), re-run, record the comparison.
 6. Export the solution and unpack it into `solution/` for version control:
    ```

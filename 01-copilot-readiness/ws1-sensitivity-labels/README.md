@@ -14,13 +14,14 @@
 | Confidential | Yes, admin-defined | Co-author (includes `EXTRACT`) | **Yes**, for users with access | Footer |
 | Secret | Yes, admin-defined | View and edit, **no** `EXTRACT`, `PRINT`, `FORWARD`, `EXPORT`, `OBJMODEL`, `OWNER` | **No** | Footer + dynamic watermark (UPN and time), no offline access |
 
-Why the `EXTRACT` right matters: Copilot needs it to use the content of an encrypted item in an answer (lesson L1). Removing it from Secret makes the exclusion structural, and the WS2 DLP rule adds a second layer (ADR-002).
+Why the `EXTRACT` right matters: Copilot needs it to use the content of an encrypted item in an answer (lesson L1). Exception: the Rights Management owner (the person who applied the label) always keeps full rights, so Copilot can still use the document for that person. Removing it from Secret makes the exclusion structural, and the WS2 DLP rule adds a second layer (ADR-002).
 
 ## Design choices
 
 - **Flat, four levels** (ADR-001). Sublabels only if the business later needs department-level protection.
 - **Files and emails only** at first. Groups and sites scope comes after oversharing is under control (WS3).
-- **One policy publishes all labels**, scoped to a mail-enabled pilot group (lessons L2, L4).
+- **One policy publishes all labels**, scoped to a mail-enabled pilot group (lessons L2, L4). Group scoping through `-ExchangeLocation` is to be confirmed in the lab; the portal accepts groups directly.
+- **Offline access 0 days** on Secret is meant as "never". The value is read back by the test script to confirm.
 - **Default label Internal**. Moving the default to Confidential later is a decision gate.
 - **Mandatory labelling off** at launch, evaluated after adoption metrics.
 
@@ -51,7 +52,7 @@ Portal step after deployment: **Purview > Information protection > Policies > La
 | Test | Expected |
 |---|---|
 | `pilot.copilot` asks Copilot to summarise a Confidential document they can open | Summary returned |
-| Same user asks Copilot about a Secret document they can open | Copilot does not use the content |
+| Same user asks Copilot about a Secret document they can open, **labelled by someone else** | Copilot does not use the content (the person who applied the encryption keeps full rights, so test with another user) |
 | Open a Secret document in Word desktop and Word for the web | Dynamic watermark with UPN and time visible |
 | Try to print or forward a Secret email | Blocked |
 | A user outside the pilot group | Does not see the labels yet |

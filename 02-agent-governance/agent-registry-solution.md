@@ -52,5 +52,5 @@ Request submitted
 - [ ] Model-driven app with views: active agents, overdue reviews, agents with disabled owners
 - [ ] Canvas app for makers, embedded in Teams
 - [ ] Approval flow and two scheduled flows, connection references owned by the service account
-- [ ] Export as managed solution, unpack into `agent-registry/solution/` with `pac solution unpack`
-- [ ] Screenshots of the apps and a run history of the approval flow in `agent-registry/screenshots/`
+- [ ] Export as managed solution, unpack into `02-agent-governance/agent-registry/solution/` with `pac solution unpack`
+- [ ] Screenshots of the apps and a run history of the approval flow in `02-agent-governance/agent-registry/screenshots/`

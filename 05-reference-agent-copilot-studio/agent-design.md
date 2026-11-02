@@ -32,7 +32,7 @@ Keep answers short: the rule, the condition, the source.
 |---|---|---|---|
 | SharePoint `HR` site, library `HR Policies` | Leave, expenses, remote work, onboarding, code of conduct | Internal | All employees |
 | Same library, folder `Restricted` | Salary grid | Confidential | HR group only |
-| Same library, folder `Investigations` | Synthetic investigation note | Secret (no EXTRACT right) | HR lead only |
+| Same library, folder `Investigations` | Synthetic investigation note, labelled by the compliance officer account, not by the HR lead (see lesson L1) | Secret (no EXTRACT right) | HR lead only |
 
 General knowledge: **off**. Web search: **off**. Uploaded files: **none**.
 

@@ -6,6 +6,7 @@
 
 .DESCRIPTION
     Read-only. Uses Get-DlpPolicy from Microsoft.PowerApps.Administration.PowerShell.
+    Run in Windows PowerShell 5.1, which this module targets.
     Requires the Power Platform administrator role and a session opened with Add-PowerAppsAccount.
 
     Connector names are matched case-insensitively on display name. The output shape of

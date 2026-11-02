@@ -39,6 +39,7 @@ $existing = @(Get-Label | Select-Object -ExpandProperty Name)
 Write-LabLog ("{0} labels already in the tenant" -f $existing.Count)
 
 # ---------- ACTION: labels ----------
+$created = [System.Collections.Generic.List[string]]::new()
 foreach ($label in $config.labels) {
     if ($existing -contains $label.name) {
         Write-LabLog "Label '$($label.name)' already exists, left unchanged" 'WARN'
@@ -56,7 +57,8 @@ foreach ($label in $config.labels) {
         $params.EncryptionEnabled            = $true
         $params.EncryptionProtectionType     = 'Template'
         $params.EncryptionRightsDefinitions  = '{0}:{1}' -f $config.organizationDomain, $label.encryption.rights
-        $params.EncryptionOfflineAccessDays  = [int]$label.encryption.offlineAccessDays
+        $params.EncryptionOfflineAccessDays  = [int]$label.encryption.offlineAccessDays   # 0 is used for 'never offline': confirm with Test-SensitivityLabels.ps1
+        $params.EncryptionContentExpiredOnDateInDaysOrNever = 'Never'
     }
 
     if ($label.footer) {
@@ -73,19 +75,22 @@ foreach ($label in $config.labels) {
 
     if ($PSCmdlet.ShouldProcess($label.name, 'New-Label')) {
         New-Label @params | Out-Null
+        $created.Add($label.name)
         Write-LabLog "Created label '$($label.name)'" 'OK'
     }
 }
 
 # ---------- ACTION: priority ----------
-foreach ($label in ($config.labels | Sort-Object priority)) {
+# Only labels created in this run: existing labels are never changed, and priority is tenant-wide.
+foreach ($label in ($config.labels | Where-Object { $created -contains $_.name } | Sort-Object priority)) {
     if ($PSCmdlet.ShouldProcess($label.name, "Set priority $($label.priority)")) {
         Set-Label -Identity $label.name -Priority $label.priority
     }
 }
 
 # ---------- ACTION: label policy (ring 0) ----------
-# Lesson L2: one policy must publish every label a user needs.
+# Lesson L2: one policy publishing every label keeps the design simple and predictable.
+# Learn documents -ExchangeLocation for mailboxes; scoping to a group is to be confirmed in the lab.
 $policy = Get-LabelPolicy -ErrorAction SilentlyContinue | Where-Object Name -eq $config.policyName
 if ($policy) {
     Write-LabLog "Label policy '$($config.policyName)' already exists, left unchanged" 'WARN'

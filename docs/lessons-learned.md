@@ -9,7 +9,7 @@ Field notes from real Copilot, Power Platform and Microsoft 365 governance work.
 | L19 | A tenant without a Power Platform data policy lets **any user build an agent wired to any connector**, including HTTP and public web knowledge. | The first data policy is a quick, high-value win. |
 | L20 | Capacity is allocated **per environment**. Without allocation, the first agent that consumes wins. | Dedicated, capped environments for heavy makers. |
 | L21 | Agent flows bill **per action on every run, even when nothing happens**. A 5-minute schedule costs roughly 290 times a daily one for the same flow. | Cheap checks first, classic flows for polling, invoke the agent only when there is work. |
-| L22 | Test runs from the designer or the test chat do not bill. | Measure cost on real runs, not tests. |
+| L22 | Agent flow test runs from the designer do not bill agent flow actions. | Measure agent flow cost on real runs, not tests, and check the billing rules for other features. |
 | L23 | Seeded AI Builder credits stop for new or renewed Power Platform licences from **1 November 2026**. | Inventory flows with AI actions before renewals and plan Copilot Credits capacity. |
 | L24 | Prepaid capacity and pay-as-you-go have **different unit prices**. | Check which one the tenant uses before converting credits to money. A wrong rate silently distorts every figure. |
 
@@ -17,8 +17,8 @@ Field notes from real Copilot, Power Platform and Microsoft 365 governance work.
 
 | # | Lesson | Why it matters |
 |---|---|---|
-| L1 | **Copilot needs the `EXTRACT` usage right to ground on an encrypted item.** A label whose encryption removes `EXTRACT` keeps that content out of Copilot answers, even for users who can open it. | This is the cleanest way to define a "never in Copilot" level without a separate DLP rule. Keep `EXTRACT` on "Confidential" if Copilot must still work on it. |
-| L2 | **Label policies do not combine per user.** The highest-priority policy that includes a user decides which labels they see. | One policy must publish every label a user needs. Two partial policies on the same user cause missing labels. |
+| L1 | **Copilot needs the `EXTRACT` usage right to ground on an encrypted item.** A label whose encryption removes `EXTRACT` keeps that content out of Copilot answers, even for users who can open it. Exception: the Rights Management owner (the person who applied the encryption) keeps full rights. | This is the cleanest way to define a "never in Copilot" level, with a DLP rule as second layer for the owner case. Keep `EXTRACT` on "Confidential" if Copilot must still work on it. Test with a user who did not label the document. |
+| L2 | **When a user is in several label policies, they get the labels from all of them, but conflicting settings (default label, mandatory labelling) come from the highest-priority policy.** | Overlapping policies make the effective settings hard to predict. Prefer one policy that publishes every label a user needs, and use priority deliberately. |
 | L3 | Label policies target **users and groups**, DLP targets **locations**. | Different scoping logic, different pilot groups. Plan both. |
 | L4 | Pure (non mail-enabled) security groups cannot be used to scope label policies. | Use mail-enabled security groups, Microsoft 365 groups or distribution groups for pilots. |
 | L5 | Access to a "Secret" label with admin-defined permissions for all users relies entirely on **SharePoint and OneDrive permissions**. | The oversharing workstream (WS3) becomes load-bearing for the label design. |

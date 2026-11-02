@@ -15,10 +15,10 @@ Microsoft 365 Technical Lead at a Swiss Microsoft partner, acting as the M365 pr
 | Led a multi-workstream Microsoft 365 Copilot security programme for a Swiss mid-size group (1,000+ users) | [01 Copilot readiness](01-copilot-readiness/), [02 Agent governance](02-agent-governance/), [03 FinOps](03-finops-ai/) |
 | Created and industrialised a Microsoft 365 flash assessment offer, delivered to several clients, taught to colleagues | [consulting/assessment-method.md](consulting/assessment-method.md) |
 | Designing an AI readiness offer (diagnostic, correction, protection) | [consulting/ai-readiness-offer.md](consulting/ai-readiness-offer.md) |
-| Built a Purview pre-sales kit (deck and reference guide) for the sales team | [consulting/presales](consulting/presales/) |
+| Built a Purview pre-sales kit (deck and reference guide) for the sales team | Employer material, not included. Pre-sales approach: [consulting/presales](consulting/presales/) |
 | Secure Score improvement programme to an agreed target, in waves | [04 Secure Score governance](04-secure-score-governance/) |
 | Dynamics 365 and Dataverse projects, SharePoint and Teams governance for 5,000 users | [02 agent request and registry solution](02-agent-governance/agent-registry-solution.md) |
-| Trainer for the SC-300 identity and access course | |
+| Delivering the SC-300 identity and access course (November 2026) | |
 
 Certifications: see my CV. Languages: French and Arabic (native), English (fluent).
 
@@ -66,7 +66,7 @@ Certifications: see my CV. Languages: French and Arabic (native), English (fluen
 
 ```bash
 # Python 3, standard library only, on synthetic data
-python3 02-agent-governance/analyze_agent_inventory.py 02-agent-governance/sample-data/agent_inventory_synthetic.csv --today 2026-11-02
+python3 02-agent-governance/analyze_agent_inventory.py 02-agent-governance/sample-data/agent_inventory_synthetic.csv --today 2026-11-02 --active-users 02-agent-governance/sample-data/active_users_synthetic.txt
 python3 03-finops-ai/analyze_credits.py 03-finops-ai/sample-data/copilot_credits_synthetic.csv
 ```
 

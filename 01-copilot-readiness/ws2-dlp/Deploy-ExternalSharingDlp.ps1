@@ -8,7 +8,7 @@
     ACTION     : one policy in TestWithNotifications mode, three rules:
                    1. Secret shared outside the organisation  -> block, no override
                    2. Confidential shared outside             -> block, override with business justification
-                   3. Swiss sensitive data shared outside     -> alert only
+                   3. Swiss sensitive data shared outside     -> incident report only, no block
                  If a rule fails, the policy just created is removed (rollback),
                  so no orphaned policy is left behind (lesson L14 applies to DLP too).
     POST-VERIFY: run Test-DlpPolicies.ps1.

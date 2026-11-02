@@ -56,4 +56,4 @@ Expected result on the sample: one site removed (archived), one site added, anon
 
 ## Reporting to the sponsor
 
-Keep the client's cleanup metrics clean: changes made by the project team itself (for example admin groups added as site collection administrators on every site) are logged as project changes and excluded from the delta with `-ExcludeUrlPattern` or a separate note.
+Keep the client's cleanup metrics clean: changes made by the project team itself (for example admin groups added as site collection administrators on every site) are logged as project changes in the change log and reported separately. `-ExcludeUrlPattern` only removes whole sites (for example test or project sites) from the comparison.

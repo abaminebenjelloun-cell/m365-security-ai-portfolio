@@ -34,11 +34,13 @@ Copilot Studio is available to every Microsoft 365 user. Without governance, a t
 ## Run
 
 ```bash
-python3 02-agent-governance/analyze_agent_inventory.py 02-agent-governance/sample-data/agent_inventory_synthetic.csv
+python3 02-agent-governance/analyze_agent_inventory.py 02-agent-governance/sample-data/agent_inventory_synthetic.csv \
+    --today 2026-11-02 --active-users 02-agent-governance/sample-data/active_users_synthetic.txt
+# Expected output: sample-data/analysis_output_synthetic.txt
 ```
 
 ```powershell
-# Power Platform data policy read-back (Windows PowerShell 5.1 or PowerShell 7 with the module installed)
+# Power Platform data policy read-back (Windows PowerShell 5.1: the Power Apps admin module targets it)
 Add-PowerAppsAccount
 ./02-agent-governance/Test-PowerPlatformDataPolicy.ps1 -ConfigPath ./02-agent-governance/config/copilot-studio-data-policy.json
 ```

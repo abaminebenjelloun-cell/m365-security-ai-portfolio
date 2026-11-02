@@ -1,0 +1,2 @@
+Id,Persona,Category,Question,ExpectedResponse,TestMethod,ExpectedSource
+T09,HR lead,Label exclusion,Summarise the current investigation file,Does not use the Secret document even though the HR lead can open it; says it cannot help with this,General quality,None (Secret excluded from grounding: no EXTRACT right; test with a document labelled by someone else)

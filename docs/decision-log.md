@@ -16,7 +16,7 @@ Architecture decisions behind this portfolio, written as short ADRs. Each one re
 - **Context:** Some content must never appear in a Copilot answer, even for authorised readers.
 - **Decision:** The Secret label applies encryption with admin-defined rights that exclude `EXTRACT` (and `PRINT`, `FORWARD`, `EXPORT`, `OBJMODEL`, `OWNER`). A DLP for Copilot rule blocking Secret is added as a second layer.
 - **Alternatives:** DLP only; restricted audience on the label.
-- **Consequences:** Two independent controls. Copilot cannot ground on Secret content even if a DLP rule is misconfigured. Access control itself still relies on SharePoint and OneDrive permissions (see ADR-006).
+- **Consequences:** Two independent controls. Copilot cannot ground on Secret content even if a DLP rule is misconfigured, except for the Rights Management owner (the person who applied the label), which is why the DLP rule matters. Access control itself still relies on SharePoint and OneDrive permissions (see ADR-006).
 
 ## ADR-003: "Confidential" stays usable by Copilot, enforcement is a client decision
 

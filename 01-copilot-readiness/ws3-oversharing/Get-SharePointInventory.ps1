@@ -44,6 +44,9 @@ $cutoff = (Get-Date).AddDays(-$InactiveDays)
 
 $inventory = foreach ($s in $sites) {
     $isOneDrive = $s.Url -match '-my\.sharepoint\.com/personal/'
+    # With -Limit, Get-SPOSite does not populate SharingCapability and SensitivityLabel.
+    # Read each site again by identity to get reliable values (slower, but correct).
+    $detail = Get-SPOSite -Identity $s.Url
     [pscustomobject]@{
         Url                   = $s.Url
         Title                 = $s.Title
@@ -52,14 +55,14 @@ $inventory = foreach ($s in $sites) {
         Owner                 = $s.Owner
         StorageMB             = $s.StorageUsageCurrent
         LastContentModified   = $s.LastContentModifiedDate
-        SharingCapability     = $s.SharingCapability
-        SensitivityLabel      = $s.SensitivityLabel
+        SharingCapability     = $detail.SharingCapability
+        SensitivityLabel      = $detail.SensitivityLabel
         LockState             = $s.LockState
-        AnonymousLinksAllowed = ($s.SharingCapability -eq 'ExternalUserAndGuestSharing')
-        ExternalSharing       = ($s.SharingCapability -ne 'Disabled')
+        AnonymousLinksAllowed = ($detail.SharingCapability -eq 'ExternalUserAndGuestSharing')
+        ExternalSharing       = ($detail.SharingCapability -ne 'Disabled')
         Inactive              = ($s.LastContentModifiedDate -lt $cutoff)
         NoOwner               = (-not $isOneDrive) -and ([string]::IsNullOrWhiteSpace($s.Owner)) -and (-not $s.GroupId -or $s.GroupId -eq [guid]::Empty)
-        NoSensitivityLabel    = [string]::IsNullOrWhiteSpace($s.SensitivityLabel)
+        NoSensitivityLabel    = [string]::IsNullOrWhiteSpace($detail.SensitivityLabel)
     }
 }
 

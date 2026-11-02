@@ -29,7 +29,7 @@ Assign the Copilot Studio authoring permission to a security group. Fewer makers
 | Frequent schedules on agent flows | Billed per action on every run, even when nothing happens. A 5-minute schedule is roughly 290 times a daily one | Cheap checks first, terminate early, poll with a classic flow, call the agent only when there is work |
 | Reasoning models | Much higher cost per interaction | Per-agent limit, use only where the quality gain is proven |
 | Tenant graph grounding on every turn | Highest per-call rate | Scope knowledge, ground only when needed |
-| Testing in production environments | Real runs bill, designer and test chat do not | Test in the designer, measure on a pilot group |
+| Testing in production environments | Real runs bill; agent flow test runs from the designer do not bill agent flow actions | Test in the designer, measure on a pilot group |
 | Seeded AI Builder credits ending | Flows with AI actions fail or move to paid capacity | Inventory and re-plan before renewal dates |
 
 ## 5. Telemetry for per-flow analysis

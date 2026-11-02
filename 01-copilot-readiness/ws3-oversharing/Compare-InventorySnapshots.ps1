@@ -11,9 +11,8 @@
       - exposure flags before vs after (anonymous, external, inactive, no owner, no label)
       - storage change
 
-    Sites added or changed by the remediation team itself (for example admin groups added as
-    site collection administrators) should be listed in -ExcludeUrlPattern so they do not
-    distort the client's cleanup metrics.
+    -ExcludeUrlPattern removes whole sites from the comparison (for example test or project sites).
+    Changes the project team makes inside client sites are tracked in the change log instead.
 
 .EXAMPLE
     ./01-copilot-readiness/ws3-oversharing/Compare-InventorySnapshots.ps1 `
