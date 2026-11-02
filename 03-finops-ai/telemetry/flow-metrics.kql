@@ -1,0 +1,32 @@
+// Power Automate cloud flow telemetry exported to Application Insights
+// (Power Platform admin center > Data export > Application Insights > Power Automate).
+// Runs land in 'requests', triggers and actions in 'dependencies'; operation_Name maps to the flow ID.
+// Telemetry is not transactional: use it for trends, not for billing.
+
+// 1. Runs per flow, success rate and average duration, last 30 days
+requests
+| where timestamp > ago(30d)
+| where customDimensions['resourceProvider'] == 'Cloud Flow'
+| where customDimensions['signalCategory'] == 'Cloud flow runs'
+| summarize Runs = count(),
+            Failed = countif(success == false),
+            AvgDurationSec = avg(duration) / 1000
+          by FlowId = operation_Name
+| extend SuccessRate = round(100.0 * (Runs - Failed) / Runs, 1)
+| order by Runs desc;
+
+// 2. Actions executed per flow (approximation of request volume and of agent flow billing)
+dependencies
+| where timestamp > ago(30d)
+| where customDimensions['resourceProvider'] == 'Cloud Flow'
+| where customDimensions['signalCategory'] == 'Cloud flow actions'
+| summarize ActionsExecuted = count() by FlowId = operation_Name
+| order by ActionsExecuted desc;
+
+// 3. Runs per hour for one flow: a flat line all night is the signature of a frequent schedule
+requests
+| where timestamp > ago(7d)
+| where customDimensions['signalCategory'] == 'Cloud flow runs'
+| where operation_Name == '<flow-id>'
+| summarize Runs = count() by bin(timestamp, 1h)
+| render timechart
