@@ -2,6 +2,8 @@
 
 A short, repeatable Microsoft 365 security and governance assessment, designed to be the entry point of an engagement. It was built as a productised offer: same structure for every client, reusable templates, a quality-control layer, and a guide so other consultants deliver it without the author.
 
+**Track record:** first version built around 148 controls aligned with the CIS Microsoft 365 Foundations Benchmark, then industrialised with reusable templates, Copilot-assisted filling and a written guide so colleagues deliver it independently. Delivered to several clients (association, SME, public sector).
+
 > This page describes the method only. Templates, scoring workbooks and client deliverables built with an employer are not part of this repository.
 
 ## 1. Inputs
