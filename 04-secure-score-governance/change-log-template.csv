@@ -1,0 +1,4 @@
+Date,Wave,Control,Platform,Before,After,Scope,UserImpact,CommunicationSent,Rollback,DecidedBy,ReadBackDone,PointsExpected
+2026-11-05,1,Self-service password reset for all users,Entra admin center,Selected group,All users,All users,Low,Yes,Set scope back to selected group,IT lead,Yes,1
+2026-11-05,1,Mailbox auditing on resource mailboxes,Exchange Online PowerShell,AuditEnabled False on resource mailboxes,AuditEnabled True,Resource mailboxes,None,No,Set-Mailbox -AuditEnabled $false,Consultant (no impact),Yes,1
+2026-11-12,2,Who can bypass the meeting lobby,Teams admin center,Everyone,People invited,Global meeting policy,Moderate,Yes,Restore previous value,Sponsor,Yes,1
