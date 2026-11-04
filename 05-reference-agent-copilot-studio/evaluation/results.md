@@ -1,6 +1,6 @@
 # Evaluation results
 
-Filled only from real runs on the lab tenant. Export each run from the Evaluation page to CSV (results are kept 89 days in the product) and summarise here.
+Filled only from real runs on the lab tenant. Export each run from the Evaluation page to CSV (the product keeps results 89 days) and summarise here.
 
 ## Runs
 

@@ -1,6 +1,6 @@
 # References
 
-Official Microsoft sources used to design and verify this portfolio. Check them again before production use: these areas change often.
+Official sources used to design and verify this portfolio. These areas change often: check again before production use.
 
 ## Purview
 

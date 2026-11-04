@@ -1,9 +1,9 @@
 # Discovery workshop: Copilot and agents (half day)
 
-**Audience:** IT lead, security or data protection officer, one or two business owners with an AI use case, the sponsor for the first 20 and the last 30 minutes.
-**Outcome:** a shared picture of readiness, two or three prioritised use cases, and the scope of the next step.
+Audience: IT lead, security or data protection officer, one or two business owners with an AI use case, the sponsor for the first 20 and the last 30 minutes.
+Outcome: a shared picture of readiness, two or three prioritised use cases, and the scope of the next step.
 
-## Before the workshop (sent one week ahead)
+## Sent one week ahead
 
 - Licence summary (Microsoft 365 plan, Copilot licences, Power Platform licences, add-ons)
 - Read-only admin access or a screen-share slot for the live checks
@@ -22,7 +22,7 @@
 | 2:40 | Governance and adoption model | Who can build, who approves, who pays (agent lifecycle, capacity); who will be the AI champions per department | Draft RACI, champion candidates |
 | 3:10 | Next steps (sponsor present) | Recommended path: AI readiness phases, first agent, estimate range | Agreed next step and date |
 
-## Scoring grid for use cases
+## Use case scoring grid
 
 | Criterion | 1 | 3 | 5 |
 |---|---|---|---|

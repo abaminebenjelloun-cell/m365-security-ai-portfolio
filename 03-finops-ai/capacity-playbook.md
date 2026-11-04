@@ -4,7 +4,7 @@
 
 ## 1. Allocate, do not share
 
-Capacity is allocated **per environment** (lesson L20). Without allocation, the first agent that consumes wins and the others stop.
+Capacity is allocated per environment (lesson L20). Without allocation, the first agent to consume wins and the others stop.
 
 | Environment | Allocation | Draw from tenant pool | Pay-as-you-go |
 |---|---|---|---|
@@ -12,11 +12,11 @@ Capacity is allocated **per environment** (lesson L20). Without allocation, the 
 | Dedicated maker environment (heavy maker isolated) | Monthly cap sized on measured volume | Off, so the cap is a real cap | Off |
 | Production | Per business owner budget | Decision per owner | Only if the owner accepts an open budget |
 
-A capped environment **stops AI steps when the cap is reached**, until the next month. Tell the business owner before go-live, otherwise the cap is discovered as an outage.
+A capped environment **stops AI steps when the cap is reached**, until the next month. Tell the business owner before go-live, or they discover the cap as an outage.
 
 ## 2. Alerts
 
-Turn on capacity alerts for each allocated environment, with IT and the business owner as recipients. An Azure Cost Management budget on a pay-as-you-go subscription **alerts, it does not stop** consumption. The cap is the stop.
+Turn on capacity alerts for each allocated environment, sent to IT and the business owner. An Azure Cost Management budget on a pay-as-you-go subscription alerts but does not stop consumption. The cap is the stop.
 
 ## 3. Restrict who can build
 

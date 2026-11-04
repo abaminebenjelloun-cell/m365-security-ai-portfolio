@@ -1,8 +1,8 @@
 # Assessment method: Microsoft 365 flash assessment
 
-A short, repeatable Microsoft 365 security and governance assessment, designed to be the entry point of an engagement. It was built as a productised offer: same structure for every client, reusable templates, a quality-control layer, and a guide so other consultants deliver it without the author.
+A short, repeatable Microsoft 365 security and governance assessment, used as the entry point of an engagement. Built as a productised offer: same structure for every client, reusable templates, a quality-control layer, and a guide so other consultants deliver it without the author.
 
-**Track record:** first version built around 148 controls aligned with the CIS Microsoft 365 Foundations Benchmark, then industrialised with reusable templates, Copilot-assisted filling and a written guide so colleagues deliver it independently. Delivered to several clients (association, SME, public sector).
+Track record: first version built around 148 controls aligned with the CIS Microsoft 365 Foundations Benchmark, then industrialised with reusable templates, Copilot-assisted filling and a written guide so colleagues deliver it independently. Delivered to several clients (association, SME, public sector).
 
 > This page describes the method only. Templates, scoring workbooks and client deliverables built with an employer are not part of this repository.
 
@@ -14,15 +14,13 @@ A short, repeatable Microsoft 365 security and governance assessment, designed t
 | Reconciliation against the **CIS Microsoft 365 Foundations Benchmark** | Mapping to an external, recognised baseline |
 | Microsoft Secure Score (read through Microsoft Graph) | Microsoft's own view, kept separate from the CIS view |
 
-**Rule:** one primary data source per assessment, and every figure in the deliverable traceable to it. If a workload has not been imported yet, wait for it instead of mixing manual observations into the score.
+**Rule:** one primary data source per assessment, every figure in the deliverable traceable to it. If a workload has not been imported yet, wait for it rather than mix manual observations into the score.
 
 ## 2. Structure
 
-**Pillars:** Security and Identity, Entra applications, Exchange, SharePoint and OneDrive, Teams, Devices, Licences, Identity Governance, Copilot readiness.
+Pillars: Security and Identity, Entra applications, Exchange, SharePoint and OneDrive, Teams, Devices, Licences, Identity Governance, Copilot readiness.
 
-**Statuses:** Compliant, Partially compliant, Not compliant, Informational.
-
-**Priorities:**
+Statuses: Compliant, Partially compliant, Not compliant, Informational.
 
 | Priority | Meaning | Example |
 |---|---|---|
@@ -37,22 +35,22 @@ Unified score on a 2 / 1 / 0 scale (Compliant / Partial / Not compliant), Inform
 
 ## 4. Deliverables
 
-1. **Workbook:** read-me, hidden data sheet, dashboard, CIS comparison, health check, action plan, and an **affected accounts** sheet (named users, apps or sites per finding) so findings are actionable, not abstract.
-2. **Executive deck** (about six slides): score, pillar view, top 5 risks, action plan, next steps. Speaker notes point to where each figure lives in the workbook.
+1. Workbook: read-me, hidden data sheet, dashboard, CIS comparison, health check, action plan, and an affected accounts sheet (named users, apps or sites per finding) so each finding is actionable.
+2. Executive deck (about six slides): score, pillar view, top 5 risks, action plan, next steps. Speaker notes point to where each figure lives in the workbook.
 
 ## 5. Quality control
 
-- Control totals from the exports are compared automatically with the counts in the workbook. Any mismatch shows **CHECK** instead of **OK**.
+- Control totals from the exports are compared automatically with the counts in the workbook. Any mismatch shows CHECK instead of OK.
 - Accounts and applications created by the assessment tool itself are excluded from findings (they would otherwise appear as risky service principals).
-- Every number in the deck is fact-checked against the workbook before delivery.
+- Every number in the deck is checked against the workbook before delivery.
 
-## 6. Using Copilot inside the delivery
+## 6. Copilot in the delivery
 
-Microsoft 365 Copilot is used to **extract** counts and lists from the exports into the workbook. The rule is simple:
+Microsoft 365 Copilot extracts counts and lists from the exports into the workbook. The rule:
 
 > **Copilot extracts, Excel calculates, the consultant decides.**
 
-Copilot never assigns a priority or writes a conclusion on its own. That keeps the assessment fast without delegating judgment.
+Copilot never assigns a priority or writes a conclusion on its own. The assessment stays fast without delegating judgment.
 
 ## 7. Link to the rest of the portfolio
 

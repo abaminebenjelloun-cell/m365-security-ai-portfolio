@@ -1,6 +1,6 @@
 # Estimate template: AI readiness and first agent
 
-Effort in person-days. Three sizes so the client sees what drives the price. Figures below are a **template structure with placeholder ranges**, to be adjusted per tenant after the discovery workshop. No rates in this repository.
+Effort in person-days, three sizes so the client sees what drives the price. The figures are a **template structure with placeholder ranges**, adjusted per tenant after the discovery workshop. No rates in this repository.
 
 ## Sizing drivers
 
@@ -26,7 +26,7 @@ Effort in person-days. Three sizes so the client sees what drives the price. Fig
 | Documentation and handover | Change log, runbooks, read-back evidence, training of IT | 1 | 2 | 3 |
 | Project management | Steering, reporting | 10% | 10% | 10% |
 
-## Assumptions to state in every estimate
+## Assumptions stated in every estimate
 
 - Licences required for each feature are in place before the phase starts.
 - Site owners are available for remediation; the client owns the classification of its content.

@@ -1,16 +1,16 @@
 # Methodology
 
-How a Copilot security engagement runs, from first diagnostic to enforced controls. The same pattern applies to every workstream.
+How a Copilot security engagement runs, from first diagnostic to enforced controls. Every workstream follows the same pattern.
 
 ## 1. Principles
 
-| Principle | What it means in practice |
+| Principle | In practice |
 |---|---|
-| Data before AI | Copilot respects existing permissions. It does not create oversharing, it reveals it. Fix exposure and classification first. |
+| Data before AI | Copilot respects existing permissions, so it surfaces existing oversharing. Fix exposure and classification first. |
 | Smallest blast radius first | Every control starts on a pilot group (ring 0), then a pilot department (ring 1), then everyone (ring 2). |
 | Simulate, then decide | DLP and agent rules run in simulation or measurement mode first. Enforcement is decided on real numbers. |
 | The client owns the classification | The consultant designs the taxonomy and the mechanics. What is "Confidential" is a business decision. |
-| Configured is not verified | A setting counts only after it has been read back from the tenant (PowerShell or portal), not when the save button worked. |
+| Configured is not verified | A setting counts only once read back from the tenant (PowerShell or portal), not when the save button worked. |
 | Escalate only what matters | Changes without user impact are made and logged. Decisions with user or business impact go to the sponsor with a recommendation. |
 
 ## 2. Phases
@@ -31,11 +31,11 @@ Run      Operate         Monthly Secure Score snapshot (WS8), inventory delta (W
 | 1 | A pilot department, ideally one that handles sensitive data | Simulation volume reviewed with the sponsor, user communication sent, support briefed |
 | 2 | All users | Sponsor sign-off recorded, rollback tested |
 
-Some locations cannot be scoped by group (for example the SharePoint location in DLP applies to sites, not users). Document those cases explicitly as tenant-wide from day one.
+Some locations cannot be scoped by group (for example the SharePoint location in DLP applies to sites, not users). Document those as tenant-wide from day one.
 
 ## 4. Decision gates
 
-A decision gate is a short written proposal to the sponsor with: the finding, the numbers from simulation, the options, the recommended option, user impact and rollback. Typical gates:
+A decision gate is a short written proposal to the sponsor: the finding, the simulation numbers, the options, the recommended option, user impact and rollback. Typical gates:
 
 1. Enforce the Copilot block on the "Confidential" level, or keep it in measurement mode.
 2. Move the default label from "Internal" to "Confidential".
@@ -48,11 +48,11 @@ A decision gate is a short written proposal to the sponsor with: the finding, th
 Every engagement keeps:
 
 - A **change log** (`04-secure-score-governance/change-log-template.csv` format): date, control, before, after, scope, user impact, rollback, who decided.
-- **Read-back output** from each `Test-*` script, stored with the date.
-- **Simulation reports** used for each decision gate.
+- Read-back output from each `Test-*` script, stored with the date.
+- Simulation reports used for each decision gate.
 - An **exception register** for any exclusion from a protective control (who, why, residual risk, review date).
 
-This is what an auditor, a FINMA review or an internal control function will ask for. It is also what makes the engagement handover-ready.
+This is what an auditor, a FINMA review or an internal control function asks for, and what makes the engagement ready for handover.
 
 ## 6. Roles (RACI summary)
 

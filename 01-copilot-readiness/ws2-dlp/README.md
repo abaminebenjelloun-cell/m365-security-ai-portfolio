@@ -1,11 +1,11 @@
 # WS2: Data Loss Prevention
 
-**Goal:** stop sensitive content from leaving through Copilot answers, web searches or external sharing, with enforcement decided on real data.
+Goal: stop sensitive content leaving through Copilot answers, web searches or external sharing, and decide enforcement on real data.
 
 **Platform:** Microsoft Purview portal and Security & Compliance PowerShell.
 **Verified on:** 2026-11-02 against Microsoft Learn (DLP for Copilot location, `New-DlpCompliancePolicy`, `New-DlpComplianceRule`).
 
-## Two policies, two purposes
+## Policies
 
 | Policy | Locations | Built with | Mode at start |
 |---|---|---|---|
@@ -18,7 +18,7 @@
 |---|---|---|
 | Secret excluded | Copilot using Secret content | Available |
 | Swiss sensitive data, no web search | AHV, IBAN or card data in a prompt reaching a web search | Check availability |
-| External email excluded | Copilot grounding on email from external senders | **Preview** |
+| External email excluded | Copilot grounding on email from external senders | Preview |
 | Confidential measurement | Nothing yet, it measures | Decision gate |
 
 ### External sharing
@@ -29,11 +29,11 @@
 | Confidential | Label Confidential, shared outside | Block, override with business justification |
 | Swiss sensitive data | AHV, IBAN, credit card shared outside | Incident report only |
 
-## Scoping and its limits
+## Scoping limits
 
 - Exchange and OneDrive are scoped to the pilot group.
-- **SharePoint applies to all sites** and cannot be scoped to users (lesson L9). That is why everything starts in simulation.
-- **Teams is excluded**: the label condition is not available with the Teams location (lesson L8). Cover Teams in a separate policy based on sensitive information types if needed.
+- **SharePoint applies to all sites** and cannot be scoped to users (lesson L9), so everything starts in simulation.
+- Teams is excluded: the label condition is not available with the Teams location (lesson L8). If needed, cover Teams in a separate policy based on sensitive information types.
 
 ## Files
 
@@ -59,9 +59,9 @@ Assert-LabTenant -ExpectedTenantId <lab-tenant-guid> -Service ExchangeOnline
 ./01-copilot-readiness/ws2-dlp/Test-DlpPolicies.ps1 -ExternalSharingConfig ./01-copilot-readiness/ws2-dlp/config/dlp-external-sharing.json
 ```
 
-Sensitive information type names differ slightly between tenants and languages. The deploy script checks each name with `Get-DlpSensitiveInformationType` before creating anything.
+Sensitive information type names differ slightly by tenant and language. The deploy script checks each name with `Get-DlpSensitiveInformationType` before creating anything.
 
-## Next steps (roadmap)
+## Roadmap
 
 - Endpoint DLP on Windows devices (copy to USB, upload to unsanctioned AI sites), then mobile.
 - Data Security Posture Management for AI to monitor prompts and responses continuously.

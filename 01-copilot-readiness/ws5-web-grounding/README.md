@@ -1,13 +1,13 @@
 # WS5: Web grounding
 
-**Goal:** decide explicitly whether Microsoft 365 Copilot may send web searches, and make that decision auditable.
+Goal: decide explicitly whether Microsoft 365 Copilot may send web searches, and make the decision auditable.
 
 **Platform:** Cloud Policy service for Microsoft 365 (config.office.com).
 **Last reviewed:** November 2026. Policy names in the portal change often: search for "web" in the policy list.
 
 ## Why
 
-When web search is allowed, Copilot can generate a search query from the user's prompt and send it to Bing. Prompts may contain client names, amounts or personal data. In many tenants the setting is simply **not configured**, so the behaviour depends on product defaults that can change. An explicit, named policy turns an unmanaged default into a documented control (ADR-005).
+With web search allowed, Copilot can turn the user's prompt into a search query sent to Bing. Prompts may contain client names, amounts or personal data. Many tenants leave the setting not configured, so behaviour follows changeable product defaults. A named policy makes it a documented control (ADR-005).
 
 ## Configuration
 
@@ -19,9 +19,9 @@ When web search is allowed, Copilot can generate a search query from the user's 
 | 4 | Name the configuration explicitly | For example `Lab - Copilot web search disabled` |
 | 5 | Document | Owner, date, scope, reason, in the change log |
 
-**Watch for conflicts.** Cloud Policy configurations have priorities. A higher-priority configuration that enables the same setting for the same users wins. Check every configuration that targets "All users" before concluding.
+Priorities: a higher-priority Cloud Policy configuration that enables the same setting for the same users wins. Check every configuration targeting "All users" before concluding.
 
-**Single tenant-wide slot.** If the tenant already uses the "All users" configuration for other settings (for example language), add the web search setting to it instead of creating a competing one, and rename it so its purpose is clear.
+One tenant-wide slot: if the "All users" configuration already holds other settings (for example language), add the web search setting to it rather than creating a competing one, and rename it to reflect its purpose.
 
 ## Verification
 
@@ -31,4 +31,4 @@ When web search is allowed, Copilot can generate a search query from the user's 
 | Pilot user asks a question that needs current web data | Copilot answers from work data only or says it cannot search the web |
 | A user outside the scope (during the pilot) | Unchanged behaviour |
 
-Complement with WS2 rule "Swiss sensitive data, no web search" if web search stays enabled for some users: it blocks web queries only when the prompt contains sensitive data.
+If web search stays enabled for some users, add the WS2 rule "Swiss sensitive data, no web search". It blocks web queries only when the prompt contains sensitive data.

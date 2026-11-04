@@ -1,13 +1,13 @@
 # WS3: Oversharing
 
-**Goal:** know what Copilot will be able to reach before it is turned on, fix the worst exposure, and prove the cleanup over time.
+Goal: know what Copilot can reach before it is turned on, fix the worst exposure, and show the cleanup over time.
 
 **Platform:** SharePoint admin center, SharePoint Online Management Shell, SharePoint Advanced Management (where licensed).
 **Last reviewed:** November 2026.
 
-## Why this is load-bearing
+## Why
 
-Copilot only shows users what they can already open. Labels (WS1) and DLP (WS2) protect classified content, but an "All Company" site open to everyone, or a forgotten anonymous link, is exposed whatever the label says. In the Secret design (ADR-002), access control relies entirely on SharePoint and OneDrive permissions (lesson L5).
+Copilot shows users only what they can already open. Labels (WS1) and DLP (WS2) protect classified content; an "All Company" site open to everyone, or a forgotten anonymous link, stays exposed regardless of label. For Secret (ADR-002), access control relies entirely on SharePoint and OneDrive permissions (lesson L5).
 
 ## Approach
 
@@ -20,7 +20,7 @@ Copilot only shows users what they can already open. Labels (WS1) and DLP (WS2) 
 | 5 | Temporary measures where cleanup takes time: Restricted Content Discovery for specific sites, or Restricted SharePoint Search | SharePoint admin center |
 | 6 | Re-run the inventory and publish the delta | `Compare-InventorySnapshots.ps1` |
 
-Temporary measures **hide** content from Copilot and search, they do not fix permissions. Present them as such (ADR-006).
+Temporary measures hide content from Copilot and search without fixing permissions. Present them as such (ADR-006).
 
 ## Exposure flags
 
@@ -56,4 +56,4 @@ Expected result on the sample: one site removed (archived), one site added, anon
 
 ## Reporting to the sponsor
 
-Keep the client's cleanup metrics clean: changes made by the project team itself (for example admin groups added as site collection administrators on every site) are logged as project changes in the change log and reported separately. `-ExcludeUrlPattern` only removes whole sites (for example test or project sites) from the comparison.
+Project team changes (for example admin groups added as site collection administrators on every site) are logged as project changes and reported separately, so the client's cleanup metrics stay clean. `-ExcludeUrlPattern` only removes whole sites (for example test or project sites) from the comparison.

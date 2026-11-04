@@ -1,13 +1,13 @@
 # AI champions programme (Microsoft 365 Copilot)
 
-**Experience behind it:** training client AI champions to drive Microsoft 365 Copilot adoption inside their companies, so that licences turn into daily use. Written up here as a reusable method, without client data.
+From practice: training client AI champions to drive Microsoft 365 Copilot adoption so licences turn into daily use. Written up as a reusable method, without client data.
 **Last reviewed:** November 2026 against Microsoft's Copilot adoption guidance (adoption.microsoft.com, AI champion role and charter).
 
-## Why a champions programme
+## Why champions
 
-Licences and security controls make Copilot **possible**. People make it **used**. Without an adoption push, Copilot licences sit idle after the first weeks, the business case fails, and users fall back to unapproved AI tools. Champions are employees in each department whose job is to **drive adoption**: get colleagues using Copilot in their daily work, show what it does on their own processes, and keep that use **within the rules** set in the rest of this portfolio.
+Licences and security controls make Copilot possible. People make it used. Without an adoption push, licences sit idle after the first weeks, the business case fails, and users fall back to unapproved AI tools. Champions are employees in each department who get colleagues using Copilot in daily work, show it on their own processes, and keep that use within the rules set in the rest of this portfolio.
 
-In this portfolio the programme is the adoption engine of the AI readiness offer: it follows the protection phase, it is measured on active usage, and it feeds back into governance (agent requests, shadow AI, cost).
+Here the programme is the adoption part of the AI readiness offer. It follows the protection phase, is measured on active usage, and feeds back into governance (agent requests, shadow AI, cost).
 
 ## The champion role
 
@@ -21,15 +21,15 @@ Based on Microsoft's AI champion role and charter guidance, adapted to a governe
 | Collect feedback, blockers and new use cases | Formal training curriculum |
 | Point colleagues to the right resources and processes (labels, agent requests) | Adoption strategy and licence allocation (sponsor and programme owner) |
 
-**Profile:** curious, credible with colleagues, already experimenting, learns by doing, influences without authority. Not necessarily the most technical person in the team.
+Profile: curious, credible with colleagues, already experimenting, learns by doing, influences without authority. Not necessarily the most technical person in the team.
 
 **Charter:** one page per programme, agreed with the sponsor and each champion's manager: purpose, who the champion supports, responsibilities and limits, escalation paths, expected time commitment, recognition and development.
 
-**Coverage:** at least one champion per department or site, and per language region for multilingual Swiss organisations (French, German, Italian, English).
+Coverage: at least one champion per department or site, and per language region for multilingual Swiss organisations (French, German, Italian, English).
 
 ## Champion curriculum
 
-What champions learn before they drive adoption in their teams. Modules 2 and 6 create usage; modules 3 to 5 make sure that usage stays safe, which is what makes this programme different from a generic adoption campaign.
+Modules 2 and 6 create usage. Modules 3 to 5 keep that usage safe, which is what separates this from a generic adoption campaign.
 
 | # | Module | Content | Link to the portfolio |
 |---|---|---|---|
@@ -64,7 +64,7 @@ Aligned with the champion track of Microsoft's Copilot adoption guidance (build 
 | DLP policy tips and overrides | Purview DLP reports (WS2) | Spikes point to training needs, not only to risky users |
 | Champion activity | Sessions run, questions answered | Input for recognition |
 
-## Deliverables of the offer
+## Deliverables
 
 - Champion charter template and nomination guide
 - Bootcamp material (modules 1 to 7), adapted to the client's labels, approved tools and agent process

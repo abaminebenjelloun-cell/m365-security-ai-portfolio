@@ -1,11 +1,11 @@
 # Layer 2: Power Platform data policy for Copilot Studio
 
-**Platform:** Power Platform admin center (admin.powerplatform.microsoft.com) > Security > **Data and privacy > Data policy** (older menus: Policies > Data policies).
+**Platform:** Power Platform admin center (admin.powerplatform.microsoft.com) > Security > Data and privacy > Data policy (older menus: Policies > Data policies).
 **Last reviewed:** November 2026 (Power Platform data policies and Copilot Studio connectors on Microsoft Learn).
 
 ## Why first
 
-A tenant with no data policy lets any user build an agent or a flow wired to any of the 1,000+ connectors, including generic HTTP calls and public web knowledge (lesson L19). It is the fastest high-value control in agent governance.
+Without a data policy, any user can build an agent or flow wired to any of the 1,000+ connectors, including generic HTTP calls and public web knowledge (lesson L19). It is the fastest high-value control in agent governance.
 
 ## Design
 
@@ -17,7 +17,7 @@ A tenant with no data policy lets any user build an agent or a flow wired to any
 | Default group for new connectors | Non-business (new connectors cannot be mixed with business data until reviewed) |
 | Custom connectors and custom MCP servers | Inventoried, then classified explicitly (they are not governed by default) |
 
-### Connectors blocked in the first iteration
+### Blocked in the first iteration
 
 | Connector | Risk |
 |---|---|
@@ -28,11 +28,11 @@ A tenant with no data policy lets any user build an agent or a flow wired to any
 | WhatsApp channel in Copilot Studio | Public messaging channel |
 | Knowledge source with public websites and data in Copilot Studio | Ungoverned web grounding for agents |
 
-Exact connector display names vary slightly over time. `Test-PowerPlatformDataPolicy.ps1` matches them by name and reports any it cannot find.
+Connector display names change slightly over time. `Test-PowerPlatformDataPolicy.ps1` matches them by name and reports any it cannot find.
 
-### Deliberately not blocked yet
+### Not blocked yet
 
-HTTP-based **flow triggers** (When an HTTP request is received, HTTP Webhook) stay allowed until the flow inventory shows which business flows depend on them. Blocking first and inventorying later breaks processes silently.
+HTTP-based **flow triggers** (When an HTTP request is received, HTTP Webhook) stay allowed until the flow inventory shows which business flows depend on them. Blocking before the inventory breaks processes silently.
 
 ## Environment strategy
 

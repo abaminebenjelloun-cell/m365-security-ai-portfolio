@@ -1,7 +1,8 @@
 # Layer 1: tenant agent baseline
 
-**Platform:** Microsoft 365 admin center (admin.microsoft.com) > **Agents**, and **Copilot > Settings**; Teams admin center for app setup policies.
-Most of these controls need no extra licence. Start by exporting the inventory so every later decision has a baseline.
+**Platform:** Microsoft 365 admin center (admin.microsoft.com) > Agents, and Copilot > Settings; Teams admin center for app setup policies.
+
+Most of these controls need no extra licence. Export the inventory first so every later decision has a baseline.
 
 | # | Control | Recommended value | Why |
 |---|---|---|---|
@@ -12,11 +13,11 @@ Most of these controls need no extra licence. Start by exporting the inventory s
 | 5 | Agent sharing | Restrict who can share agents org-wide | Prevents one maker's agent from appearing to everyone |
 | 6 | User access to agents | All members except named exclusions, through a dynamic group (`New-AgentAccessGroup.ps1`) | Allows targeted exclusions without breaking access for everyone |
 | 7 | Agent feedback sharing with Microsoft | Off unless the client accepts it | Data protection review |
-| 8 | Teams app setup policies, **Upload custom apps** | Off for everyone except a developer group | Sideloading is how custom agents enter the tenant |
+| 8 | Teams app setup policies, Upload custom apps | Off for everyone except a developer group | Sideloading is how custom agents enter the tenant |
 | 9 | Agent management rules (for example reject old publish requests) | Create, run on review | Keeps the approval queue clean |
 
-## Notes from the field
+## Field notes
 
-- When a rule action you expect (for example **Block**) is not offered in a tenant, use what is available (reject publish requests, block individual agents from the inventory) and document the gap.
-- Dynamic groups that select "all enabled members" also include **functional and shared accounts**. List them in the hygiene findings for the client.
-- The difference between the registry (all agents, all platforms) and the Copilot Studio view (one environment) is itself a finding: agents in one list and not the other are either in another environment, built with another tool, or shadow agents.
+- If an expected rule action (for example Block) is missing in a tenant, use what exists (reject publish requests, block individual agents from the inventory) and document the gap.
+- Dynamic groups selecting "all enabled members" also include **functional and shared accounts**. List them in the hygiene findings.
+- Differences between the registry (all agents, all platforms) and the Copilot Studio view (one environment) are a finding. An agent in one list only is in another environment, built with another tool, or a shadow agent.

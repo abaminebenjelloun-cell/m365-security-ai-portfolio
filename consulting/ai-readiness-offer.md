@@ -1,8 +1,8 @@
 # AI readiness method
 
-**Problem:** organisations want Copilot and agents, but their data is not ready. Nobody knows what Copilot will be able to see, nothing is classified, and agents appear without owners. AI projects stall or create a leak.
+**Problem:** organisations want Copilot and agents but their data is not ready. Nobody knows what Copilot will see, nothing is classified, and agents appear without owners. AI projects stall or leak data.
 
-**Answer:** a three-phase AI readiness engagement that can be sold on its own. A full data protection programme is the logical follow-up, not a prerequisite.
+Answer: a three-phase engagement that can be sold on its own. A full data protection programme is the logical follow-up, not a prerequisite.
 
 ```
  1. Diagnostic            2. Correction                3. Protection
@@ -20,15 +20,15 @@
 | Which agents exist, who owns them, what do they cost? | Agent inventory, Copilot Credits consumption | WS4, WS7 |
 | Is the licence fit right? | Licence check (for example E5 vs E3 with a compliance add-on) | all |
 
-**Output:** a short report with the exposure picture, a prioritised action list and the licence prerequisites.
+Output: short report with the exposure picture, a prioritised action list and the licence prerequisites.
 
 ## Phase 2: Correction
 
 - Close or restrict overexposed sites, clean obsolete content, assign owners.
 - Deploy the four-level taxonomy (WS1) to a pilot, then broadly.
-- Temporary measures where needed (Restricted Content Discovery, Restricted SharePoint Search), clearly presented as temporary.
+- Temporary measures where needed (Restricted Content Discovery, Restricted SharePoint Search), presented as temporary.
 
-**Output:** delta report showing exposure before and after (WS3 `Compare-InventorySnapshots.ps1`).
+Output: delta report of exposure before and after (WS3 `Compare-InventorySnapshots.ps1`).
 
 ## Phase 3: Protection
 
@@ -37,9 +37,9 @@
 - Agent baseline and capacity caps (WS4, WS7).
 - Usage and cost monitoring as a run service (WS7, WS8).
 
-## Beyond Microsoft 365 controls: AI governance framework
+## AI governance framework
 
-Technical controls answer "can this data reach the AI". Clients also need to answer "should we use AI for this, and who decides". A light framework is added when the client asks for it:
+Technical controls answer "can this data reach the AI". Clients also need "should we use AI for this, and who decides". A light framework is added on request:
 
 | Element | Content |
 |---|---|
@@ -49,9 +49,9 @@ Technical controls answer "can this data reach the AI". Clients also need to ans
 | Regulatory screening | revDSG for personal data. EU AI Act exposure for Swiss organisations whose AI systems or outputs are used in the EU. Screening is done with legal counsel, not by the consultant |
 | Management system (optional) | ISO/IEC 42001 as the reference structure for organisations that want a certifiable AI management system |
 
-## After protection: adoption through AI champions
+## Adoption through AI champions
 
-Once the data is protected, an [AI champions programme](ai-champions-programme.md) drives adoption: employees in each department are trained to get their colleagues using Copilot daily, within the rules (labels, approved tools, the agent request process). Success is measured on active users against licences assigned, and the champions feed governance with feedback and new use cases.
+Once the data is protected, an [AI champions programme](ai-champions-programme.md) trains employees in each department to get colleagues using Copilot daily, within the rules (labels, approved tools, the agent request process). Success is measured on active users against licences assigned. Champions feed governance with feedback and new use cases.
 
 ## Prerequisites checked before selling
 
@@ -62,7 +62,7 @@ Once the data is protected, an [AI champions programme](ai-champions-programme.m
 | Defender for Cloud Apps discovery | Microsoft 365 E5 or Defender for Cloud Apps standalone |
 | Agent 365 registry and lifecycle | Agent 365 per-user licence or Microsoft 365 E7 |
 
-Licensing changes often. Confirm against the current Microsoft licensing guidance before any proposal.
+Licensing changes often. Confirm against current Microsoft licensing guidance before any proposal.
 
 ## Positioning
 

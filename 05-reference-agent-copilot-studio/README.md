@@ -1,23 +1,21 @@
 # 05 · Reference agent (Copilot Studio)
 
-> **Status:** field case from a real client build (below). Reference agent designed with its evaluation set, **build on the lab tenant in progress**. The results table is filled from real evaluation runs only.
+> **Status:** field case from a real client build (below). Reference agent designed with its evaluation set, build on the lab tenant in progress. The results table is filled from real evaluation runs only.
 
 ## Field case: a real agent meets governance
 
 | | |
 |---|---|
-| Context | A client asked for a **booking agent** built in Copilot Studio |
-| What happened | The agent was built, then **blocked by the client's Power Platform data policy**: a connector it needed was not allowed |
-| Decision | **Did not weaken the policy** to make the agent work. Re-assessed the use case and moved it to **Microsoft 365 Copilot Chat with file attachments**, which met the need inside the existing controls |
-| Why it matters | Governance is only credible if it also applies to your own build. The right question is not "how do I get around the control" but "which tool fits the need within it" (lesson L28) |
+| Context | A client asked for a booking agent built in Copilot Studio |
+| What happened | The agent was built, then blocked by the client's Power Platform data policy: a connector it needed was not allowed |
+| Decision | **Did not weaken the policy** to make the agent work. Re-assessed the use case and moved it to Microsoft 365 Copilot Chat with file attachments, which met the need inside the existing controls |
+| Why it matters | Governance is only credible if it also applies to your own build. The question is which tool fits the need within the control, not how to get around it (lesson L28) |
 
 ## Reference agent
 
-A small agent **designed to be built under every rule in this portfolio**, to prove the governance works on a build and to show how an agent is evaluated before it reaches users.
+A small agent designed to be built under every rule in this portfolio: it tests the governance on a real build and shows how an agent is evaluated before it reaches users.
 
-## Use case
-
-**HR Policy Assistant** for Contoso Fiduciaire SA (fictional). Employees ask questions about leave, expenses, remote work and onboarding. HR staff can also ask about the salary grid. Answers come only from the HR policies library in SharePoint, with a citation.
+**HR Policy Assistant** for Contoso Fiduciaire SA (fictional). Employees ask about leave, expenses, remote work and onboarding. HR staff can also ask about the salary grid. Answers come only from the HR policies library in SharePoint, with a citation.
 
 | Item | Choice | Why |
 |---|---|---|
@@ -30,9 +28,9 @@ A small agent **designed to be built under every rule in this portfolio**, to pr
 
 Full design: [agent-design.md](agent-design.md).
 
-## How each governance layer applies
+## Governance checks on this agent
 
-| Layer | Check on this agent |
+| Layer | Check |
 |---|---|
 | WS1 labels | The salary grid is Confidential (HR only), an investigation file is Secret: the agent must never use it |
 | WS2 DLP | To verify: Microsoft Learn does not document DLP for Copilot coverage of Copilot Studio agents. Test case T16 checks the behaviour in simulation; the agent instructions forbid repeating personal identifiers either way |
@@ -42,7 +40,7 @@ Full design: [agent-design.md](agent-design.md).
 
 ## Evaluation
 
-The agent is tested with 20 cases covering grounded answers, permissions, labels, refusals, prompt injection and languages. An evaluation runs as the signed-in user, so there is **one test set per persona**: [employee](evaluation/test-set-employee.csv) (18 cases), [HR](evaluation/test-set-hr.csv) (1 case) and [HR lead](evaluation/test-set-hr-lead.csv) (1 case, Secret exclusion), each run while signed in as that persona. Runs use the **Evaluation** page of Copilot Studio (test sets, pass or fail per case with the reasoning, comparison between runs). Evaluations can also be triggered through the Power Platform API or a flow, which is the path to running them automatically after every change.
+20 cases covering grounded answers, permissions, labels, refusals, prompt injection and languages. An evaluation runs as the signed-in user, so there is **one test set per persona**: [employee](evaluation/test-set-employee.csv) (18 cases), [HR](evaluation/test-set-hr.csv) (1 case) and [HR lead](evaluation/test-set-hr-lead.csv) (1 case, Secret exclusion), each run while signed in as that persona. Runs use the Evaluation page of Copilot Studio (test sets, pass or fail per case with the reasoning, comparison between runs). Evaluations can also be triggered through the Power Platform API or a flow, which allows running them automatically after every change.
 
 Results: [evaluation/results.md](evaluation/results.md).
 
