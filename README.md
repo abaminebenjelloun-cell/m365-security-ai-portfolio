@@ -103,6 +103,10 @@ Fast-moving areas (Copilot, Copilot Studio billing, Agent 365, DLP for Copilot) 
 - Purview Endpoint DLP for Windows, then mobile; DSPM for AI as continuous monitoring
 - Bicep for the Azure resources used by FinOps telemetry
 
+## Side lab (outside work)
+
+[private-ai-workspace](https://github.com/abaminebenjelloun-cell/private-ai-workspace) (private): a ChatGPT-class workspace on my own laptop GPU with four open-weight models in Ollama, zero-trust remote access with no open ports, an LLM threat model, side-by-side model comparison on my own questions, and an LLM built from scratch. It is how I learn what Copilot, Copilot Studio and Foundry do behind the scenes: context budgets, retrieval, prompt injection, cost per token.
+
 ## License
 
 MIT, see [LICENSE](LICENSE).
