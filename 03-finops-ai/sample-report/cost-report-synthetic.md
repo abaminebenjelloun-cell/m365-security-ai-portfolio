@@ -12,7 +12,7 @@ Average burn: 564 credits per day. Allocation of 25,000 credits lasts **44 days*
 |---|---|---|---:|---:|---:|---:|---:|
 | Mailbox Poller | Agent flow | Default | 9,373 | 53.6% | 59.99 | 31 | 1.94 |
 | Invoice Triage | Agent + Agent flow | Maker-Finance | 4,701 | 26.9% | 30.09 | 24 | 1.25 |
-| HR Policy Assistant | Agent | Default | 1,860 | 10.6% | 11.90 | 23 | 0.52 |
+| HR FAQ (legacy) | Agent | Default | 1,860 | 10.6% | 11.90 | 23 | 0.52 |
 | Client Onboarding Helper | Agent | Default | 875 | 5.0% | 5.60 | 20 | 0.28 |
 | Test agent 2 | Agent | Default | 682 | 3.9% | 4.36 | 8 | 0.55 |
 

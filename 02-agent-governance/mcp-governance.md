@@ -27,4 +27,4 @@ For governance this matters because one MCP server can bring many tools at once,
 
 ## Field observation
 
-In a real inventory of several hundred agents, a few agents already used MCP preview servers in production, and custom MCP servers were not covered by any data policy. Neither was visible without exporting and analysing the inventory. `analyze_agent_inventory.py` flags MCP usage; data policy coverage of each MCP connector is checked manually in the Power Platform admin center.
+In a real, large agent inventory, a few agents already used MCP preview servers in production, and custom MCP servers were not covered by any data policy. Neither was visible without exporting and analysing the inventory. `analyze_agent_inventory.py` flags MCP usage; data policy coverage of each MCP connector is checked manually in the Power Platform admin center.

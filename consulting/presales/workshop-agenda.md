@@ -1,6 +1,6 @@
 # Discovery workshop: Copilot and agents (half day)
 
-**Audience:** IT lead, security or data protection officer, one or two business owners with an AI use case, the sponsor for the first and last 30 minutes.
+**Audience:** IT lead, security or data protection officer, one or two business owners with an AI use case, the sponsor for the first 20 and the last 30 minutes.
 **Outcome:** a shared picture of readiness, two or three prioritised use cases, and the scope of the next step.
 
 ## Before the workshop (sent one week ahead)

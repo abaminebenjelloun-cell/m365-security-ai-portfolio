@@ -8,8 +8,10 @@ Filled only from real runs on the lab tenant. Export each run from the Evaluatio
 |---|---|---|---|---|---|---|---|---|
 | 1 | | Baseline | Employee | | | | | |
 | 1 | | Baseline | HR | | | | | |
+| 1 | | Baseline | HR lead | | | | | |
 | 2 | | | Employee | | | | | |
 | 2 | | | HR | | | | | |
+| 2 | | | HR lead | | | | | |
 
 ## Failures and fixes
 

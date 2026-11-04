@@ -9,7 +9,7 @@ A proposal the sponsor can read in ten minutes and the IT lead can execute from.
 5. **Deliverables:** for each phase, what the client receives (inventory and delta report, taxonomy, DLP policies in simulation, decision-gate memos, agent with evaluation results, runbooks).
 6. **Decision gates:** the decisions the sponsor will take, with the date range.
 7. **Plan:** phases on a timeline, including simulation periods.
-8. **Effort and price:** from the estimate template, with assumptions and exclusions.
+8. **Effort and price:** from the estimate template, with assumptions and exclusions. **Run cost** stated separately: licences vs a monthly Copilot Credits estimate per agent ([03-finops-ai](../../03-finops-ai/)), with the cap per environment.
 9. **Roles:** RACI, named contacts, required availability of site owners.
 10. **Risks and mitigations:** preview features, licence gaps, owner availability, change resistance.
 11. **After the project:** optional run service (monthly Secure Score snapshot, inventory delta, cost report, agent reviews).

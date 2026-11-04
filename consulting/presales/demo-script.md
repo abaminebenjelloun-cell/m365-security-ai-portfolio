@@ -1,17 +1,15 @@
 # Demo script (10 minutes)
 
-For a first client meeting or an interview. Live steps assume the lab configuration is deployed; otherwise use the offline backup at the end.
+For a first client meeting or an interview. Business applications and agents first, then why the data work comes first. Every step has an offline file, so the demo works even without the lab tenant.
 
-| Minute | Show | Say |
+| Minute | Show (offline file) | Say |
 |---|---|---|
-| 0:00 | Portfolio README, the flow diagram | "Copilot shows people what they can already open. Readiness is about data first, then agents, then cost." |
-| 1:00 | WS3 delta report on the synthetic snapshots | "Before and after: anonymous links from 2 to 0, sites without owner from 3 to 0. This is how a sponsor sees cleanup progress." |
-| 2:30 | WS1 taxonomy table, then Copilot on a Confidential and a Secret document | "Confidential keeps the EXTRACT right, so Copilot can still help. Secret does not, so Copilot cannot use it, even for people allowed to read it." |
-| 4:00 | WS2 Copilot DLP runbook and test matrix | "Everything starts in simulation. Enforcement is a decision the sponsor takes on numbers." |
-| 5:00 | Agent inventory analysis output | "Duplicates, agents owned by admin accounts, uploaded files outside SharePoint permissions, MCP preview servers. All invisible until you export and analyse." |
-| 6:30 | FinOps cost report | "One polling flow accounts for more than half of consumption. The agents people value cost about a franc a day or less. A cap per environment makes this predictable." |
-| 8:00 | Reference agent design and evaluation set | "Twenty cases: permissions, labels, prompt injection, languages. The agent is evaluated before users see it, and after every change." |
-| 9:00 | Consulting offers | "Flash assessment as the entry point, AI readiness as the core, AI champions to drive adoption so licences turn into daily use, agent governance and FinOps as the run service." |
+| 0:00 | [README](../../README.md), journey diagram | "Assess, protect the data, drive adoption with champions, govern the agents, control the cost, and prove each step." |
+| 1:00 | Reference agent in the lab tenant, or [05 agent design](../../05-reference-agent-copilot-studio/agent-design.md) | "An HR policy agent in Copilot Studio: SharePoint knowledge only, user identity, no web, answers only, capped environment, published to a group." |
+| 2:30 | [05 evaluation test sets](../../05-reference-agent-copilot-studio/evaluation/) | "Twenty cases, one test set per persona because an evaluation runs as the signed-in user: permissions, Secret exclusion, prompt injection, four languages. Re-run after every change, and it can be triggered by API." Show results only if runs are recorded. |
+| 4:00 | [Agent inventory analysis](../../02-agent-governance/sample-data/analysis_output_synthetic.txt) and [data policy design](../../02-agent-governance/power-platform-data-policy.md) | "Duplicates, admin-owned agents, uploaded files outside SharePoint permissions, MCP servers. Then the first data policy closes HTTP, anonymous channels and public web knowledge." |
+| 5:30 | [Agent request and registry solution](../../02-agent-governance/agent-registry-solution.md) | "Requesting an agent must be easier than building one in secret: Dataverse, a model-driven app for IT, a canvas app in Teams, an approval flow." (Specification.) |
+| 6:30 | [FinOps cost report (synthetic month)](../../03-finops-ai/sample-report/cost-report-synthetic.md) | "One polling flow accounts for more than half of consumption. The agents people value cost about a franc a day or less. A cap per environment makes this predictable." |
+| 7:30 | [Labels](../../01-copilot-readiness/ws1-sensitivity-labels/README.md) and [Copilot DLP runbook](../../01-copilot-readiness/ws2-dlp/copilot-dlp-runbook.md) | "Why data first: Copilot shows people what they can already open. Secret has no EXTRACT right, so Copilot cannot use it; DLP is the second layer. Everything starts in simulation." |
+| 8:30 | [AI champions programme](../ai-champions-programme.md) and [estimate template](estimate-template.md) | "Security makes Copilot safe, champions make it used: measured on active users against licences. And this is how the whole journey is scoped." |
 | 9:30 | Questions | |
-
-**Backup:** if the tenant is unavailable, the sample outputs in `02-agent-governance/sample-data/` and `03-finops-ai/sample-report/` tell the same story offline.

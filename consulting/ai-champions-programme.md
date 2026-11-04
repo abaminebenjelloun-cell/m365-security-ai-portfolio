@@ -19,7 +19,7 @@ Based on Microsoft's AI champion role and charter guidance, adapted to a governe
 | Share real workflow examples from their department | Licensing decisions |
 | Run short peer sessions and answer "how do I" questions | Security, compliance or data protection approvals |
 | Collect feedback, blockers and new use cases | Formal training curriculum |
-| Point colleagues to the right resources and processes (labels, agent requests) | Adoption strategy or business outcomes |
+| Point colleagues to the right resources and processes (labels, agent requests) | Adoption strategy and licence allocation (sponsor and programme owner) |
 
 **Profile:** curious, credible with colleagues, already experimenting, learns by doing, influences without authority. Not necessarily the most technical person in the team.
 

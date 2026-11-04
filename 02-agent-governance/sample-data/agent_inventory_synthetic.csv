@@ -4,8 +4,8 @@ Analyst,Microsoft,Microsoft 365 Copilot,Available,,2025-06-01,2026-10-30,,,No
 Microsoft 365 Admin,Microsoft,Microsoft 365 Copilot,Available,,2026-03-01,2026-10-12,,,No
 Surveys Helper,Third party,Teams app,Blocked,,2026-02-11,2026-03-01,,,No
 Frontier Workflow Agent,Microsoft,Microsoft 365 Copilot,Available,,2026-07-15,2026-10-29,,,Yes
-HR Policy Assistant,User-created,Copilot Studio,Published,bruno@contosofiduciaire.onmicrosoft.com,2026-09-02,2026-10-31,SharePoint,,No
-HR Policy Assistant,User-created,Agent Builder,Published,chloe@contosofiduciaire.onmicrosoft.com,2026-09-20,2026-10-25,Uploaded files,,No
+HR FAQ (legacy),User-created,Copilot Studio,Published,bruno@contosofiduciaire.onmicrosoft.com,2026-09-02,2026-10-31,SharePoint,,No
+HR FAQ (legacy),User-created,Agent Builder,Published,chloe@contosofiduciaire.onmicrosoft.com,2026-09-20,2026-10-25,Uploaded files,,No
 Payroll FAQ,User-created,Agent Builder,Published,bruno@contosofiduciaire.onmicrosoft.com,2026-08-14,2026-10-28,Uploaded files,,No
 Invoice Triage,User-created,Copilot Studio,Published,alice@contosofiduciaire.onmicrosoft.com,2026-08-01,2026-11-01,SharePoint,Power Automate,No
 Test agent 1,User-created,Copilot Studio,Draft,admin@contosofiduciaire.onmicrosoft.com,2026-04-02,2026-04-02,,,No

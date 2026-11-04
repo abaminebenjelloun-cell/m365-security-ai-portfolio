@@ -4,7 +4,7 @@
 
 **Platform:** Microsoft Defender portal (security.microsoft.com) > Exposure management > Secure Score, and Microsoft Graph for snapshots.
 
-**Experience behind it:** a programme to bring a client tenant to a 70% target, run in waves with a change log, explicit "out of scope" decisions for unmanaged devices, and a redesign item parked deliberately because two existing device policies conflicted.
+**Experience behind it:** a programme to bring a client tenant to an agreed target, run in waves with a change log, explicit "out of scope" decisions for unmanaged devices, and a redesign item parked deliberately because two existing device policies conflicted.
 
 ## Governance model
 

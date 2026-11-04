@@ -19,6 +19,8 @@ Official Microsoft sources used to design and verify this portfolio. Check them 
 - Manage Copilot Credits and capacity: https://learn.microsoft.com/power-platform/admin/manage-copilot-studio-copilot-credits-capacity
 - Agent flows overview: https://learn.microsoft.com/microsoft-copilot-studio/flows-overview
 - Data policies (Power Platform): https://learn.microsoft.com/power-platform/admin/wp-data-loss-prevention
+- Copilot Studio agent evaluation, run and view results: https://learn.microsoft.com/microsoft-copilot-studio/analytics-agent-evaluation-results
+- Add tools from an MCP server to a Copilot Studio agent: https://learn.microsoft.com/microsoft-copilot-studio/mcp-add-components-to-agent
 - Power Automate telemetry in Application Insights: https://learn.microsoft.com/power-platform/admin/app-insights-cloud-flow
 
 ## SharePoint

@@ -2,7 +2,7 @@
 
 Copilot Studio is available to every Microsoft 365 user. Without governance, a tenant ends up with hundreds of agents, duplicated, owned by admin accounts or by people who left, wired to any connector, and consuming shared capacity. This section governs agents at three layers (ADR-007).
 
-**Experience behind it:** first Power Platform data policy on a tenant that had none, agent access restricted through a dynamic Entra group, analysis of an inventory of several hundred agents (duplicates, admin-owned agents, MCP preview servers, sensitive files uploaded as agent knowledge outside SharePoint permissions), Agent 365 hardening split into "no extra licence" and "licensed" layers, and a Power Automate governance guideline approved by the client.
+**Experience behind it:** first Power Platform data policy on a tenant that had none, agent access restricted through a dynamic Entra group, analysis of a large agent inventory (duplicates, admin-owned agents, MCP preview servers, sensitive files uploaded as agent knowledge outside SharePoint permissions), Agent 365 hardening split into "no extra licence" and "licensed" layers, and a Power Automate governance guideline approved by the client.
 
 **Last reviewed:** November 2026. Agent settings in the Microsoft 365 admin center moved several times in 2026: look for the closest equivalent if a label differs.
 

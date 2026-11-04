@@ -1,8 +1,8 @@
 # 05 · Reference agent (Copilot Studio)
 
-> **Status: design and evaluation set ready, build in progress on the lab tenant.** The results table below is filled from real evaluation runs only.
+> **Status: agent built on the lab tenant. Evaluation runs and solution export to be recorded.** The results table is filled from real evaluation runs only.
 
-A small agent built **under every rule in this portfolio**, to prove the governance works on a real build and to show how an agent is evaluated before it reaches users.
+A small agent built on the lab tenant **under every rule in this portfolio**, to prove the governance works on a real build and to show how an agent is evaluated before it reaches users.
 
 ## Use case
 
@@ -24,7 +24,7 @@ Full design: [agent-design.md](agent-design.md).
 | Layer | Check on this agent |
 |---|---|
 | WS1 labels | The salary grid is Confidential (HR only), an investigation file is Secret: the agent must never use it |
-| WS2 DLP | Prompts containing a synthetic AHV number trigger the Copilot DLP policy in the pilot |
+| WS2 DLP | To verify: Microsoft Learn does not document DLP for Copilot coverage of Copilot Studio agents. Test case T16 checks the behaviour in simulation; the agent instructions forbid repeating personal identifiers either way |
 | WS3 oversharing | The HR library is not reachable by everyone, confirmed in the inventory |
 | WS4 agents | Registered in the agent register, connectors allowed by the data policy, owner and sponsor named |
 | WS7 cost | Credits per answer measured during the evaluation runs, monthly budget set |

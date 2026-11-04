@@ -1,13 +1,13 @@
 Date,Environment,ResourceName,ResourceType,Owner,Feature,BilledUnits,CopilotCredits,IsTest
-2026-10-01,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,10,20,No
-2026-10-01,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,3,30,No
+2026-10-01,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,10,20,No
+2026-10-01,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,3,30,No
 2026-10-01,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,338,43.94,No
 2026-10-01,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Document processing (pages),22,176,No
 2026-10-01,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,23,115,No
 2026-10-01,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2095,272.35,No
 2026-10-01,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Generative answers,5,10,No
-2026-10-02,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,23,46,No
-2026-10-02,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,6,60,No
+2026-10-02,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,23,46,No
+2026-10-02,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,6,60,No
 2026-10-02,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,372,48.36,No
 2026-10-02,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Document processing (pages),10,80,No
 2026-10-02,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,20,100,No
@@ -16,67 +16,67 @@ Date,Environment,ResourceName,ResourceType,Owner,Feature,BilledUnits,CopilotCred
 2026-10-03,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Document processing (pages),19,152,No
 2026-10-03,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2387,310.31,No
 2026-10-04,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2081,270.53,No
-2026-10-05,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,36,72,No
-2026-10-05,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,4,40,No
+2026-10-05,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,36,72,No
+2026-10-05,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,4,40,No
 2026-10-05,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,321,41.73,No
 2026-10-05,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Document processing (pages),25,200,No
 2026-10-05,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,30,150,No
 2026-10-05,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2250,292.5,No
 2026-10-05,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Generative answers,17,34,No
 2026-10-05,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Agent actions,15,75,No
-2026-10-06,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,20,40,No
-2026-10-06,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,8,80,No
+2026-10-06,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,20,40,No
+2026-10-06,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,8,80,No
 2026-10-06,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,360,46.8,No
 2026-10-06,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Document processing (pages),15,120,No
 2026-10-06,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,12,60,No
 2026-10-06,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2580,335.4,No
 2026-10-06,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Agent actions,15,75,No
-2026-10-07,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,3,30,No
+2026-10-07,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,3,30,No
 2026-10-07,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,213,27.69,No
 2026-10-07,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,28,140,No
 2026-10-07,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2597,337.61,No
 2026-10-07,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Generative answers,12,24,No
 2026-10-07,Default,Test agent 2,Agent,admin@contosofiduciaire.onmicrosoft.com,Generative answers,51,102,Yes
-2026-10-08,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,11,22,No
+2026-10-08,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,11,22,No
 2026-10-08,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,190,24.7,No
 2026-10-08,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,12,60,No
 2026-10-08,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2479,322.27,No
-2026-10-09,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,33,66,No
-2026-10-09,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,6,60,No
+2026-10-09,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,33,66,No
+2026-10-09,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,6,60,No
 2026-10-09,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,19,95,No
 2026-10-09,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2464,320.32,No
 2026-10-09,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Generative answers,13,26,No
 2026-10-10,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2382,309.66,No
-2026-10-11,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,4,40,No
+2026-10-11,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,4,40,No
 2026-10-11,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2314,300.82,No
-2026-10-12,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,33,66,No
-2026-10-12,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,2,20,No
+2026-10-12,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,33,66,No
+2026-10-12,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,2,20,No
 2026-10-12,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Document processing (pages),9,72,No
 2026-10-12,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,25,125,No
 2026-10-12,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2169,281.97,No
 2026-10-12,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Generative answers,18,36,No
-2026-10-13,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,32,64,No
-2026-10-13,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,4,40,No
+2026-10-13,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,32,64,No
+2026-10-13,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,4,40,No
 2026-10-13,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,321,41.73,No
 2026-10-13,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Document processing (pages),19,152,No
 2026-10-13,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2253,292.89,No
 2026-10-13,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Generative answers,15,30,No
 2026-10-13,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Agent actions,13,65,No
 2026-10-13,Default,Test agent 2,Agent,admin@contosofiduciaire.onmicrosoft.com,Generative answers,34,68,Yes
-2026-10-14,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,32,64,No
-2026-10-14,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,3,30,No
+2026-10-14,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,32,64,No
+2026-10-14,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,3,30,No
 2026-10-14,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,158,20.54,No
 2026-10-14,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,17,85,No
 2026-10-14,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2497,324.61,No
 2026-10-14,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Generative answers,9,18,No
-2026-10-15,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,17,34,No
-2026-10-15,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,8,80,No
+2026-10-15,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,17,34,No
+2026-10-15,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,8,80,No
 2026-10-15,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,174,22.62,No
 2026-10-15,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Document processing (pages),18,144,No
 2026-10-15,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,23,115,No
 2026-10-15,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2055,267.15,No
 2026-10-15,Default,Test agent 2,Agent,admin@contosofiduciaire.onmicrosoft.com,Generative answers,45,90,Yes
-2026-10-16,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,35,70,No
+2026-10-16,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,35,70,No
 2026-10-16,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,198,25.74,No
 2026-10-16,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Document processing (pages),9,72,No
 2026-10-16,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,18,90,No
@@ -86,23 +86,23 @@ Date,Environment,ResourceName,ResourceType,Owner,Feature,BilledUnits,CopilotCred
 2026-10-17,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2410,313.3,No
 2026-10-17,Default,Test agent 2,Agent,admin@contosofiduciaire.onmicrosoft.com,Generative answers,44,88,Yes
 2026-10-18,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2569,333.97,No
-2026-10-19,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,11,22,No
-2026-10-19,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,6,60,No
+2026-10-19,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,11,22,No
+2026-10-19,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,6,60,No
 2026-10-19,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,230,29.9,No
 2026-10-19,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Document processing (pages),23,184,No
 2026-10-19,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,26,130,No
 2026-10-19,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2520,327.6,No
 2026-10-19,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Generative answers,10,20,No
 2026-10-19,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Agent actions,6,30,No
-2026-10-20,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,13,26,No
+2026-10-20,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,13,26,No
 2026-10-20,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,298,38.74,No
 2026-10-20,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Document processing (pages),24,192,No
 2026-10-20,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,28,140,No
 2026-10-20,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2323,301.99,No
 2026-10-20,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Agent actions,10,50,No
 2026-10-20,Default,Test agent 2,Agent,admin@contosofiduciaire.onmicrosoft.com,Generative answers,45,90,Yes
-2026-10-21,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,30,60,No
-2026-10-21,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,4,40,No
+2026-10-21,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,30,60,No
+2026-10-21,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,4,40,No
 2026-10-21,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,29,145,No
 2026-10-21,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2102,273.26,No
 2026-10-21,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Generative answers,11,22,No
@@ -112,42 +112,42 @@ Date,Environment,ResourceName,ResourceType,Owner,Feature,BilledUnits,CopilotCred
 2026-10-22,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2541,330.33,No
 2026-10-22,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Generative answers,14,28,No
 2026-10-22,Default,Test agent 2,Agent,admin@contosofiduciaire.onmicrosoft.com,Generative answers,28,56,Yes
-2026-10-23,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,38,76,No
-2026-10-23,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,6,60,No
+2026-10-23,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,38,76,No
+2026-10-23,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,6,60,No
 2026-10-23,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,222,28.86,No
 2026-10-23,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Document processing (pages),15,120,No
 2026-10-23,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,30,150,No
 2026-10-23,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2517,327.21,No
 2026-10-23,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Generative answers,6,12,No
 2026-10-23,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Agent actions,11,55,No
-2026-10-24,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,20,40,No
+2026-10-24,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,20,40,No
 2026-10-24,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2437,316.81,No
 2026-10-25,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,244,31.72,No
 2026-10-25,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2315,300.95,No
-2026-10-26,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,21,42,No
-2026-10-26,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,3,30,No
+2026-10-26,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,21,42,No
+2026-10-26,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,3,30,No
 2026-10-26,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,240,31.2,No
 2026-10-26,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2158,280.54,No
 2026-10-26,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Agent actions,7,35,No
-2026-10-27,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,38,76,No
-2026-10-27,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,3,30,No
+2026-10-27,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,38,76,No
+2026-10-27,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,3,30,No
 2026-10-27,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Document processing (pages),18,144,No
 2026-10-27,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2254,293.02,No
 2026-10-27,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Generative answers,8,16,No
 2026-10-27,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Agent actions,5,25,No
-2026-10-28,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,36,72,No
+2026-10-28,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,36,72,No
 2026-10-28,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,360,46.8,No
 2026-10-28,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,10,50,No
 2026-10-28,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2408,313.04,No
 2026-10-28,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Generative answers,7,14,No
 2026-10-28,Default,Test agent 2,Agent,admin@contosofiduciaire.onmicrosoft.com,Generative answers,52,104,Yes
-2026-10-29,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,36,72,No
-2026-10-29,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,2,20,No
+2026-10-29,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Generative answers,36,72,No
+2026-10-29,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,2,20,No
 2026-10-29,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,398,51.74,No
 2026-10-29,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Document processing (pages),23,184,No
 2026-10-29,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2111,274.43,No
 2026-10-29,Default,Client Onboarding Helper,Agent,chloe@contosofiduciaire.onmicrosoft.com,Agent actions,10,50,No
-2026-10-30,Default,HR Policy Assistant,Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,6,60,No
+2026-10-30,Default,HR FAQ (legacy),Agent,bruno@contosofiduciaire.onmicrosoft.com,Tenant graph grounding,6,60,No
 2026-10-30,Maker-Finance,Invoice Triage,Agent flow,alice@contosofiduciaire.onmicrosoft.com,Agent flow actions,161,20.93,No
 2026-10-30,Maker-Finance,Invoice Triage,Agent,alice@contosofiduciaire.onmicrosoft.com,Agent actions,27,135,No
 2026-10-30,Default,Mailbox Poller,Agent flow,chloe@contosofiduciaire.onmicrosoft.com,Agent flow actions,2201,286.13,No

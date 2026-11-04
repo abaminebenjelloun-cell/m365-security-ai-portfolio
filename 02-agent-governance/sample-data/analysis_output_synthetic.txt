@@ -11,10 +11,10 @@ User-created agents: 10 by 5 makers
 Findings
 
   Duplicate agents: 1
-    - HR Policy Assistant: bruno@contosofiduciaire.onmicrosoft.com (Copilot Studio), chloe@contosofiduciaire.onmicrosoft.com (Agent Builder)
+    - HR FAQ (legacy): bruno@contosofiduciaire.onmicrosoft.com (Copilot Studio), chloe@contosofiduciaire.onmicrosoft.com (Agent Builder)
 
   Uploaded files as knowledge (outside SharePoint permissions): 3
-    - HR Policy Assistant
+    - HR FAQ (legacy)
     - Payroll FAQ
     - Supplier Contracts Q&A
 

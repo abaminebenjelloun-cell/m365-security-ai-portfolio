@@ -58,7 +58,7 @@ Architecture decisions behind this portfolio, written as short ADRs. Each one re
 
 - **Context:** The reference agent (section 05, build in progress) answers HR policy questions from SharePoint content for internal users.
 - **Decision:** Copilot Studio, because the knowledge lives in Microsoft 365, users authenticate with Entra ID, and governance (data policy, capacity, sharing) is native.
-- **When Foundry would win:** custom orchestration, own retrieval index (Azure AI Search), model choice, external users at scale, or a full automated evaluation pipeline.
+- **When Foundry would win:** custom orchestration, own retrieval index (Azure AI Search), model choice, external users at scale, or custom evaluators and metrics (groundedness, relevance) at scale. Copilot Studio evaluations can already be triggered by API.
 - **Consequences:** Fast to build and govern. Limits on retrieval tuning are accepted and documented.
 
 ## ADR-010: Secure Score is governed by waves and a change log, not chased

@@ -2,7 +2,7 @@
 
 Prepare and protect the data before Microsoft 365 Copilot can reach it. This is the core of the AI readiness offer ([consulting/ai-readiness-offer.md](../consulting/ai-readiness-offer.md)).
 
-**Experience behind it:** a multi-workstream Microsoft 365 Copilot security programme for a Swiss mid-size group (1,000+ users, E5 licences). Everything here is rebuilt on a lab tenant.
+**Experience behind it:** a multi-workstream Microsoft 365 Copilot security programme for a Swiss mid-size group (1,000+ users). Everything here is rebuilt on a lab tenant.
 
 | Workstream | Question it answers | Deliverable in this folder |
 |---|---|---|

@@ -37,6 +37,18 @@
 - Agent baseline and capacity caps (WS4, WS7).
 - Usage and cost monitoring as a run service (WS7, WS8).
 
+## Beyond Microsoft 365 controls: AI governance framework
+
+Technical controls answer "can this data reach the AI". Clients also need to answer "should we use AI for this, and who decides". A light framework is added when the client asks for it:
+
+| Element | Content |
+|---|---|
+| AI acceptable use policy | What employees may and may not do with AI tools, approved tools, data rules (links to WS1, WS6) |
+| Use case register and risk classification | Every AI use case with owner, data, autonomy level, impact on people; higher risk cases need more review (links to the agent register in 02) |
+| Roles | Sponsor, AI governance board or owner, data protection officer, business owners |
+| Regulatory screening | revDSG for personal data. EU AI Act exposure for Swiss organisations whose AI systems or outputs are used in the EU. Screening is done with legal counsel, not by the consultant |
+| Management system (optional) | ISO/IEC 42001 as the reference structure for organisations that want a certifiable AI management system |
+
 ## After protection: adoption through AI champions
 
 Once the data is protected, an [AI champions programme](ai-champions-programme.md) drives adoption: employees in each department are trained to get their colleagues using Copilot daily, within the rules (labels, approved tools, the agent request process). Success is measured on active users against licences assigned, and the champions feed governance with feedback and new use cases.

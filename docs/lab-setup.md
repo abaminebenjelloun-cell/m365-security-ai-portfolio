@@ -1,6 +1,6 @@
 # Lab setup
 
-Everything in this repository is designed for a personal lab tenant with synthetic data. The README status table shows what has been run. Never run these scripts first on a production tenant.
+Everything in this repository is designed for a personal lab tenant with synthetic data. The README status table states what has and has not been run. Never run these scripts first on a production tenant.
 
 ## 1. Tenant
 
