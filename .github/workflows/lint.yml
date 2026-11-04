@@ -26,9 +26,9 @@ jobs:
           python-version: '3.12'
       - name: Compile and run on synthetic data
         run: |
-          python -m py_compile 02-agent-governance/analyze_agent_inventory.py 03-finops-ai/analyze_credits.py
+          python -m py_compile 02-agent-governance/analyze_agent_inventory.py 04-finops-ai/analyze_credits.py
           python 02-agent-governance/analyze_agent_inventory.py 02-agent-governance/sample-data/agent_inventory_synthetic.csv --today 2026-11-02 --active-users 02-agent-governance/sample-data/active_users_synthetic.txt
-          python 03-finops-ai/analyze_credits.py 03-finops-ai/sample-data/copilot_credits_synthetic.csv
+          python 04-finops-ai/analyze_credits.py 04-finops-ai/sample-data/copilot_credits_synthetic.csv
 
   confidentiality:
     runs-on: ubuntu-latest

@@ -1,4 +1,4 @@
-# Consulting offers and pre-sales
+# 03 · Consulting and adoption
 
 How the technical work is packaged and sold. Methods only: no employer templates, no client deliverables, no rates.
 
@@ -8,8 +8,8 @@ How the technical work is packaged and sold. Methods only: no employer templates
 | AI readiness | Core offer: diagnostic, correction, protection before Copilot and agents | [ai-readiness-offer.md](ai-readiness-offer.md) |
 | AI champions programme | Adoption: champions who drive Copilot use across departments, within the rules | [ai-champions-programme.md](ai-champions-programme.md) |
 | Agent governance | Follow-up: baseline, data policy, lifecycle, request and registry solution | [../02-agent-governance](../02-agent-governance/) |
-| FinOps for AI | Follow-up or run service: cost per use, caps, monthly report | [../03-finops-ai](../03-finops-ai/) |
-| Managed run | Monthly Secure Score snapshot, inventory delta, cost report, agent reviews | [../04-secure-score-governance](../04-secure-score-governance/) |
+| FinOps for AI | Follow-up or run service: cost per use, caps, monthly report | [../04-finops-ai](../04-finops-ai/) |
+| Managed run | Monthly Secure Score snapshot, inventory delta, cost report, agent reviews | [../05-secure-score-governance](../05-secure-score-governance/) |
 
 ## Pre-sales kit
 

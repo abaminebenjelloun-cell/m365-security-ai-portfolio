@@ -22,5 +22,5 @@ Filled only from real runs on the lab tenant. Export each run from the Evaluatio
 ## Observations
 
 - Response time per case (informational):
-- Cost per answer (credits and CHF, see 03-finops-ai):
+- Cost per answer (credits and CHF, see 04-finops-ai):
 - Cases where the evaluation method itself judged wrongly (thumbs down in the product):

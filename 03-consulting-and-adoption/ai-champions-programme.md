@@ -37,7 +37,7 @@ Modules 2 and 6 create usage. Modules 3 to 5 keep that usage safe, which is what
 | 2 | Prompting for real work | Goal, context, source, expectations; iterating; checking the answer and its citations | |
 | 3 | Data rules in daily use | What Public, Internal, Confidential and Secret mean; why Secret content never appears in Copilot; what a DLP policy tip means | [WS1](../01-copilot-readiness/ws1-sensitivity-labels/), [WS2](../01-copilot-readiness/ws2-dlp/) |
 | 4 | Approved and unapproved AI | Which AI tools are sanctioned, the approved alternative for each blocked one, why not to paste client data into public tools | [WS6 shadow AI](../01-copilot-readiness/ws6-shadow-ai/) |
-| 5 | Agents: request, do not just build | When an agent is the right answer, how to request one, autonomy levels, cost awareness | [02 agent governance](../02-agent-governance/), [03 FinOps](../03-finops-ai/) |
+| 5 | Agents: request, do not just build | When an agent is the right answer, how to request one, autonomy levels, cost awareness | [02 agent governance](../02-agent-governance/), [03 FinOps](../04-finops-ai/) |
 | 6 | Department scenarios | Three to five scenarios per department from the Microsoft Scenario Library, adapted to local processes | |
 | 7 | Leading peer sessions | 30-minute session format, collecting feedback, escalation paths | |
 

@@ -17,7 +17,7 @@
     . ./common/M365Lab.Common.ps1
     Connect-LabGraph -Scopes 'SecurityEvents.Read.All'
     Assert-LabTenant -ExpectedTenantId <lab-tenant-guid>
-    ./04-secure-score-governance/Get-SecureScoreSnapshot.ps1 -TargetPercent 70
+    ./05-secure-score-governance/Get-SecureScoreSnapshot.ps1 -TargetPercent 70
 #>
 [CmdletBinding()]
 param(

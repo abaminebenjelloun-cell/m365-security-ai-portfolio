@@ -12,7 +12,7 @@ A guideline a client can approve in one meeting, written after a common trigger:
 | 2 | A departure is announced to IT at least 30 days in advance, and every flow owned by the leaver is reassigned or rebuilt before the last day | Avoids broken processes discovered weeks later |
 | 3 | A flow not run for 90 days is disabled, then deleted after a grace period, with the owner informed | Keeps the inventory and the attack surface small |
 | 4 | Production flows run in a dedicated environment, deployed as solutions, with connections owned by the cloud-only service account | Separates personal productivity from business processes |
-| 5 | Flows with AI actions (prompts, document processing) are registered with their capacity owner | AI actions consume capacity (see 03-finops-ai) |
+| 5 | Flows with AI actions (prompts, document processing) are registered with their capacity owner | AI actions consume capacity (see 04-finops-ai) |
 | 6 | HTTP triggers and premium connectors require approval | Linked to the data policy in [power-platform-data-policy.md](power-platform-data-policy.md) |
 
 ## Service account

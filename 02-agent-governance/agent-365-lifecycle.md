@@ -14,7 +14,7 @@ Microsoft Agent 365 is the control plane for agents: a registry and lifecycle ac
 | Dozens of agents, several platforms, third-party agents, regulated client | Agent 365 for the registry, identity and monitoring integration |
 | Client already moving to Microsoft 365 E7 | Agent 365 is included, design the lifecycle around it from day one |
 
-Agent 365 is a per-user governance licence. It does not pay for agent consumption: Copilot Studio capacity (Copilot Credits) is a separate, usage-based cost (see [03-finops-ai](../03-finops-ai/)). Proposals often confuse the two.
+Agent 365 is a per-user governance licence. It does not pay for agent consumption: Copilot Studio capacity (Copilot Credits) is a separate, usage-based cost (see [04-finops-ai](../04-finops-ai/)). Proposals often confuse the two.
 
 ## Lifecycle
 

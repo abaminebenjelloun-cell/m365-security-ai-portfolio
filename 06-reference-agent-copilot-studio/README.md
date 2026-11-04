@@ -1,4 +1,4 @@
-# 05 · Reference agent (Copilot Studio)
+# 06 · Reference agent (Copilot Studio)
 
 > **Status:** field case from a real client build (below). Reference agent designed with its evaluation set, build on the lab tenant in progress. The results table is filled from real evaluation runs only.
 
@@ -46,7 +46,7 @@ Results: [evaluation/results.md](evaluation/results.md).
 
 ## Build steps
 
-1. Create the dedicated environment and allocate capacity (03-finops-ai).
+1. Create the dedicated environment and allocate capacity (04-finops-ai).
 2. Create the agent, add the SharePoint knowledge source, set instructions from `agent-design.md`.
 3. Turn off general knowledge and web search for the agent.
 4. Import each persona's test set and run it while signed in as that persona, record results.
@@ -54,7 +54,7 @@ Results: [evaluation/results.md](evaluation/results.md).
 6. Export the solution and unpack it into `solution/` for version control:
    ```
    pac solution export --name HRPolicyAssistant --path ./HRPolicyAssistant.zip
-   pac solution unpack --zipfile ./HRPolicyAssistant.zip --folder ./05-reference-agent-copilot-studio/solution
+   pac solution unpack --zipfile ./HRPolicyAssistant.zip --folder ./06-reference-agent-copilot-studio/solution
    ```
 7. Register the agent (02 register), publish to the pilot group.
 

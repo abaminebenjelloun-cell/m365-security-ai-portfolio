@@ -1,4 +1,4 @@
-# 03 · FinOps for AI (WS7)
+# 04 · FinOps for AI (WS7)
 
 Copilot and agents have two cost layers, often confused:
 
@@ -25,9 +25,9 @@ From practice: cost-per-use analysis in CHF from capacity exports, a pricing err
 ## Run
 
 ```bash
-python3 03-finops-ai/analyze_credits.py 03-finops-ai/sample-data/copilot_credits_synthetic.csv \
+python3 04-finops-ai/analyze_credits.py 04-finops-ai/sample-data/copilot_credits_synthetic.csv \
     --usd-per-credit 0.008 --usd-to-chf 0.80 --allocation 25000 \
-    --markdown 03-finops-ai/sample-report/cost-report-synthetic.md
+    --markdown 04-finops-ai/sample-report/cost-report-synthetic.md
 ```
 
 ## Synthetic month

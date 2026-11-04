@@ -1,4 +1,4 @@
-# 04 · Secure Score governance (WS8)
+# 05 · Secure Score governance (WS8)
 
 Goal: raise Microsoft Secure Score to an agreed target without surprising users, and defend every point in an audit (ADR-010).
 
@@ -121,5 +121,5 @@ Secure Score is Microsoft's view, weighted by Microsoft, and moves when Microsof
 . ./common/M365Lab.Common.ps1
 Connect-LabGraph -Scopes 'SecurityEvents.Read.All'
 Assert-LabTenant -ExpectedTenantId <lab-tenant-guid>
-./04-secure-score-governance/Get-SecureScoreSnapshot.ps1 -TargetPercent 70
+./05-secure-score-governance/Get-SecureScoreSnapshot.ps1 -TargetPercent 70
 ```

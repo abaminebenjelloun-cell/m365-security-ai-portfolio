@@ -11,7 +11,7 @@ Requesting an agent has to be easier than building one in secret. This small Pow
 | Data | Dataverse tables in a solution | Single source of truth for agents, requests and reviews |
 | Request and register app | Model-driven app (IT) and a canvas app in Teams (makers) | Request a new agent, see my agents, answer a review |
 | Approval | Power Automate cloud flow with the Approvals connector | Business sponsor then IT approval, decision recorded |
-| Review reminders | Scheduled cloud flow, daily (not every few minutes, see 03-finops-ai) | Reminds owners 14 days before the review date, escalates when overdue |
+| Review reminders | Scheduled cloud flow, daily (not every few minutes, see 04-finops-ai) | Reminds owners 14 days before the review date, escalates when overdue |
 | Leaver check | Scheduled flow reading Entra account status | Flags agents whose owner is disabled |
 | Deployment | Managed solution, environment variables, connection references owned by the service account | Clean move from dev to production |
 

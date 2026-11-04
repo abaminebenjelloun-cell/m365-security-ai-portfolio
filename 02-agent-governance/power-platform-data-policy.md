@@ -39,7 +39,7 @@ HTTP-based **flow triggers** (When an HTTP request is received, HTTP Webhook) st
 | Environment | Who builds | Data policy | Capacity |
 |---|---|---|---|
 | Default | Everyone (personal productivity) | Strict (this policy) | Small allocation or none |
-| Dedicated maker environment | Named heavy makers | Same, plus connectors approved for their use case | Capped allocation (see 03-finops-ai) |
+| Dedicated maker environment | Named heavy makers | Same, plus connectors approved for their use case | Capped allocation (see 04-finops-ai) |
 | Production | Approved agents only, deployed as solutions | Same, plus approved custom connectors | Allocated per business owner |
 
 ## After saving
