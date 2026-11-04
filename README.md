@@ -18,11 +18,11 @@ Languages: French and Arabic (native), English (fluent). Certifications: see my 
 
 | Experience | Where |
 |---|---|
+| Created a Microsoft 365 flash assessment offer based on the CIS benchmark, delivered to several clients and taught to colleagues. It opens follow-up contracts sold as prepaid blocks of hours | [assessment-method.md](03-consulting-and-adoption/assessment-method.md) |
 | Led a multi-workstream Copilot security programme for a Swiss mid-size group (1,000+ users) | [01](01-copilot-readiness/), [02](02-agent-governance/) |
 | Governed Copilot Studio and Power Platform in production: first data policy, agent access, agent inventory analysis | [02](02-agent-governance/) |
 | Built a booking agent in Copilot Studio for a client. When the client's data policy blocked it, kept the policy and moved the use case to Microsoft 365 Copilot Chat | [06 field case](06-reference-agent-copilot-studio/README.md#field-case-a-real-agent-meets-governance) |
 | Training client AI champions to drive Copilot adoption | [ai-champions-programme.md](03-consulting-and-adoption/ai-champions-programme.md) |
-| Created a Microsoft 365 flash assessment offer based on the CIS benchmark, delivered to several clients and taught to colleagues. It opens follow-up contracts sold as prepaid blocks of hours | [assessment-method.md](03-consulting-and-adoption/assessment-method.md) |
 | Analysed Copilot Credits consumption and cost per use in CHF, set capacity caps per environment | [04](04-finops-ai/) |
 | Ran a Secure Score programme from about 63% towards 70%: quick wins, nine ASR rules moved to Block after hunting review, Defender for Office 365 hardening, Conditional Access in report-only first | [05](05-secure-score-governance/) |
 | Wrote a Power Automate governance guideline approved by a client | [power-automate-governance.md](02-agent-governance/power-automate-governance.md) |
