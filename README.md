@@ -8,7 +8,7 @@ How I prepare Microsoft 365 tenants for **Copilot**, drive its **adoption**, gov
 
 ## About me
 
-Microsoft 365 Technical Lead at a Swiss Microsoft partner, acting as the M365 practice lead, and SC-300 trainer (identity and access). Before that, business analyst on Dynamics 365 (Dataverse) and SharePoint and Teams governance programmes in large Canadian organisations.
+Microsoft 365 Technical Lead at a Swiss Microsoft partner, acting as the M365 practice lead. Before that, business analyst on Dynamics 365 (Dataverse) and SharePoint and Teams governance programmes in large Canadian organisations.
 
 | Experience | Where it shows in this repository |
 |---|---|
