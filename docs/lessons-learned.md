@@ -11,6 +11,7 @@ Field notes from real Copilot, Power Platform and Microsoft 365 governance work.
 | L21 | Agent flows bill **per action on every run, even when nothing happens**. A 5-minute schedule costs roughly 290 times a daily one for the same flow. | Cheap checks first, classic flows for polling, invoke the agent only when there is work. |
 | L22 | Agent flow test runs from the designer do not bill agent flow actions. | Measure agent flow cost on real runs, not tests, and check the billing rules for other features. |
 | L23 | Seeded AI Builder credits stop for new or renewed Power Platform licences from **1 November 2026**. | Inventory flows with AI actions before renewals and plan Copilot Credits capacity. |
+| L28 | A data policy can block **your own** agent. Weakening the policy to ship it destroys the governance you sell. | Re-assess the use case: Microsoft 365 Copilot Chat, a different connector or a different design often meets the need inside the control. |
 | L24 | Prepaid capacity and pay-as-you-go have **different unit prices**. | Check which one the tenant uses before converting credits to money. A wrong rate silently distorts every figure. |
 
 ## Purview: sensitivity labels

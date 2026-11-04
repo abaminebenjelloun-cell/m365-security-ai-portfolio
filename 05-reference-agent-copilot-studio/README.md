@@ -1,8 +1,19 @@
 # 05 · Reference agent (Copilot Studio)
 
-> **Status: agent built on the lab tenant. Evaluation runs and solution export to be recorded.** The results table is filled from real evaluation runs only.
+> **Status:** field case from a real client build (below). Reference agent designed with its evaluation set, **build on the lab tenant in progress**. The results table is filled from real evaluation runs only.
 
-A small agent built on the lab tenant **under every rule in this portfolio**, to prove the governance works on a real build and to show how an agent is evaluated before it reaches users.
+## Field case: a real agent meets governance
+
+| | |
+|---|---|
+| Context | A client asked for a **booking agent** built in Copilot Studio |
+| What happened | The agent was built, then **blocked by the client's Power Platform data policy**: a connector it needed was not allowed |
+| Decision | **Did not weaken the policy** to make the agent work. Re-assessed the use case and moved it to **Microsoft 365 Copilot Chat with file attachments**, which met the need inside the existing controls |
+| Why it matters | Governance is only credible if it also applies to your own build. The right question is not "how do I get around the control" but "which tool fits the need within it" (lesson L28) |
+
+## Reference agent
+
+A small agent **designed to be built under every rule in this portfolio**, to prove the governance works on a build and to show how an agent is evaluated before it reaches users.
 
 ## Use case
 
