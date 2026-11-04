@@ -16,7 +16,21 @@ Track record: first version built around 148 controls aligned with the CIS Micro
 
 **Rule:** one primary data source per assessment, every figure in the deliverable traceable to it. If a workload has not been imported yet, wait for it rather than mix manual observations into the score.
 
-## 2. Structure
+## 2. How the CIS benchmark is used
+
+The CIS Microsoft 365 Foundations Benchmark (v6.0.1 when the method was built) gives an external reference the client can recognise, independent of any vendor score.
+
+| Reconciliation result | Treatment |
+|---|---|
+| Tenant matches the CIS control | Compliant |
+| CIS control applicable but not configured | Not compliant, goes to the action plan with a priority |
+| Tenant conflicts with the CIS control | Reviewed one by one. Real gaps go to the action plan. Technical differences (tool limitations, drift in built-in role definitions) are documented, kept visible in the CIS comparison sheet, and left out of the plan |
+| Configuration items with no CIS counterpart | Excluded from the CIS score, so it is not inflated |
+| CIS control met by a client policy under another name (for example a Conditional Access policy) | Status kept as reported, priority P3, equivalence documented |
+
+Three scores are reported side by side and never merged: the tool's native score, a CIS-only score, and a unified score (section 4). Secure Score stays a fourth, separate view.
+
+## 3. Structure
 
 Pillars: Security and Identity, Entra applications, Exchange, SharePoint and OneDrive, Teams, Devices, Licences, Identity Governance, Copilot readiness.
 
@@ -29,22 +43,22 @@ Statuses: Compliant, Partially compliant, Not compliant, Informational.
 | P3 | Plan | Policies covered by an equivalent control under another name |
 | P4 | Nice to have | Cosmetic or low-risk drift |
 
-## 3. Scoring
+## 4. Scoring
 
 Unified score on a 2 / 1 / 0 scale (Compliant / Partial / Not compliant), Informational excluded. The tool's native score is reported as is, never recalculated, so the client can compare over time.
 
-## 4. Deliverables
+## 5. Deliverables
 
 1. Workbook: read-me, hidden data sheet, dashboard, CIS comparison, health check, action plan, and an affected accounts sheet (named users, apps or sites per finding) so each finding is actionable.
 2. Executive deck (about six slides): score, pillar view, top 5 risks, action plan, next steps. Speaker notes point to where each figure lives in the workbook.
 
-## 5. Quality control
+## 6. Quality control
 
 - Control totals from the exports are compared automatically with the counts in the workbook. Any mismatch shows CHECK instead of OK.
 - Accounts and applications created by the assessment tool itself are excluded from findings (they would otherwise appear as risky service principals).
 - Every number in the deck is checked against the workbook before delivery.
 
-## 6. Copilot in the delivery
+## 7. Copilot in the delivery
 
 Microsoft 365 Copilot extracts counts and lists from the exports into the workbook. The rule:
 
@@ -52,7 +66,7 @@ Microsoft 365 Copilot extracts counts and lists from the exports into the workbo
 
 Copilot never assigns a priority or writes a conclusion on its own. The assessment stays fast without delegating judgment.
 
-## 7. Link to the rest of the portfolio
+## 8. Link to the rest of the portfolio
 
 | Assessment finding | Workstream |
 |---|---|
