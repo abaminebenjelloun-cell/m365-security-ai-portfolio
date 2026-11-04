@@ -1,0 +1,27 @@
+// Microsoft Defender portal > Hunting > Advanced hunting
+// Review attack surface reduction (ASR) rules before and after switching them to Block.
+
+// 1. Before switching: what would each rule in Audit have blocked over the last 30 days?
+DeviceEvents
+| where Timestamp > ago(30d)
+| where ActionType startswith "Asr" and ActionType endswith "Audited"
+| summarize Events = count(), Devices = dcount(DeviceName), Files = make_set(FileName, 20)
+          by Rule = ActionType
+| order by Events desc;
+
+// 2. Drill down on one rule: which processes and paths, on which devices
+DeviceEvents
+| where Timestamp > ago(30d)
+| where ActionType == "AsrOfficeChildProcessAudited"     // change to the rule under review
+| summarize Events = count(), Devices = dcount(DeviceName)
+          by FileName, FolderPath, InitiatingProcessFileName
+| order by Events desc;
+
+// 3. After switching: what did the rules in Block actually block in the last 7 days?
+// Credential theft (LSASS) blocks are excluded because they are frequent and expected.
+DeviceEvents
+| where Timestamp > ago(7d)
+| where ActionType startswith "Asr" and ActionType endswith "Blocked"
+| where ActionType != "AsrLsassCredentialTheftBlocked"
+| project Timestamp, DeviceName, Rule = ActionType, FileName, FolderPath, InitiatingProcessFileName
+| order by Timestamp desc

@@ -14,7 +14,7 @@ I help organisations adopt Microsoft 365 Copilot and AI agents safely: data read
 
 I like turning project work into repeatable methods and offers, and I am growing towards an **AI solutions architect** role in the Microsoft ecosystem (Copilot Studio, Power Platform, Microsoft Foundry).
 
-Languages: French and Arabic (native), English (fluent). Certifications: see my CV.
+Languages: French and Arabic (native), English (fluent). Certifications: see my CV. LinkedIn: [linkedin.com/in/aminebenj](https://www.linkedin.com/in/aminebenj)
 
 ### What I have done
 
@@ -30,7 +30,7 @@ Languages: French and Arabic (native), English (fluent). Certifications: see my 
 | Created and industrialised a Microsoft 365 flash assessment offer, delivered to several clients, taught to colleagues | [consulting/assessment-method.md](consulting/assessment-method.md) |
 | Designing an AI readiness offer (diagnostic, correction, protection, governance framework) | [consulting/ai-readiness-offer.md](consulting/ai-readiness-offer.md) |
 | Built a Purview pre-sales kit (deck and reference guide) for the sales team | Employer material, not included. Pre-sales approach: [consulting/presales](consulting/presales/) |
-| Secure Score improvement programme to an agreed target, in waves, as part of the run service | [04 Secure Score governance](04-secure-score-governance/) |
+| Ran a Secure Score programme from about 63% towards a 70% target: quick wins, nine ASR rules moved to Block after hunting review, Defender for Office 365 hardening, Conditional Access in report-only first | [04 Secure Score governance](04-secure-score-governance/) |
 | Dynamics 365 and Dataverse projects, SharePoint and Teams governance for 5,000 users | Applied in the agent request and registry [specification](02-agent-governance/agent-registry-solution.md) |
 
 ## Sections

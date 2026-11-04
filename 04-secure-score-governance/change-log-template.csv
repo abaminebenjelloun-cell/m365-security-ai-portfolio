@@ -1,4 +1,13 @@
 Date,Wave,Control,Platform,Before,After,Scope,UserImpact,CommunicationSent,Rollback,DecidedBy,ReadBackDone,PointsExpected
-2026-11-05,1,Self-service password reset for all users,Entra admin center,Selected group,All users,All users,Low,Yes,Set scope back to selected group,IT lead,Yes,1
-2026-11-05,1,Mailbox auditing on resource mailboxes,Exchange Online PowerShell,AuditEnabled False on resource mailboxes,AuditEnabled True,Resource mailboxes,None,No,Set-Mailbox -AuditEnabled $false,Consultant (no impact),Yes,1
-2026-11-12,2,Who can bypass the meeting lobby,Teams admin center,Everyone,People invited,Global meeting policy,Moderate,Yes,Restore previous value,Sponsor,Yes,1
+2026-10-29,1,Self-service password reset,Entra admin center,Selected group,All users,All users,Low,Yes,Set scope back to selected group,Consultant (no impact),Yes,
+2026-10-29,1,Mailbox auditing on resource and system mailboxes,Exchange Online PowerShell,AuditEnabled False,AuditEnabled True,Resource and system mailboxes,None,No,Set-Mailbox -AuditEnabled $false,Consultant (no impact),Yes,
+2026-10-29,1,Outbound spam limit action,Defender portal,Notify only,Restrict sender and notify IT,Default outbound policy,Low,No,Restore previous action,Consultant (no impact),Yes,
+2026-10-29,1,SharePoint idle session sign-out,SharePoint admin center,Off,Sign out after 1 hour,Tenant,Low,Yes,Turn off,Consultant (no impact),Yes,
+2026-10-29,2,Who can bypass the meeting lobby,Teams PowerShell,Everyone in the organization,People invited; dial-in users do not bypass,Global meeting policy,Moderate,Yes,Restore previous values,Client IT informed,Yes,
+2026-11-03,3,Nine ASR rules,Intune endpoint security,Audit,Block,Hybrid joined PCs,None seen in 30 days of audit,Yes,Set rule back to Audit,Consultant after audit review,Yes,28
+2026-11-03,3,ASR per-rule exclusion,Intune endpoint security,None,One vendor firmware updater path on one rule,Hybrid joined PCs,Fixes a real block,Yes,Remove the exclusion,Consultant,Yes,0
+2026-11-03,2,Safe Attachments action,Defender portal,Dynamic Delivery,Block,All accepted domains,Low,Yes,Restore Dynamic Delivery,Consultant,Yes,21 (email changes combined)
+2026-11-03,2,User impersonation protection,Defender portal,Off,Executives and finance leads protected; action Junk,Anti-phishing policy,Low,Yes,Remove protected users,Consultant,Yes,included above
+2026-11-03,1,Autoplay and AutoRun,Intune,Split across user rings,One profile for all devices,All devices,None,No,Reassign previous rings,Consultant (no impact),Yes,6
+2026-11-03,3,Admin sign-in frequency 4 hours,Entra Conditional Access,None,Report-only then On,Administrator roles except emergency accounts,Low for admins,Yes,Set policy to Off,Consultant,Pending,5
+2026-11-03,3,Block Azure management for non-admins,Entra Conditional Access,None,Report-only 7 days then On,All users except admin roles and emergency accounts,Low,Yes,Set policy to Off,Consultant,Pending,3
