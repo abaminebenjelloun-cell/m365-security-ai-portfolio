@@ -1,10 +1,6 @@
 # Microsoft 365 Copilot, Power Platform & AI Governance Portfolio
 
-How I prepare Microsoft 365 tenants for **Copilot**, drive its **adoption**, govern **Copilot Studio agents and Power Platform**, control **AI costs**, and package it as **consulting offers**. Methods, scripts, decisions and lessons from real engagements in Swiss organisations, rewritten from scratch for a personal lab tenant with synthetic data.
-
-**No client data, names or identifiers appear in this repository.**
-
----
+How I prepare Microsoft 365 tenants for Copilot, drive adoption, govern Copilot Studio agents and Power Platform, and control AI costs. Methods and lessons come from real engagements in Swiss organisations, rewritten for a personal lab tenant with synthetic data. No client data, names or identifiers appear here.
 
 ## Who I am
 
@@ -20,72 +16,68 @@ Languages: French and Arabic (native), English (fluent). Certifications: see my 
 
 ### What I have done
 
-| Experience | Where it shows in this repository |
+| Experience | Where |
 |---|---|
-| Led a multi-workstream Microsoft 365 Copilot security programme for a Swiss mid-size group (1,000+ users) | [01 Copilot readiness](01-copilot-readiness/), [02 Agent governance](02-agent-governance/) |
-| Governed Copilot Studio and Power Platform in production: first data policy, agent access, agent inventory analysis | [02 Agent governance](02-agent-governance/) |
-| Wrote a Power Automate governance guideline approved by a client (ownership, offboarding, unused flows, service account) | [power-automate-governance.md](02-agent-governance/power-automate-governance.md) |
-| Analysed Copilot Credits consumption and cost per use in CHF, set capacity caps per environment | [03 FinOps for AI](03-finops-ai/) |
-| Built a booking agent in Copilot Studio for a client. When the client's data policy blocked it, kept the control and moved the use case to Microsoft 365 Copilot Chat | [05 field case](05-reference-agent-copilot-studio/README.md#field-case-a-real-agent-meets-governance) |
-| Designed a reference agent with a per-persona evaluation set, to be built on my lab tenant | [05 Reference agent](05-reference-agent-copilot-studio/) |
-| Trains client AI champions to drive Microsoft 365 Copilot adoption inside their companies | [consulting/ai-champions-programme.md](consulting/ai-champions-programme.md) |
-| Created and industrialised a Microsoft 365 flash assessment offer, delivered to several clients, taught to colleagues | [consulting/assessment-method.md](consulting/assessment-method.md) |
-| Designing an AI readiness offer (diagnostic, correction, protection, governance framework) | [consulting/ai-readiness-offer.md](consulting/ai-readiness-offer.md) |
-| Built a Purview pre-sales kit (deck and reference guide) for the sales team | Employer material, not included. Pre-sales approach: [consulting/presales](consulting/presales/) |
-| Ran a Secure Score programme from about 63% towards a 70% target: quick wins, nine ASR rules moved to Block after hunting review, Defender for Office 365 hardening, Conditional Access in report-only first | [04 Secure Score governance](04-secure-score-governance/) |
-| Dynamics 365 and Dataverse projects, SharePoint and Teams governance for 5,000 users | Applied in the agent request and registry [specification](02-agent-governance/agent-registry-solution.md) |
+| Led a multi-workstream Copilot security programme for a Swiss mid-size group (1,000+ users) | [01](01-copilot-readiness/), [02](02-agent-governance/) |
+| Governed Copilot Studio and Power Platform in production: first data policy, agent access, agent inventory analysis | [02](02-agent-governance/) |
+| Wrote a Power Automate governance guideline approved by a client | [power-automate-governance.md](02-agent-governance/power-automate-governance.md) |
+| Analysed Copilot Credits consumption and cost per use in CHF, set capacity caps per environment | [03](03-finops-ai/) |
+| Built a booking agent in Copilot Studio for a client. When the client's data policy blocked it, kept the policy and moved the use case to Microsoft 365 Copilot Chat | [05 field case](05-reference-agent-copilot-studio/README.md#field-case-a-real-agent-meets-governance) |
+| Ran a Secure Score programme from about 63% towards 70%: quick wins, nine ASR rules moved to Block after hunting review, Defender for Office 365 hardening, Conditional Access in report-only first | [04](04-secure-score-governance/) |
+| Training client AI champions to drive Copilot adoption | [ai-champions-programme.md](consulting/ai-champions-programme.md) |
+| Created a Microsoft 365 flash assessment offer, delivered to several clients and taught to colleagues | [assessment-method.md](consulting/assessment-method.md) |
+| Designing an AI readiness offer | [ai-readiness-offer.md](consulting/ai-readiness-offer.md) |
+| Built a Purview pre-sales kit for the sales team (employer material, not included) | [presales](consulting/presales/) |
+| Dynamics 365 and Dataverse projects, SharePoint and Teams governance for 5,000 users | [registry specification](02-agent-governance/agent-registry-solution.md) |
 
 ## Sections
 
-| # | Section | In one line | Main platforms |
-|---|---|---|---|
-| 01 | [Copilot readiness](01-copilot-readiness/) | Protect and prepare the data before Copilot sees it: labels, DLP for Copilot, oversharing, web grounding, shadow AI | Purview, SharePoint, Defender for Cloud Apps |
-| 02 | [Agent governance](02-agent-governance/) | Who builds agents, with which connectors and MCP servers, who owns them, when they retire; a Dataverse request and registry solution | M365 admin center, Agent 365, Power Platform, Dataverse, Power Automate |
-| 03 | [FinOps for AI](03-finops-ai/) | Copilot Credits to CHF per use, capacity caps, silent cost drivers | Power Platform admin center, Application Insights |
-| 04 | [Secure Score governance](04-secure-score-governance/) | Raise Secure Score by waves, with a change log and accepted risks (run service) | Defender portal, Microsoft Graph |
-| 05 | [Reference agent](05-reference-agent-copilot-studio/) | A real field case (client agent blocked by governance) and a reference agent designed under all the rules above, with a 20-case evaluation set | Copilot Studio |
-| | [Consulting](consulting/) | Offers (flash assessment, AI readiness, **AI champions programme**) and pre-sales kit: workshop agenda, estimate template, proposal outline, demo script | |
-| | [Docs](docs/) | Methodology, decision log (ADRs), lessons learned, lab setup, references | |
-
-## How the pieces fit
+| # | Section | Content |
+|---|---|---|
+| 01 | [Copilot readiness](01-copilot-readiness/) | Labels, DLP for Copilot, oversharing, web grounding, shadow AI |
+| 02 | [Agent governance](02-agent-governance/) | Agent baseline, Power Platform data policy, MCP, Agent 365 lifecycle, Dataverse request and registry solution |
+| 03 | [FinOps for AI](03-finops-ai/) | Copilot Credits to CHF per use, capacity caps, cost drivers |
+| 04 | [Secure Score governance](04-secure-score-governance/) | The programme step by step, change log, monthly snapshot |
+| 05 | [Reference agent](05-reference-agent-copilot-studio/) | Field case, reference agent design, 20-case evaluation set |
+| | [Consulting](consulting/) | Flash assessment, AI readiness, AI champions, pre-sales kit |
+| | [Docs](docs/) | Methodology, decision log, lessons learned, lab setup, references |
 
 ```
-  Flash assessment  ->  AI readiness  ->  AI champions  ->  Agent governance  ->  FinOps for AI  ->  Run
-  (consulting/)         (01)              (consulting/)     (02)                  (03)               (04, monthly)
-                                     \_____ proven on the reference agent (05) _____/
+  Flash assessment -> AI readiness -> AI champions -> Agent governance -> FinOps for AI -> Run
+  (consulting/)       (01)            (consulting/)   (02)                (03)             (04)
 ```
 
-## Status, honestly
+## Status
 
 | Content | Status |
 |---|---|
-| Methods, decisions, lessons learned, AI champions programme | Applied in real engagements, written up here without client data |
-| Reference agent (05) | Field case from a real client build. Reference agent designed with its evaluation set, build on the lab tenant in progress |
-| Agent request and registry solution (02) | Specification, build in progress |
-| Python analysers (02 agent inventory, 03 FinOps) | Run on the synthetic data in this repository, outputs included |
-| PowerShell deploy and read-back scripts (01, 02, 04) | Written for the lab tenant, not yet run end to end there. Use `-WhatIf` first |
-| Test matrices | Filled only from real lab runs |
+| Methods, decisions, lessons, AI champions programme | From real engagements, without client data |
+| 05 | Field case is real. Reference agent designed, lab build in progress |
+| 02 registry solution | Specification, build in progress |
+| Python analysers (02, 03) | Run on the synthetic data here, outputs included |
+| PowerShell scripts (01, 02, 04) | Written for the lab tenant, not yet run end to end. Use `-WhatIf` first |
+| Test matrices and evaluation results | Filled only from real runs |
 
-## Working principles
+## Principles
 
-- **Assess before you build.** Every engagement starts with a scored diagnostic.
-- **Ring 0 first.** Controls start on a pilot group, in simulation where the product allows it.
-- **Decision gates.** Enforcement is a sponsor decision taken on simulation data.
-- **Configured is not verified.** Each section has a read-back script or check.
-- **Everything is logged.** Change log with before, after, user impact and rollback.
+- Assess before building.
+- Pilot group first, simulation where the product allows it.
+- The sponsor decides enforcement, on simulation data.
+- A setting counts only once read back from the tenant.
+- Every change is logged with before, after, impact and rollback.
 
 [Methodology](docs/methodology.md) · [Decision log](docs/decision-log.md) · [Lessons learned](docs/lessons-learned.md)
 
 ## Quick start
 
 ```bash
-# Python 3, standard library only, on synthetic data
+# Python 3, standard library only, synthetic data
 python3 02-agent-governance/analyze_agent_inventory.py 02-agent-governance/sample-data/agent_inventory_synthetic.csv --today 2026-11-02 --active-users 02-agent-governance/sample-data/active_users_synthetic.txt
 python3 03-finops-ai/analyze_credits.py 03-finops-ai/sample-data/copilot_credits_synthetic.csv
 ```
 
 ```powershell
-# PowerShell 7, on a lab tenant (see docs/lab-setup.md)
+# PowerShell 7, lab tenant (see docs/lab-setup.md)
 . ./common/M365Lab.Common.ps1
 Connect-LabIPPS -UserPrincipalName admin@contosofiduciaire.onmicrosoft.com
 Assert-LabTenant -ExpectedTenantId <lab-tenant-guid> -Service ExchangeOnline
@@ -94,20 +86,18 @@ Assert-LabTenant -ExpectedTenantId <lab-tenant-guid> -Service ExchangeOnline
 
 ## Swiss context
 
-Designed for organisations under the revised Swiss Federal Act on Data Protection (revDSG / nFADP) and, where relevant, FINMA expectations on outsourcing and operational resilience. Azure resources default to Switzerland North and Switzerland West. Legal interpretation belongs to counsel or the compliance officer.
-
-Fast-moving areas (Copilot, Copilot Studio billing, Agent 365, DLP for Copilot) carry a review date. Check Microsoft Learn before production use, and treat features marked **preview** as such.
+Built for organisations under revDSG and, where relevant, FINMA expectations on outsourcing and operational resilience. Azure resources default to Switzerland North and West. Legal interpretation belongs to counsel or the compliance officer. Copilot, Copilot Studio billing, Agent 365 and DLP for Copilot change often: pages carry a review date, and preview features are marked as such.
 
 ## Roadmap
 
-- Build the reference agent on the lab tenant, record its evaluation runs and export its solution (05); build the agent registry solution (02)
-- The same use case on **Microsoft Foundry** with Azure AI Search in Switzerland North, with custom evaluators, to compare quality, control and cost
-- Purview Endpoint DLP for Windows, then mobile; DSPM for AI as continuous monitoring
-- Bicep for the Azure resources used by FinOps telemetry
+- Build the reference agent in the lab and record its evaluation runs (05); build the registry solution (02)
+- Same use case on Microsoft Foundry with Azure AI Search in Switzerland North, to compare quality, control and cost
+- Purview Endpoint DLP for Windows, then mobile; DSPM for AI
+- Bicep for the FinOps telemetry resources
 
-## Side lab (outside work)
+## Side lab
 
-[private-ai-workspace](https://github.com/abaminebenjelloun-cell/private-ai-workspace) (private): a ChatGPT-class workspace on my own laptop GPU with four open-weight models in Ollama, zero-trust remote access with no open ports, an LLM threat model, side-by-side model comparison on my own questions, and an LLM built from scratch. It is how I learn what Copilot, Copilot Studio and Foundry do behind the scenes: context budgets, retrieval, prompt injection, cost per token.
+[private-ai-workspace](https://github.com/abaminebenjelloun-cell/private-ai-workspace) (private, outside work): four open-weight models on my laptop GPU with Ollama, remote access with no open ports, an LLM threat model, model comparison on my own questions, and learning to build an LLM from scratch. It shows me what Copilot and Foundry do underneath: context limits, retrieval, prompt injection, cost per token.
 
 ## License
 
