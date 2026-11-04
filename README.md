@@ -6,9 +6,17 @@ How I prepare Microsoft 365 tenants for **Copilot**, drive its **adoption**, gov
 
 ---
 
-## About me
+## Who I am
 
-Microsoft 365 Technical Lead at a Swiss Microsoft partner, acting as the M365 practice lead. Before that, business analyst on Dynamics 365 (Dataverse) and SharePoint and Teams governance programmes in large Canadian organisations.
+**Amine Benjelloun**, Microsoft 365 Technical Lead based in Geneva.
+
+I help organisations adopt Microsoft 365 Copilot and AI agents safely: data ready before AI sees it, agents governed from the first build, costs under control, and people actually using what was bought. I started as a business analyst on Dynamics 365 (Dataverse) and on SharePoint and Teams governance programmes in large Canadian organisations, then moved to Switzerland, where I act as the Microsoft 365 practice lead at a Microsoft partner, working with regulated and public sector clients under revDSG and FINMA constraints.
+
+I like turning project work into repeatable methods and offers, and I am growing towards an **AI solutions architect** role in the Microsoft ecosystem (Copilot Studio, Power Platform, Microsoft Foundry).
+
+Languages: French and Arabic (native), English (fluent). Certifications: see my CV.
+
+### What I have done
 
 | Experience | Where it shows in this repository |
 |---|---|
@@ -24,8 +32,6 @@ Microsoft 365 Technical Lead at a Swiss Microsoft partner, acting as the M365 pr
 | Built a Purview pre-sales kit (deck and reference guide) for the sales team | Employer material, not included. Pre-sales approach: [consulting/presales](consulting/presales/) |
 | Secure Score improvement programme to an agreed target, in waves, as part of the run service | [04 Secure Score governance](04-secure-score-governance/) |
 | Dynamics 365 and Dataverse projects, SharePoint and Teams governance for 5,000 users | Applied in the agent request and registry [specification](02-agent-governance/agent-registry-solution.md) |
-
-Certifications: see my CV. Languages: French and Arabic (native), English (fluent).
 
 ## Sections
 
