@@ -12,7 +12,7 @@ How I prepare Microsoft 365 tenants for **Copilot**, drive its **adoption**, gov
 
 My whole career, about eight years, has been built around Microsoft, always as a consultant facing clients in French and English. I have led Microsoft programmes, from Dynamics 365 (Dataverse) to SharePoint and Teams governance, first in Canada and now in Switzerland, and I support pre-sales with workshops, offers and demos. Today I lead the Modern Workplace side of a Microsoft partner. My clients are mainly mid to large financial institutions, public sector organisations and watchmakers, in regulated environments (revDSG, FINMA).
 
-Today my focus is **security, governance and AI**: helping organisations adopt Microsoft 365 Copilot and AI agents safely, with data ready before AI sees it, agents governed from the first build, costs under control, and people actually using what was bought.
+My current focus is **security, governance and AI**: helping organisations adopt Microsoft 365 Copilot and AI agents safely, with data ready before AI sees it, agents governed from the first build, costs under control, and people actually using what was bought.
 
 I like turning project work into repeatable methods and offers, and I am growing towards an **AI solutions architect** role in the Microsoft ecosystem (Copilot Studio, Power Platform, Microsoft Foundry).
 
