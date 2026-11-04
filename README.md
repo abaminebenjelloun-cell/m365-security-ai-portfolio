@@ -97,7 +97,7 @@ Built for organisations under revDSG and, where relevant, FINMA expectations on 
 
 ## Side lab
 
-[private-ai-workspace](https://github.com/abaminebenjelloun-cell/private-ai-workspace) (private, outside work): four open-weight models on my laptop GPU with Ollama, remote access with no open ports, an LLM threat model, model comparison on my own questions, and learning to build an LLM from scratch. It shows me what Copilot and Foundry do underneath: context limits, retrieval, prompt injection, cost per token.
+[private-ai-workspace](private-ai-workspace/) (outside work): four open-weight models on my laptop GPU with Ollama, remote access with no open ports, an LLM threat model, model comparison on my own questions, and learning to build an LLM from scratch. It shows me what Copilot and Foundry do underneath: context limits, retrieval, prompt injection, cost per token.
 
 ## License
 
