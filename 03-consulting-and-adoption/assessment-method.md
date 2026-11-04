@@ -2,6 +2,8 @@
 
 A short, repeatable Microsoft 365 security and governance assessment, used as the entry point of an engagement. Built as a productised offer: same structure for every client, reusable templates, a quality-control layer, and a guide so other consultants deliver it without the author.
 
+Commercial role: the assessment is the door opener. Its prioritised action plan becomes the scope of a follow-up contract, usually sold as a prepaid block of consulting hours (carnet d'heures) that the client draws on to fix the findings.
+
 Track record: first version built around 148 controls aligned with the CIS Microsoft 365 Foundations Benchmark, then industrialised with reusable templates, Copilot-assisted filling and a written guide so colleagues deliver it independently. Delivered to several clients (association, SME, public sector).
 
 > This page describes the method only. Templates, scoring workbooks and client deliverables built with an employer are not part of this repository.

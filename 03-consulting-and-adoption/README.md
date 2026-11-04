@@ -4,7 +4,7 @@ How the technical work is packaged and sold. Methods only: no employer templates
 
 | Offer | Role | Page |
 |---|---|---|
-| Microsoft 365 flash assessment | Entry point: short scored diagnostic that finds the first projects | [assessment-method.md](assessment-method.md) |
+| Microsoft 365 flash assessment | Entry point: short scored diagnostic whose action plan becomes a prepaid block of hours | [assessment-method.md](assessment-method.md) |
 | AI readiness | Core offer: diagnostic, correction, protection before Copilot and agents | [ai-readiness-offer.md](ai-readiness-offer.md) |
 | AI champions programme | Adoption: champions who drive Copilot use across departments, within the rules | [ai-champions-programme.md](ai-champions-programme.md) |
 | Agent governance | Follow-up: baseline, data policy, lifecycle, request and registry solution | [../02-agent-governance](../02-agent-governance/) |
