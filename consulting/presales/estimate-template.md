@@ -22,6 +22,7 @@ Effort in person-days. Three sizes so the client sees what drives the price. Fig
 | Protection | DLP for Copilot and external sharing in simulation (WS2), web grounding (WS5), agent baseline and data policy (WS4), capacity caps (WS7) | 2 | 4 | 6 |
 | Decision gates and enforcement | Simulation review, sponsor decisions, enforcement by ring | 1 | 2 | 3 |
 | First agent | Design, build, evaluation set, fixes, publishing to pilot (05) | 3 | 5 | 8 |
+| AI champions programme (optional) | Charter, bootcamp, launch support, community set-up ([details](../ai-champions-programme.md)) | 5 | 10 | 15 |
 | Documentation and handover | Change log, runbooks, read-back evidence, training of IT | 1 | 2 | 3 |
 | Project management | Steering, reporting | 10% | 10% | 10% |
 

@@ -31,14 +31,14 @@ Certifications: see my CV. Languages: French and Arabic (native), English (fluen
 | 03 | [FinOps for AI](03-finops-ai/) | Copilot Credits to CHF per use, capacity caps, silent cost drivers | Power Platform admin center, Application Insights |
 | 04 | [Secure Score governance](04-secure-score-governance/) | Raise Secure Score by waves, with a change log and accepted risks | Defender portal, Microsoft Graph |
 | 05 | [Reference agent](05-reference-agent-copilot-studio/) | A Copilot Studio agent built under all the rules above, with a 20-case evaluation set | Copilot Studio |
-| | [Consulting](consulting/) | Offers and pre-sales kit: workshop agenda, estimate template, proposal outline, demo script | |
+| | [Consulting](consulting/) | Offers (flash assessment, AI readiness, **AI champions programme**) and pre-sales kit: workshop agenda, estimate template, proposal outline, demo script | |
 | | [Docs](docs/) | Methodology, decision log (ADRs), lessons learned, lab setup, references | |
 
 ## How the pieces fit
 
 ```
-  Flash assessment  ->  AI readiness  ->  Agent governance  ->  FinOps for AI  ->  Run
-  (consulting/)         (01)              (02)                  (03)               (04, monthly)
+  Flash assessment  ->  AI readiness  ->  AI champions  ->  Agent governance  ->  FinOps for AI  ->  Run
+  (consulting/)         (01)              (consulting/)     (02)                  (03)               (04, monthly)
                                      \_____ proven on the reference agent (05) _____/
 ```
 
@@ -51,6 +51,7 @@ Certifications: see my CV. Languages: French and Arabic (native), English (fluen
 | Python analysers (02 agent inventory, 03 FinOps) | Run on the synthetic data in this repository, outputs included |
 | Agent request and registry solution (02), reference agent (05) | Specification and evaluation set ready, **build in progress** on the lab tenant |
 | Test matrices and evaluation results | Filled only from real lab runs |
+| AI champions programme | Offer design (role, curriculum, phases, measures), not presented as delivered |
 
 ## Working principles
 

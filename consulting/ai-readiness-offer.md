@@ -37,6 +37,10 @@
 - Agent baseline and capacity caps (WS4, WS7).
 - Usage and cost monitoring as a run service (WS7, WS8).
 
+## After protection: adoption through AI champions
+
+Once the data is protected, an [AI champions programme](ai-champions-programme.md) trains employees in each department to drive Copilot use within the rules: labels, approved tools, the agent request process. It also feeds governance with feedback and new use cases.
+
 ## Prerequisites checked before selling
 
 | Capability | Typical licence requirement (verify per tenant) |
@@ -52,4 +56,4 @@ Licensing changes often. Confirm against the current Microsoft licensing guidanc
 
 | Entry offer | Core offer | Follow-up offers |
 |---|---|---|
-| Flash assessment ([assessment-method.md](assessment-method.md)) | AI readiness (this page) | Agent governance (WS4), FinOps for AI (WS7), managed run (WS8) |
+| Flash assessment ([assessment-method.md](assessment-method.md)) | AI readiness (this page) | AI champions programme, agent governance (WS4), FinOps for AI (WS7), managed run (WS8) |

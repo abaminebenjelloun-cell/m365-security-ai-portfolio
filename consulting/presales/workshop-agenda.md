@@ -19,7 +19,7 @@
 | 0:50 | Readiness check | Labels, DLP, oversharing, web grounding, shadow AI, agent settings, capacity (checklist from 01 and 02) | Readiness heat map (green, orange, red) |
 | 1:40 | Break | | |
 | 1:50 | Use cases | Each owner presents; scored on value, data sensitivity, feasibility (M365 Copilot, Copilot Studio, Foundry) | Ranked use cases |
-| 2:40 | Governance model | Who can build, who approves, who pays (agent lifecycle, capacity) | Draft RACI |
+| 2:40 | Governance and adoption model | Who can build, who approves, who pays (agent lifecycle, capacity); who will be the AI champions per department | Draft RACI, champion candidates |
 | 3:10 | Next steps (sponsor present) | Recommended path: AI readiness phases, first agent, estimate range | Agreed next step and date |
 
 ## Scoring grid for use cases
