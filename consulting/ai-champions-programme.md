@@ -1,6 +1,6 @@
 # AI champions programme (Microsoft 365 Copilot)
 
-**Status:** offer design. Describes the champion role and how the programme runs; not presented as a delivered engagement.
+**Experience behind it:** training client AI champions to instil good Microsoft 365 Copilot practices inside their companies. Written up here as a reusable method, without client data.
 **Last reviewed:** November 2026 against Microsoft's Copilot adoption guidance (adoption.microsoft.com, AI champion role and charter).
 
 ## Why a champions programme

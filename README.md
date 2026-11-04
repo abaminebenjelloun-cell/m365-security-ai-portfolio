@@ -15,6 +15,7 @@ Microsoft 365 Technical Lead at a Swiss Microsoft partner, acting as the M365 pr
 | Led a multi-workstream Microsoft 365 Copilot security programme for a Swiss mid-size group (1,000+ users) | [01 Copilot readiness](01-copilot-readiness/), [02 Agent governance](02-agent-governance/), [03 FinOps](03-finops-ai/) |
 | Created and industrialised a Microsoft 365 flash assessment offer, delivered to several clients, taught to colleagues | [consulting/assessment-method.md](consulting/assessment-method.md) |
 | Designing an AI readiness offer (diagnostic, correction, protection) | [consulting/ai-readiness-offer.md](consulting/ai-readiness-offer.md) |
+| Trains client AI champions to instil good Microsoft 365 Copilot practices inside their companies | [consulting/ai-champions-programme.md](consulting/ai-champions-programme.md) |
 | Built a Purview pre-sales kit (deck and reference guide) for the sales team | Employer material, not included. Pre-sales approach: [consulting/presales](consulting/presales/) |
 | Secure Score improvement programme to an agreed target, in waves | [04 Secure Score governance](04-secure-score-governance/) |
 | Dynamics 365 and Dataverse projects, SharePoint and Teams governance for 5,000 users | [02 agent request and registry solution](02-agent-governance/agent-registry-solution.md) |
@@ -51,7 +52,7 @@ Certifications: see my CV. Languages: French and Arabic (native), English (fluen
 | Python analysers (02 agent inventory, 03 FinOps) | Run on the synthetic data in this repository, outputs included |
 | Agent request and registry solution (02), reference agent (05) | Specification and evaluation set ready, **build in progress** on the lab tenant |
 | Test matrices and evaluation results | Filled only from real lab runs |
-| AI champions programme | Offer design (role, curriculum, phases, measures), not presented as delivered |
+| AI champions programme | From practice (client champion training), written up as a method without client data |
 
 ## Working principles
 
