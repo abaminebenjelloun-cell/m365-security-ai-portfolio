@@ -10,7 +10,7 @@ How I prepare Microsoft 365 tenants for **Copilot**, drive its **adoption**, gov
 
 **Amine Benjelloun**, Microsoft 365 Technical Lead based in Geneva.
 
-My whole career, about eight years, has been built around Microsoft. I started as a business analyst on Dynamics 365 (Dataverse) and on SharePoint and Teams governance programmes in large Canadian organisations, then moved to Switzerland, where I act as the Microsoft 365 practice lead at a Microsoft partner, working with regulated and public sector clients under revDSG and FINMA constraints.
+My whole career, about eight years, has been built around Microsoft, always as a consultant facing clients in French and English: running workshops, turning business needs into Microsoft solutions, and explaining technical decisions to sponsors in their own language. I started as a business analyst on Dynamics 365 (Dataverse) and on SharePoint and Teams governance programmes in large Canadian organisations, then moved to Switzerland, where I act as the Microsoft 365 practice lead at a Microsoft partner, working with regulated and public sector clients under revDSG and FINMA constraints.
 
 Today my focus is **security, governance and AI**: helping organisations adopt Microsoft 365 Copilot and AI agents safely, with data ready before AI sees it, agents governed from the first build, costs under control, and people actually using what was bought.
 
