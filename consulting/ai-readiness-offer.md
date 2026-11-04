@@ -39,7 +39,7 @@
 
 ## After protection: adoption through AI champions
 
-Once the data is protected, an [AI champions programme](ai-champions-programme.md) trains employees in each department to drive Copilot use within the rules: labels, approved tools, the agent request process. It also feeds governance with feedback and new use cases.
+Once the data is protected, an [AI champions programme](ai-champions-programme.md) drives adoption: employees in each department are trained to get their colleagues using Copilot daily, within the rules (labels, approved tools, the agent request process). Success is measured on active users against licences assigned, and the champions feed governance with feedback and new use cases.
 
 ## Prerequisites checked before selling
 

@@ -1,13 +1,13 @@
 # AI champions programme (Microsoft 365 Copilot)
 
-**Experience behind it:** training client AI champions to instil good Microsoft 365 Copilot practices inside their companies. Written up here as a reusable method, without client data.
+**Experience behind it:** training client AI champions to drive Microsoft 365 Copilot adoption inside their companies, so that licences turn into daily use. Written up here as a reusable method, without client data.
 **Last reviewed:** November 2026 against Microsoft's Copilot adoption guidance (adoption.microsoft.com, AI champion role and charter).
 
 ## Why a champions programme
 
-Licences and security controls make Copilot **possible**. People make it **used**. A secured tenant where nobody knows what to ask Copilot, or where users fall back to unapproved AI tools, produces no value and new risk. Champions are employees in each department who help colleagues use Copilot well **and within the rules** set in the rest of this portfolio.
+Licences and security controls make Copilot **possible**. People make it **used**. Without an adoption push, Copilot licences sit idle after the first weeks, the business case fails, and users fall back to unapproved AI tools. Champions are employees in each department whose job is to **drive adoption**: get colleagues using Copilot in their daily work, show what it does on their own processes, and keep that use **within the rules** set in the rest of this portfolio.
 
-In this portfolio the programme is the people side of the AI readiness offer: it follows the protection phase, and it feeds back into governance (agent requests, shadow AI, cost).
+In this portfolio the programme is the adoption engine of the AI readiness offer: it follows the protection phase, it is measured on active usage, and it feeds back into governance (agent requests, shadow AI, cost).
 
 ## The champion role
 
@@ -29,7 +29,7 @@ Based on Microsoft's AI champion role and charter guidance, adapted to a governe
 
 ## Champion curriculum
 
-What champions learn before they help others. Modules 3 to 5 are what makes this programme different from a generic adoption campaign: champions know the guardrails, not only the prompts.
+What champions learn before they drive adoption in their teams. Modules 2 and 6 create usage; modules 3 to 5 make sure that usage stays safe, which is what makes this programme different from a generic adoption campaign.
 
 | # | Module | Content | Link to the portfolio |
 |---|---|---|---|
@@ -57,7 +57,7 @@ Aligned with the champion track of Microsoft's Copilot adoption guidance (build 
 
 | Measure | Source | Note |
 |---|---|---|
-| Active Copilot users and usage by app, by department | Copilot Dashboard; Microsoft 365 admin center usage reports | Report aggregated figures, respect the tenant's privacy settings for reports, involve the data protection officer (revDSG) |
+| **Active Copilot users vs licences assigned, by department** (primary measure) | Copilot Dashboard; Microsoft 365 admin center usage reports | Idle licences are reassigned or the department gets a targeted push. Report aggregated figures, respect the tenant's privacy settings for reports, involve the data protection officer (revDSG) |
 | Use cases documented and reused | Champion feedback log | Qualitative value, not only usage |
 | Agent requests through the process vs agents found in the inventory | 02 request and registry, inventory analysis | Shows whether governance is followed |
 | Unapproved AI app usage trend | Defender for Cloud Apps discovery (WS6) | Should fall as Copilot adoption rises |

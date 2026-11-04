@@ -11,7 +11,7 @@ For a first client meeting or an interview. Live steps assume the lab configurat
 | 5:00 | Agent inventory analysis output | "Duplicates, agents owned by admin accounts, uploaded files outside SharePoint permissions, MCP preview servers. All invisible until you export and analyse." |
 | 6:30 | FinOps cost report | "One polling flow accounts for more than half of consumption. The agents people value cost about a franc a day or less. A cap per environment makes this predictable." |
 | 8:00 | Reference agent design and evaluation set | "Twenty cases: permissions, labels, prompt injection, languages. The agent is evaluated before users see it, and after every change." |
-| 9:00 | Consulting offers | "Flash assessment as the entry point, AI readiness as the core, AI champions to make people use it within the rules, agent governance and FinOps as the run service." |
+| 9:00 | Consulting offers | "Flash assessment as the entry point, AI readiness as the core, AI champions to drive adoption so licences turn into daily use, agent governance and FinOps as the run service." |
 | 9:30 | Questions | |
 
 **Backup:** if the tenant is unavailable, the sample outputs in `02-agent-governance/sample-data/` and `03-finops-ai/sample-report/` tell the same story offline.

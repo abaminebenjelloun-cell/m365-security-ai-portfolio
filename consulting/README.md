@@ -6,7 +6,7 @@ How the technical work is packaged and sold. Methods only: no employer templates
 |---|---|---|
 | Microsoft 365 flash assessment | Entry point: a short, scored diagnostic that finds the first projects | [assessment-method.md](assessment-method.md) |
 | AI readiness | Core offer: diagnostic, correction, protection before Copilot and agents | [ai-readiness-offer.md](ai-readiness-offer.md) |
-| AI champions programme | People side of the rollout: champions who drive Copilot use within the rules | [ai-champions-programme.md](ai-champions-programme.md) |
+| AI champions programme | Adoption engine: champions who drive Copilot use across departments, within the rules | [ai-champions-programme.md](ai-champions-programme.md) |
 | Agent governance | Follow-up: baseline, data policy, lifecycle, request and registry solution | [../02-agent-governance](../02-agent-governance/) |
 | FinOps for AI | Follow-up or run service: cost per use, caps, monthly report | [../03-finops-ai](../03-finops-ai/) |
 | Managed run | Monthly Secure Score snapshot, inventory delta, cost report, agent reviews | [../04-secure-score-governance](../04-secure-score-governance/) |
