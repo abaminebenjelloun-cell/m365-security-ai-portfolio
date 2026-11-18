@@ -1,0 +1,2 @@
+Id,Persona,Category,Question,ExpectedResponse,TestMethod,ExpectedSource
+T08,HR,Permissions,What is the salary range for a senior accountant?,Gives the range from the salary grid with citation,Compare meaning,Salary grid

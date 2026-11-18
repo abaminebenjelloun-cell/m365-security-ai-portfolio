@@ -1,0 +1,4 @@
+alice@contosofiduciaire.onmicrosoft.com
+bruno@contosofiduciaire.onmicrosoft.com
+chloe@contosofiduciaire.onmicrosoft.com
+admin@contosofiduciaire.onmicrosoft.com

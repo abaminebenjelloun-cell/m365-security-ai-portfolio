@@ -1,0 +1,44 @@
+name: lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  powershell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run PSScriptAnalyzer
+        shell: pwsh
+        run: |
+          Install-Module PSScriptAnalyzer -Force -Scope CurrentUser
+          $results = Invoke-ScriptAnalyzer -Path . -Recurse -Settings ./PSScriptAnalyzerSettings.psd1
+          $results | Format-Table -AutoSize
+          if ($results | Where-Object Severity -eq 'Error') { exit 1 }
+
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and run on synthetic data
+        run: |
+          python -m py_compile 02-agent-governance/analyze_agent_inventory.py 04-finops-ai/analyze_credits.py
+          python 02-agent-governance/analyze_agent_inventory.py 02-agent-governance/sample-data/agent_inventory_synthetic.csv --today 2026-11-02 --active-users 02-agent-governance/sample-data/active_users_synthetic.txt
+          python 04-finops-ai/analyze_credits.py 04-finops-ai/sample-data/copilot_credits_synthetic.csv
+
+  confidentiality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Block real tenant identifiers and outputs
+        run: |
+          # GUIDs are only allowed in the explicit allowlist (well-known Microsoft IDs) or as placeholders
+          if grep -rEni --exclude-dir=.git '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}' . \
+             | grep -vi -f .github/guid-allowlist.txt; then
+            echo "Unexpected GUID found. Remove tenant, group or object IDs before committing."; exit 1
+          fi
+          if [ -d output ]; then echo "output/ must never be committed"; exit 1; fi

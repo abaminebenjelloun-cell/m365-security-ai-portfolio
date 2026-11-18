@@ -1,0 +1,7 @@
+"Url","Title","Type","Template","Owner","StorageMB","LastContentModified","SharingCapability","SensitivityLabel","LockState","AnonymousLinksAllowed","ExternalSharing","Inactive","NoOwner","NoSensitivityLabel"
+"https://contosofiduciaire.sharepoint.com/sites/Finance","Finance","Teams site","GROUP#0","","5120","2026-10-28","ExistingExternalUserSharingOnly","","Unlock","False","True","False","False","True"
+"https://contosofiduciaire.sharepoint.com/sites/HR","HR","Teams site","GROUP#0","","2048","2026-10-30","Disabled","","Unlock","False","False","False","False","True"
+"https://contosofiduciaire.sharepoint.com/sites/All-Company","All Company","Site","SITEPAGEPUBLISHING#0","","8192","2026-09-15","ExternalUserAndGuestSharing","","Unlock","True","True","False","True","True"
+"https://contosofiduciaire.sharepoint.com/sites/Partners","Partners","Site","STS#3","","1024","2026-06-01","ExternalUserAndGuestSharing","","Unlock","True","True","False","True","True"
+"https://contosofiduciaire.sharepoint.com/sites/Archive-2019","Archive 2019","Site","STS#3","","15360","2024-02-10","ExternalUserSharingOnly","","Unlock","False","True","True","True","True"
+"https://contosofiduciaire.sharepoint.com/sites/Project-Alpha","Project Alpha","Group site","GROUP#0","","512","2025-01-20","ExternalUserSharingOnly","","Unlock","False","True","True","False","True"
