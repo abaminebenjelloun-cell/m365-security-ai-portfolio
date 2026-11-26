@@ -64,7 +64,7 @@ Permissions: `EntitlementManagement.ReadWrite.All`, `Group.ReadWrite.All`, `User
 | Policy body builder and drift fingerprint | Done, covered by offline tests |
 | Plan / Apply against the fake Graph endpoints | 37 offline checks pass: create, idempotent re-run, drift correction, duration normalisation, PUT carry-over, unmanaged packages and role scopes, WhatIf, pre-flight, failure and resume, throttling. Logic tests against an in-memory fake: they do not prove that Graph accepts every body |
 | Error handling | Pre-flight resolves every group and user before any write. HTTP status read with the documented `-SkipHttpErrorCheck` / `-StatusCodeVariable` parameters: 429 retried for every method honouring Retry-After, transient 5xx retried for GET, PUT and PATCH only (a POST is never resent). A failed write stops the run with a `Failed` record and the re-run resumes |
-| Run against a real tenant | Not yet. Bodies follow the Graph v1.0 schema; first tenant run goes through Plan and `-WhatIf` before Apply |
+| Run against a real tenant | Done, 26 Nov 2026, in a lab tenant (Entra ID P2 trial): Plan 22 Create, Apply, Plan 22 NoChange. The first runs found two defects the offline fake could not: `catalogs/{id}/accessPackages` does not exist in Graph v1.0 (HTTP 404), and a manager reviewer must be `targetManager`, not `requestorManager` (InvalidReviewerType). Both fixed; a failed run resumed from where it stopped |
 | Terraform | Optional alternative for teams standardised on it: the `azuread` provider has `azuread_access_package*` resources. Kept out of this build to stay on one toolchain |
 
 ## Out of scope in this version
