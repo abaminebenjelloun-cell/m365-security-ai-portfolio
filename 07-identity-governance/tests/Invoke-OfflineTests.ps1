@@ -36,9 +36,13 @@ function Assert-That([bool]$Condition, [string]$Message) {
 $script:T = $null
 $script:Writes = 0
 $script:FailOn = $null
+$script:Throttle = 0
+$script:Throttled = 0
 function Reset-FakeTenant {
     $script:Writes = 0
     $script:FailOn = $null
+    $script:Throttle = 0
+    $script:Throttled = 0
     Clear-EmPrincipalCache
     $script:T = @{
         groups = @{}; users = @{ 'finance.owner@contoso.example' = 'u-finance-owner' }
@@ -54,11 +58,27 @@ function ConvertTo-Obj($h) { $h | ConvertTo-Json -Depth 20 | ConvertFrom-Json }
 
 # Shadows the Microsoft.Graph cmdlet: the module's Invoke-EmGraph resolves to this function.
 function global:Invoke-MgGraphRequest {
-    param([string]$Method, [string]$Uri, $Body, [string]$ContentType, [string]$OutputType)
+    [CmdletBinding()]
+    param([string]$Method, [string]$Uri, $Body, [string]$ContentType, [string]$OutputType,
+        [switch]$SkipHttpErrorCheck, [string]$StatusCodeVariable, [string]$ResponseHeadersVariable)
     $u = [uri]::UnescapeDataString(($Uri -replace '^https://graph.microsoft.com/v1.0/', ''))
     $b = if ($Body) { $Body | ConvertFrom-Json -AsHashtable } else { $null }
     $em = 'identityGovernance/entitlementManagement'
-    if ($script:FailOn -and "$Method $u" -match $script:FailOn) { throw 'Simulated Graph error: 400 Bad Request' }
+    # Like the real cmdlet with -SkipHttpErrorCheck: the status goes to the caller's variable, no throw.
+    $vars = $PSCmdlet.SessionState.PSVariable
+    $setStatus = { param($code, $headers)
+        if ($StatusCodeVariable) { $vars.Set($StatusCodeVariable, $code) }
+        if ($ResponseHeadersVariable) { $vars.Set($ResponseHeadersVariable, $headers) } }
+    if ($script:Throttle -gt 0 -and $Method -ne 'GET') {
+        $script:Throttle--; $script:Throttled++
+        & $setStatus 429 @{ 'Retry-After' = @('1') }
+        return [pscustomobject]@{ error = [pscustomobject]@{ code = 'TooManyRequests'; message = 'Simulated throttling' } }
+    }
+    if ($script:FailOn -and "$Method $u" -match $script:FailOn) {
+        & $setStatus 400 @{}
+        return [pscustomobject]@{ error = [pscustomobject]@{ code = 'BadRequest'; message = 'Simulated Graph error' } }
+    }
+    & $setStatus $(if ($Method -eq 'POST') { 201 } else { 200 }) @{}
     if ($Method -ne 'GET') { $script:Writes++ }
     $list = { param($items) [pscustomobject]@{ value = @($items | ForEach-Object { ConvertTo-Obj $_ }) } }
 
@@ -73,8 +93,10 @@ function global:Invoke-MgGraphRequest {
             $cid = $Matches[1]; return & $list @($script:T.resources | Where-Object { $_.catalogId -eq $cid }) }
         "^POST $em/resourceRequests$" {
             $script:T.resources += @{ id = (New-FakeId 'res'); originId = $b.resource.originId; catalogId = $b.catalog.id }; return [pscustomobject]@{ id = 'req' } }
-        "^GET $em/catalogs/([^/]+)/accessPackages$" {
-            $cid = $Matches[1]; return & $list @($script:T.packages | Where-Object { $_.catalog.id -eq $cid }) }
+        # Real Graph v1.0 has no catalogs/{id}/accessPackages path: the fake returns 404 for it, like the service.
+        "^GET $em/catalogs/([^/]+)/accessPackages" {
+            & $setStatus 404 @{}; return [pscustomobject]@{ error = [pscustomobject]@{ code = 'NotFound'; message = 'No HTTP resource was found that matches the request URI' } } }
+        "^GET $em/accessPackages\?\`$expand=catalog$" { return & $list @($script:T.packages) }
         "^POST $em/accessPackages$" { $p = $b + @{ id = (New-FakeId 'ap') }; $script:T.packages += $p; return ConvertTo-Obj $p }
         "^PATCH $em/accessPackages/([^/?]+)$" {
             $p = $script:T.packages | Where-Object { $_.id -eq $Matches[1] }; foreach ($k in $b.Keys) { $p[$k] = $b[$k] }; return $null }
@@ -130,6 +152,8 @@ Assert-That ($body.requestApprovalSettings.stages[0].fallbackPrimaryApprovers[0]
 Assert-That ($body.expiration.duration -eq 'P180D') 'assignment expires after 180 days'
 Assert-That ($body.reviewSettings.schedule.recurrence.pattern.interval -eq 3) 'quarterly access review'
 Assert-That ($body.reviewSettings.expirationBehavior -eq 'removeAccess') 'access removed when reviewers do not respond'
+$an = ConvertTo-EmPolicyBody -Policy $config.accessPackages[0].policies[0] -AccessPackageId 'ap-0' -Resolve $fakeResolve
+Assert-That ($an.reviewSettings.primaryReviewers[0].'@odata.type' -eq '#microsoft.graph.targetManager' -and $an.requestApprovalSettings.stages[0].primaryApprovers[0].'@odata.type' -eq '#microsoft.graph.requestorManager') 'manager is targetManager as reviewer, requestorManager as approver'
 Assert-That ($body.specificAllowedTargets[0].groupId -eq 'id-of-group:SG-Dept-Finance') 'only Finance department can request'
 $guest = ConvertTo-EmPolicyBody -Policy $config.accessPackages[3].policies[0] -AccessPackageId 'ap-4' -Resolve $fakeResolve
 Assert-That ($guest.allowedTargetScope -eq 'allConfiguredConnectedOrganizationUsers' -and $guest.specificAllowedTargets.Count -eq 0) 'auditor package targets connected organisations only'
@@ -168,6 +192,31 @@ $um = Sync-EmCatalog -Config $config -Mode Apply -Confirm:$false
 Assert-That (@($um | Where-Object Action -eq 'Unmanaged').Count -eq 1) 'portal-created package reported as Unmanaged'
 Assert-That ($script:T.packages.Count -eq $before) 'and left in place, not deleted'
 
+$apId = ($script:T.packages | Where-Object displayName -eq 'Finance - Analyst').id
+$script:T.scopes += @{ ap = $apId; originId = 'Owner_g-manual' }
+$us = @(Sync-EmCatalog -Config $config -Mode Plan | Where-Object { $_.Kind -eq 'RoleScope' -and $_.Action -eq 'Unmanaged' })
+Assert-That ($us.Count -eq 1) 'role scope added in the portal reported as Unmanaged'
+$script:T.scopes = @($script:T.scopes | Where-Object originId -ne 'Owner_g-manual')
+
+Write-Host "`n6b. Normalisation and carry-over"
+$pol = $script:T.policies | Where-Object displayName -eq 'Finance staff - two-stage approval'
+$pol.expiration.duration = 'P180DT0S'
+$pol.requestApprovalSettings.stages[0].durationBeforeAutomaticDenial = 'P5DT0H0M0S'
+Assert-That (@(Sync-EmCatalog -Config $config -Mode Plan | Where-Object Action -eq 'Update').Count -eq 0) 'P180DT0S and P180D compare equal (no false drift)'
+$pol.expiration.duration = 'P90D'
+$pol.questions = @(@{ '@odata.type' = '#microsoft.graph.accessPackageTextInputQuestion'; text = @{ defaultText = 'Cost centre?' } })
+Sync-EmCatalog -Config $config -Mode Apply -Confirm:$false | Out-Null
+$after = $script:T.policies | Where-Object displayName -eq 'Finance staff - two-stage approval'
+Assert-That ($after.expiration.duration -eq 'P180D' -and @($after.questions).Count -eq 1) 'PUT restored expiry and kept the question added in the portal'
+$noDur = $config | ConvertTo-Json -Depth 20 | ConvertFrom-Json
+$noDur.accessPackages[0].policies[0].accessReview.PSObject.Properties.Remove('durationDays')
+Assert-That (@(Test-EmConfig -Config $noDur | Where-Object { $_ -like '*durationDays*' }).Count -eq 1) 'missing accessReview.durationDays rejected before any write'
+$prev = [cultureinfo]::CurrentCulture
+[cultureinfo]::CurrentCulture = 'fi-FI'
+$fi = ConvertTo-EmPolicyBody -Policy $config.accessPackages[0].policies[0] -AccessPackageId 'ap-1' -Resolve $fakeResolve
+[cultureinfo]::CurrentCulture = $prev
+Assert-That ($fi.reviewSettings.schedule.startDateTime -eq '2027-01-04T08:00:00Z') 'review start date is culture-independent'
+
 Write-Host "`n7. WhatIf"
 Reset-FakeTenant
 Sync-EmCatalog -Config $config -Mode Apply -WhatIf | Out-Null
@@ -191,6 +240,12 @@ $script:FailOn = $null
 $resume = Sync-EmCatalog -Config $config -Mode Apply -Confirm:$false
 Assert-That (@($resume | Where-Object Action -eq 'Failed').Count -eq 0 -and $script:T.policies.Count -eq 4) 're-run resumed and completed'
 Assert-That (@(Sync-EmCatalog -Config $config -Mode Plan | Where-Object Action -ne 'NoChange').Count -eq 0) 'tenant matches the file after recovery'
+
+Write-Host "`n10. Throttling"
+Reset-FakeTenant
+$script:Throttle = 2
+$th = Sync-EmCatalog -Config $config -Mode Apply -Confirm:$false
+Assert-That ($script:Throttled -eq 2 -and @($th | Where-Object Action -eq 'Failed').Count -eq 0 -and $script:T.policies.Count -eq 4) 'two HTTP 429 responses retried after Retry-After, run completed'
 
 # Remove the fakes so a real Graph session in the same shell is not shadowed afterwards.
 Remove-Item -Path function:global:Invoke-MgGraphRequest, function:global:Start-Sleep -ErrorAction SilentlyContinue

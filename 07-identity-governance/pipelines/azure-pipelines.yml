@@ -1,7 +1,8 @@
 # Azure DevOps pipeline: validate -> plan (drift report) -> approval gate -> apply.
 # Runs per catalog file. Authentication: workload identity federation service connection
 # (no secrets in the pipeline). The app registration behind it holds Microsoft Graph application
-# permissions EntitlementManagement.ReadWrite.All, Group.Read.All and User.Read.All, granted by an admin.
+# permissions EntitlementManagement.ReadWrite.All, Group.ReadWrite.All and User.Read.All, granted by an admin
+# (Graph v1.0 requires Group.ReadWrite.All for an app that adds a group to a catalog).
 # A scheduled run of the Plan stage with -FailOnDrift catches changes made in the portal.
 
 trigger:

@@ -15,13 +15,13 @@ Connect-MgGraph -UseDeviceCode -Scopes 'User.ReadWrite.All','Group.ReadWrite.All
 ./07-identity-governance/demo/Initialize-DemoTenant.ps1
 ```
 
-Creates 9 users (with managers, one deliberately without), the 11 groups the Finance and HR catalogs use, memberships, licences, and the app registration the pipeline uses (Graph application permissions `EntitlementManagement.ReadWrite.All`, `Group.Read.All`, `User.Read.All`, 30-day secret shown once). Idempotent.
+Creates 9 users (with managers, one deliberately without), the 11 groups the Finance and HR catalogs use, memberships, licences, and the app registration the pipeline uses (Graph application permissions `EntitlementManagement.ReadWrite.All`, `Group.ReadWrite.All`, `User.Read.All`, 30-day secret shown once). Idempotent.
 
 ## 3. Deploy from a workstation
 
 ```powershell
 Disconnect-MgGraph
-Connect-MgGraph -UseDeviceCode -Scopes 'EntitlementManagement.ReadWrite.All','Group.Read.All','User.Read.All'
+Connect-MgGraph -UseDeviceCode -Scopes 'EntitlementManagement.ReadWrite.All','Group.ReadWrite.All','User.Read.All'
 $cfg = './07-identity-governance/config/catalog-finance.json'
 ./07-identity-governance/Deploy-EntitlementManagement.ps1 -ConfigPath $cfg -Mode Plan      # 22 x Create
 ./07-identity-governance/Deploy-EntitlementManagement.ps1 -ConfigPath $cfg -Mode Apply

@@ -137,7 +137,7 @@ if (-not $SkipPipelineApp) {
 
     $graphSp = @((Invoke-G -Uri "servicePrincipals?`$filter=displayName eq 'Microsoft Graph'&`$select=id,appRoles").value)[0]
     $granted = @((Invoke-G -Uri "servicePrincipals/$($sp.id)/appRoleAssignments").value | ForEach-Object appRoleId)
-    foreach ($perm in 'EntitlementManagement.ReadWrite.All', 'Group.Read.All', 'User.Read.All') {
+    foreach ($perm in 'EntitlementManagement.ReadWrite.All', 'Group.ReadWrite.All', 'User.Read.All') {
         $role = $graphSp.appRoles | Where-Object value -eq $perm
         if ($granted -contains $role.id) { continue }
         if ($PSCmdlet.ShouldProcess($perm, 'Grant application permission (admin consent)')) {
