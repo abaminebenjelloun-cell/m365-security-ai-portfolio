@@ -93,8 +93,10 @@ function global:Invoke-MgGraphRequest {
             $cid = $Matches[1]; return & $list @($script:T.resources | Where-Object { $_.catalogId -eq $cid }) }
         "^POST $em/resourceRequests$" {
             $script:T.resources += @{ id = (New-FakeId 'res'); originId = $b.resource.originId; catalogId = $b.catalog.id }; return [pscustomobject]@{ id = 'req' } }
-        "^GET $em/catalogs/([^/]+)/accessPackages$" {
-            $cid = $Matches[1]; return & $list @($script:T.packages | Where-Object { $_.catalog.id -eq $cid }) }
+        # Real Graph v1.0 has no catalogs/{id}/accessPackages path: the fake returns 404 for it, like the service.
+        "^GET $em/catalogs/([^/]+)/accessPackages" {
+            & $setStatus 404 @{}; return [pscustomobject]@{ error = [pscustomobject]@{ code = 'NotFound'; message = 'No HTTP resource was found that matches the request URI' } } }
+        "^GET $em/accessPackages\?\`$expand=catalog$" { return & $list @($script:T.packages) }
         "^POST $em/accessPackages$" { $p = $b + @{ id = (New-FakeId 'ap') }; $script:T.packages += $p; return ConvertTo-Obj $p }
         "^PATCH $em/accessPackages/([^/?]+)$" {
             $p = $script:T.packages | Where-Object { $_.id -eq $Matches[1] }; foreach ($k in $b.Keys) { $p[$k] = $b[$k] }; return $null }

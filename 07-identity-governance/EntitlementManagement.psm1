@@ -465,7 +465,13 @@ function Sync-EmCatalog {
         }
 
         # ---------- access packages, role scopes, policies ----------
-        $existingPackages = if ($catalogId) { @(Invoke-EmGraph -Uri "$script:EmBase/catalogs/$catalogId/accessPackages") } else { @() }
+        # v1.0 has no catalogs/{id}/accessPackages path (HTTP 404 in a live tenant): list all access packages
+        # with their catalog expanded and keep this catalog's ones.
+        # https://learn.microsoft.com/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
+        $existingPackages = if ($catalogId) {
+            @(Invoke-EmGraph -Uri "$script:EmBase/accessPackages?`$expand=catalog" | Where-Object { (Get-EmProp (Get-EmProp $_ 'catalog') 'id') -eq $catalogId })
+        }
+        else { @() }
         $packageIds = @{}
         foreach ($ap in $Config.accessPackages) {
             $current = @($existingPackages | Where-Object displayName -eq $ap.displayName)
