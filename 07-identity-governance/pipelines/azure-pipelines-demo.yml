@@ -1,0 +1,66 @@
+# Demo variant of azure-pipelines.yml for a lab tenant and a new Azure DevOps organisation:
+#  - runs on a self-hosted agent (pool 'Default'), so no Azure subscription or hosted-parallelism grant is needed
+#  - authenticates with the lab app registration from demo/Initialize-DemoTenant.ps1 (client secret in a
+#    secret pipeline variable). Production uses azure-pipelines.yml with workload identity federation.
+# Variable group 'entra-demo': TenantId, TenantDomain, ClientId, ClientSecret (secret).
+# Environment 'entra-governance-demo' with an Approvals check = the gate between plan and apply.
+
+trigger:
+  branches: { include: [ main ] }
+  paths: { include: [ 07-identity-governance/* ] }
+
+parameters:
+  - name: catalogFile
+    type: string
+    default: 07-identity-governance/config/catalog-finance.json
+
+variables:
+  - group: entra-demo
+
+pool: Default
+
+stages:
+  - stage: Validate
+    jobs:
+      - job: Test
+        steps:
+          - pwsh: ./07-identity-governance/tests/Invoke-OfflineTests.ps1
+            displayName: Offline tests (validation, idempotency, drift, recovery)
+
+  - stage: Plan
+    dependsOn: Validate
+    jobs:
+      - job: Plan
+        steps:
+          - pwsh: |
+              if (-not (Get-Module -ListAvailable Microsoft.Graph.Authentication)) { Install-Module Microsoft.Graph.Authentication -Scope CurrentUser -Force }
+              $cred = [pscredential]::new('$(ClientId)', (ConvertTo-SecureString $env:CLIENT_SECRET -AsPlainText -Force))
+              Connect-MgGraph -TenantId '$(TenantId)' -ClientSecretCredential $cred -NoWelcome
+              ./07-identity-governance/Deploy-EntitlementManagement.ps1 -ConfigPath '${{ parameters.catalogFile }}' -Mode Plan -ExpectedTenantId '$(TenantId)' -TenantDomain '$(TenantDomain)'
+            displayName: Plan (read only, drift report)
+            env:
+              CLIENT_SECRET: $(ClientSecret)
+          - publish: output
+            artifact: plan-report
+            condition: always()
+
+  - stage: Apply
+    dependsOn: Plan
+    jobs:
+      - deployment: Apply
+        environment: entra-governance-demo
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - pwsh: |
+                    $cred = [pscredential]::new('$(ClientId)', (ConvertTo-SecureString $env:CLIENT_SECRET -AsPlainText -Force))
+                    Connect-MgGraph -TenantId '$(TenantId)' -ClientSecretCredential $cred -NoWelcome
+                    ./07-identity-governance/Deploy-EntitlementManagement.ps1 -ConfigPath '${{ parameters.catalogFile }}' -Mode Apply -ExpectedTenantId '$(TenantId)' -TenantDomain '$(TenantDomain)' -Confirm:$false
+                  displayName: Apply configuration
+                  env:
+                    CLIENT_SECRET: $(ClientSecret)
+                - publish: output
+                  artifact: apply-report
+                  condition: always()

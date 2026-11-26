@@ -11,6 +11,9 @@
     4. Apply builds everything; a second Plan reports only NoChange (idempotent).
     5. A policy changed in the tenant is reported as Update (drift), and Apply corrects it.
     6. Objects created outside the file are reported as Unmanaged and never deleted.
+    7. Apply -WhatIf writes nothing.
+    8. A missing group or user fails pre-flight before any write.
+    9. A write that fails mid-run stops the run with a Failed record; the next run resumes and converges.
 
     What this does NOT prove: that Microsoft Graph accepts every body. That needs a run in a test tenant.
 
@@ -21,7 +24,7 @@ $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 Import-Module (Join-Path $PSScriptRoot '../EntitlementManagement.psm1') -Force
 $configPath = Join-Path $PSScriptRoot '../config/catalog-finance.json'
-$config = Get-Content $configPath -Raw | ConvertFrom-Json
+$config = Import-EmConfig -Path $configPath -TenantDomain 'contoso.example'
 
 $script:failed = 0
 function Assert-That([bool]$Condition, [string]$Message) {
@@ -32,8 +35,11 @@ function Assert-That([bool]$Condition, [string]$Message) {
 # ---------------- in-memory fake tenant ----------------
 $script:T = $null
 $script:Writes = 0
+$script:FailOn = $null
 function Reset-FakeTenant {
     $script:Writes = 0
+    $script:FailOn = $null
+    Clear-EmPrincipalCache
     $script:T = @{
         groups = @{}; users = @{ 'finance.owner@contoso.example' = 'u-finance-owner' }
         catalogs = @(); resources = @(); packages = @(); scopes = @(); policies = @(); incompatible = @()
@@ -52,6 +58,7 @@ function global:Invoke-MgGraphRequest {
     $u = [uri]::UnescapeDataString(($Uri -replace '^https://graph.microsoft.com/v1.0/', ''))
     $b = if ($Body) { $Body | ConvertFrom-Json -AsHashtable } else { $null }
     $em = 'identityGovernance/entitlementManagement'
+    if ($script:FailOn -and "$Method $u" -match $script:FailOn) { throw 'Simulated Graph error: 400 Bad Request' }
     if ($Method -ne 'GET') { $script:Writes++ }
     $list = { param($items) [pscustomobject]@{ value = @($items | ForEach-Object { ConvertTo-Obj $_ }) } }
 
@@ -158,6 +165,25 @@ Write-Host "`n7. WhatIf"
 Reset-FakeTenant
 Sync-EmCatalog -Config $config -Mode Apply -WhatIf | Out-Null
 Assert-That ($script:Writes -eq 0) 'Apply -WhatIf made no write calls'
+
+Write-Host "`n8. Pre-flight"
+Reset-FakeTenant
+$script:T.groups.Remove('SG-Internal-Control')
+$msg = try { Sync-EmCatalog -Config $config -Mode Apply -Confirm:$false | Out-Null; '' } catch { $_.Exception.Message }
+Assert-That ($msg -like 'Pre-flight failed*SG-Internal-Control*') 'missing group reported by name before any change'
+Assert-That ($script:Writes -eq 0) 'pre-flight failure made no write calls'
+
+Write-Host "`n9. Failure and recovery"
+Reset-FakeTenant
+$script:FailOn = '^POST .*/assignmentPolicies$'
+$partial = Sync-EmCatalog -Config $config -Mode Apply -Confirm:$false
+$fail = @($partial | Where-Object Action -eq 'Failed')
+Assert-That ($fail.Count -eq 1 -and $fail[0].Detail -like '*Simulated Graph error*') 'run stopped at the failed write with the Graph error'
+Assert-That ($script:T.packages.Count -eq 1 -and $script:T.policies.Count -eq 0) 'objects before the failure stay in place'
+$script:FailOn = $null
+$resume = Sync-EmCatalog -Config $config -Mode Apply -Confirm:$false
+Assert-That (@($resume | Where-Object Action -eq 'Failed').Count -eq 0 -and $script:T.policies.Count -eq 4) 're-run resumed and completed'
+Assert-That (@(Sync-EmCatalog -Config $config -Mode Plan | Where-Object Action -ne 'NoChange').Count -eq 0) 'tenant matches the file after recovery'
 
 Write-Host ''
 if ($script:failed) { Write-Host "$script:failed test(s) failed" -ForegroundColor Red; exit 1 }

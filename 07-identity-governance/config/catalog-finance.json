@@ -1,5 +1,5 @@
 {
-  "$comment": "Synthetic example. Groups and users are referenced by display name or UPN and resolved at run time, so no object IDs live in Git.",
+  "$comment": "Synthetic example. Groups and users are referenced by display name or UPN and resolved at run time, so no object IDs live in Git. {tenantDomain} is replaced with the tenant default domain at run time.",
   "catalog": {
     "displayName": "Finance",
     "description": "Access to finance reporting, payments and ERP roles. Owned by the Finance business owner.",
@@ -60,13 +60,13 @@
           "requireJustification": true,
           "approvalStages": [
             { "approver": "manager", "fallback": "group:SG-Finance-Access-Approvers", "timeoutDays": 5 },
-            { "approver": "user:finance.owner@contoso.example", "timeoutDays": 5 }
+            { "approver": "user:finance.owner@{tenantDomain}", "timeoutDays": 5 }
           ],
           "accessReview": {
             "recurrence": "quarterly",
             "startDate": "2027-01-04",
             "durationDays": 14,
-            "reviewer": "user:finance.owner@contoso.example",
+            "reviewer": "user:finance.owner@{tenantDomain}",
             "onNoResponse": "removeAccess"
           }
         }
@@ -89,7 +89,7 @@
           "expirationDays": 90,
           "requireJustification": true,
           "approvalStages": [
-            { "approver": "user:finance.owner@contoso.example", "timeoutDays": 3 },
+            { "approver": "user:finance.owner@{tenantDomain}", "timeoutDays": 3 },
             { "approver": "group:SG-Internal-Control", "timeoutDays": 3 }
           ],
           "accessReview": {
@@ -118,13 +118,13 @@
           "expirationDays": 30,
           "requireJustification": true,
           "approvalStages": [
-            { "approver": "user:finance.owner@contoso.example", "timeoutDays": 5 }
+            { "approver": "user:finance.owner@{tenantDomain}", "timeoutDays": 5 }
           ],
           "accessReview": {
             "recurrence": "monthly",
             "startDate": "2027-01-04",
             "durationDays": 7,
-            "reviewer": "user:finance.owner@contoso.example",
+            "reviewer": "user:finance.owner@{tenantDomain}",
             "onNoResponse": "removeAccess"
           }
         }
