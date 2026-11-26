@@ -16,7 +16,9 @@
     not in the file are reported as 'Unmanaged' for a human decision.
 
     Requires Microsoft.Graph.Authentication (Connect-MgGraph) with
-    EntitlementManagement.ReadWrite.All, Group.Read.All and User.Read.All (Plan needs only the Read scopes).
+    EntitlementManagement.ReadWrite.All, Group.ReadWrite.All and User.Read.All (Plan needs only
+    EntitlementManagement.Read.All, Group.Read.All and User.Read.All). Group.ReadWrite.All is what Graph v1.0
+    requires for an app that adds a group to a catalog.
 #>
 
 Set-StrictMode -Version Latest
@@ -38,6 +40,13 @@ function Get-EmProp {
     }
     $p = $InputObject.PSObject.Properties[$Name]
     if ($p) { return $p.Value } else { return $Default }
+}
+
+function ConvertTo-EmDuration {
+    # Normalises an ISO 8601 duration so 'P180D' and 'P180DT0S' compare equal. Returns total hours.
+    param($Value)
+    if ([string]::IsNullOrWhiteSpace([string]$Value)) { return $null }
+    try { [System.Xml.XmlConvert]::ToTimeSpan([string]$Value).TotalHours } catch { [string]$Value }
 }
 
 function ConvertTo-EmODataString {
@@ -77,30 +86,37 @@ function Invoke-EmGraph {
 function Invoke-EmGraphWithRetry {
     <#
     .SYNOPSIS
-        Retries throttling (429) and transient service errors (500, 502, 503, 504) with exponential
-        backoff, honouring Retry-After. Any other error surfaces at once with the Graph message.
+        Reads the HTTP status with the documented -SkipHttpErrorCheck / -StatusCodeVariable /
+        -ResponseHeadersVariable parameters of Invoke-MgGraphRequest.
+        429 (throttled, request not processed) is retried for every method, honouring Retry-After.
+        Transient 5xx is retried for GET, PUT and PATCH only: a POST that failed with 5xx may have been
+        processed, so it is not resent; the run stops and the next run converges because every step
+        reads the tenant before writing. Any other error surfaces at once with the Graph message.
     #>
     [CmdletBinding()]
     param([string]$Method, [string]$Uri, [string]$Json, [int]$MaxAttempts = 5)
+    $short = $Uri -replace '^https://graph.microsoft.com/v1.0/', ''
     for ($attempt = 1; ; $attempt++) {
-        try {
-            if ($Method -eq 'GET') { return Invoke-MgGraphRequest -Method GET -Uri $Uri -OutputType PSObject }
-            return Invoke-MgGraphRequest -Method $Method -Uri $Uri -Body $Json -ContentType 'application/json' -OutputType PSObject
+        $sc = 0; $rh = $null
+        $p = @{ Method = $Method; Uri = $Uri; OutputType = 'PSObject'; SkipHttpErrorCheck = $true
+                StatusCodeVariable = 'sc'; ResponseHeadersVariable = 'rh' }
+        if ($Method -ne 'GET') { $p.Body = $Json; $p.ContentType = 'application/json' }
+        $response = Invoke-MgGraphRequest @p
+        $status = [int]$sc
+        if ($status -lt 400) { return $response }
+
+        $err = Get-EmProp $response 'error'
+        $message = if ($err) { '{0}: {1}' -f (Get-EmProp $err 'code'), (Get-EmProp $err 'message') } else { [string]$response }
+        $retryable = $status -eq 429 -or ($status -in 500, 502, 503, 504 -and $Method -ne 'POST')
+        if (-not $retryable -or $attempt -ge $MaxAttempts) {
+            throw "Graph $Method $short failed (HTTP $status): $message"
         }
-        catch {
-            $status = 0
-            $response = Get-EmProp $_.Exception 'Response'
-            if ($response) { $status = [int](Get-EmProp $response 'StatusCode' 0) }
-            if ($status -notin 429, 500, 502, 503, 504 -or $attempt -ge $MaxAttempts) {
-                throw "Graph $Method $($Uri -replace '^https://graph.microsoft.com/v1.0/', '') failed (HTTP $status): $($_.Exception.Message)"
-            }
-            $wait = [math]::Pow(2, $attempt)
-            $headers = Get-EmProp $response 'Headers'
-            $retryAfter = if ($headers) { Get-EmProp (Get-EmProp $headers 'RetryAfter') 'Delta' } else { $null }
-            if ($retryAfter) { $wait = [math]::Ceiling($retryAfter.TotalSeconds) }
-            Write-Verbose "HTTP $status on $Method, retry $attempt of $($MaxAttempts - 1) in $wait s"
-            Start-Sleep -Seconds $wait
-        }
+        $wait = [math]::Pow(2, $attempt)
+        $retryAfter = if ($rh) { @(Get-EmProp $rh 'Retry-After')[0] } else { $null }
+        $seconds = 0
+        if ($retryAfter -and [int]::TryParse([string]$retryAfter, [ref]$seconds)) { $wait = $seconds }
+        Write-Verbose "HTTP $status on $Method $short, retry $attempt of $($MaxAttempts - 1) in $wait s"
+        Start-Sleep -Seconds $wait
     }
 }
 
@@ -215,7 +231,9 @@ function Test-EmConfig {
                 if ($rv.onNoResponse -notin $script:NoResponse) { $errors.Add("${pl}: onNoResponse must be one of $($script:NoResponse -join ', ')") }
                 if ($rv.reviewer -notmatch $approverPattern) { $errors.Add("${pl}: reviewer '$($rv.reviewer)' is not valid") }
                 $d = [datetime]::MinValue
-                if (-not [datetime]::TryParseExact([string]$rv.startDate, 'yyyy-MM-dd', $null, 'None', [ref]$d)) { $errors.Add("${pl}: accessReview.startDate must be yyyy-MM-dd") }
+                if (-not [datetime]::TryParseExact([string]$rv.startDate, 'yyyy-MM-dd', [cultureinfo]::InvariantCulture, 'None', [ref]$d)) { $errors.Add("${pl}: accessReview.startDate must be yyyy-MM-dd") }
+                $dd = [int](Get-EmProp $rv 'durationDays' 0)
+                if ($dd -lt 1) { $errors.Add("${pl}: accessReview.durationDays is required (1 or more)") }
             }
         }
     }
@@ -284,7 +302,8 @@ function ConvertTo-EmPolicyBody {
 
     $rv = Get-EmProp $Policy 'accessReview'
     if ($rv) {
-        $start = [datetime]::ParseExact([string]$rv.startDate, 'yyyy-MM-dd', $null)
+        $inv = [cultureinfo]::InvariantCulture
+        $start = [datetime]::ParseExact([string]$rv.startDate, 'yyyy-MM-dd', $inv)
         $fbr = Get-EmProp $rv 'fallbackReviewer'
         $body.reviewSettings = @{
             isEnabled                       = $true
@@ -295,11 +314,11 @@ function ConvertTo-EmPolicyBody {
             primaryReviewers                = @(ConvertTo-EmSubjectSet -Reference $rv.reviewer -Resolve $Resolve)
             fallbackReviewers               = @(if ($fbr) { ConvertTo-EmSubjectSet -Reference $fbr -Resolve $Resolve })
             schedule                        = @{
-                startDateTime = $start.ToString('yyyy-MM-ddT08:00:00Z')
+                startDateTime = $start.ToString("yyyy-MM-dd'T'08':'00':'00'Z'", $inv)
                 expiration    = @{ type = 'afterDuration'; duration = 'P{0}D' -f [int]$rv.durationDays }
                 recurrence    = @{
                     pattern = @{ type = 'absoluteMonthly'; interval = $script:Recurrence[$rv.recurrence]; dayOfMonth = $start.Day }
-                    range   = @{ type = 'noEnd'; startDate = $start.ToString('yyyy-MM-dd') }
+                    range   = @{ type = 'noEnd'; startDate = $start.ToString('yyyy-MM-dd', $inv) }
                 }
             }
         }
@@ -335,17 +354,17 @@ function Get-EmPolicyFingerprint {
     $fp = [ordered]@{
         scope         = Get-EmProp $p 'allowedTargetScope'
         targets       = @(@(Get-EmProp $p 'specificAllowedTargets' @()) | ForEach-Object { & $subject $_ } | Sort-Object)
-        expiration    = Get-EmProp (Get-EmProp $p 'expiration') 'duration'
+        expiration    = ConvertTo-EmDuration (Get-EmProp (Get-EmProp $p 'expiration') 'duration')
         justification = [bool](Get-EmProp $appr 'isRequestorJustificationRequired' $false)
         stages        = @(@(Get-EmProp $appr 'stages' @()) | ForEach-Object {
-                '{0}|{1}|{2}' -f (Get-EmProp $_ 'durationBeforeAutomaticDenial'),
+                '{0}|{1}|{2}' -f (ConvertTo-EmDuration (Get-EmProp $_ 'durationBeforeAutomaticDenial')),
                 (@(@(Get-EmProp $_ 'primaryApprovers' @()) | ForEach-Object { & $subject $_ }) -join ','),
                 (@(@(Get-EmProp $_ 'fallbackPrimaryApprovers' @()) | ForEach-Object { & $subject $_ }) -join ',')
             })
         review        = if ([bool](Get-EmProp $rev 'isEnabled' $false)) {
             '{0}|{1}|{2}|{3}|{4}' -f (Get-EmProp $rev 'expirationBehavior'),
             (Get-EmProp $pattern 'interval'),
-            (Get-EmProp (Get-EmProp $sched 'expiration') 'duration'),
+            (ConvertTo-EmDuration (Get-EmProp (Get-EmProp $sched 'expiration') 'duration')),
             (@(@(Get-EmProp $rev 'primaryReviewers' @()) | ForEach-Object { & $subject $_ }) -join ','),
             (@(@(Get-EmProp $rev 'fallbackReviewers' @()) | ForEach-Object { & $subject $_ }) -join ',')
         }
@@ -464,7 +483,7 @@ function Sync-EmCatalog {
             else {
                 $apId = $current[0].id
                 $diff = @()
-                if ((Get-EmProp $current[0] 'description' '') -ne $desc) { $diff += 'description' }
+                if ([string](Get-EmProp $current[0] 'description') -ne [string]$desc) { $diff += 'description' }
                 if ([bool](Get-EmProp $current[0] 'isHidden' $false) -ne $hidden) { $diff += 'isHidden' }
                 if ($diff) {
                     Add-EmChange 'AccessPackage' $ap.displayName 'Update' ($diff -join ', ')
@@ -504,6 +523,12 @@ function Sync-EmCatalog {
                     } | Out-Null
                 }
             }
+            # Role scopes in the tenant that the file does not list: reported, never removed (removing a
+            # role scope revokes that access from every assignee, so it is a deliberate change).
+            $wantedScopes = @(foreach ($rr in $ap.resourceRoles) { '{0}_{1}' -f $rr.role, $groupIds[$rr.resource] })
+            foreach ($extra in @($currentScopes | Where-Object { $_ -notin $wantedScopes })) {
+                Add-EmChange 'RoleScope' ('{0} / {1}' -f $ap.displayName, $extra) 'Unmanaged' 'In the tenant, not in the file. Not removed.'
+            }
 
             # policies
             $currentPolicies = if ($apId -and $current.Count) {
@@ -527,6 +552,12 @@ function Sync-EmCatalog {
                 Add-EmChange 'Policy' $name 'Update' "tenant: $have | file: $want"
                 if (Confirm-EmWrite $name 'Replace assignment policy') {
                     $body.id = $existingPolicy[0].id
+                    # PUT replaces the whole policy. Carry over what the file does not manage, so settings
+                    # added in the portal (questions, notifications, auto-assignment) are not wiped.
+                    foreach ($k in 'questions', 'notificationSettings', 'automaticRequestSettings') {
+                        $live = $existingPolicy[0].PSObject.Properties[$k]
+                        if (-not $body.Contains($k) -and $live -and $null -ne $live.Value) { $body[$k] = $live.Value }
+                    }
                     Invoke-EmGraph -Method PUT -Uri "$script:EmBase/assignmentPolicies/$($existingPolicy[0].id)" -Body $body | Out-Null
                 }
             }

@@ -39,7 +39,7 @@ catalog file -> Test-EmConfig -> Plan (read tenant, compare) -> report -> approv
 
 Order of operations: catalog, catalog resources (groups added with an `adminAdd` resource request), access packages, resource role scopes, assignment policies, then incompatible packages in a second pass once every package exists.
 
-Drift is detected per policy with a fingerprint of the fields that matter (target scope and groups, expiry, justification, every approval stage with its approvers and fallbacks, review recurrence, duration, reviewers and no-response behaviour), so a change made in the portal shows up as `Update` in the next plan.
+Drift is detected per policy with a fingerprint of these fields: target scope and groups, expiry, requestor justification, every approval stage (timeout, approvers, fallback approvers), and the review recurrence, duration, reviewers and no-response behaviour. ISO 8601 durations are normalised, so `P180D` and `P180DT0S` compare equal. A portal change to one of these fields shows up as `Update` in the next plan. Not fingerprinted: requestor settings, approver justification flags, the policy description and custom questions. Because a policy update is a full replacement (PUT), questions, notification settings and auto-assignment settings found on the live policy are carried over, never wiped. Package description and visibility are compared separately. Role scopes and policies found in the tenant but not in the file are reported as `Unmanaged`.
 
 ## Run it
 
@@ -54,7 +54,7 @@ Connect-LabGraph -Scopes 'EntitlementManagement.Read.All','Group.Read.All','User
 ./07-identity-governance/Deploy-EntitlementManagement.ps1 -ConfigPath ./07-identity-governance/config/catalog-finance.json -Mode Apply -ExpectedTenantId <lab-tenant-guid> -WhatIf
 ```
 
-Permissions: `EntitlementManagement.ReadWrite.All`, `Group.Read.All`, `User.Read.All` (Plan needs only the read scopes). In the pipeline, a workload identity federation service connection with those Graph application permissions; no secrets.
+Permissions: `EntitlementManagement.ReadWrite.All`, `Group.ReadWrite.All`, `User.Read.All` for Apply (Graph v1.0 requires Group.ReadWrite.All for an app that adds a group to a catalog); Plan needs only the read scopes. In the pipeline, a workload identity federation service connection with those Graph application permissions; no secrets.
 
 ## Status
 
@@ -62,8 +62,8 @@ Permissions: `EntitlementManagement.ReadWrite.All`, `Group.Read.All`, `User.Read
 |---|---|
 | Configuration schema and validation | Done, covered by offline tests |
 | Policy body builder and drift fingerprint | Done, covered by offline tests |
-| Plan / Apply against the fake Graph endpoints | 30 offline checks pass: create, idempotent re-run, drift correction, unmanaged objects, WhatIf, pre-flight, failure and resume |
-| Error handling | Pre-flight resolves every group and user before any write; throttling (429) and transient 5xx retried with backoff; a failed write stops the run with a `Failed` record and the re-run resumes |
+| Plan / Apply against the fake Graph endpoints | 37 offline checks pass: create, idempotent re-run, drift correction, duration normalisation, PUT carry-over, unmanaged packages and role scopes, WhatIf, pre-flight, failure and resume, throttling. Logic tests against an in-memory fake: they do not prove that Graph accepts every body |
+| Error handling | Pre-flight resolves every group and user before any write. HTTP status read with the documented `-SkipHttpErrorCheck` / `-StatusCodeVariable` parameters: 429 retried for every method honouring Retry-After, transient 5xx retried for GET, PUT and PATCH only (a POST is never resent). A failed write stops the run with a `Failed` record and the re-run resumes |
 | Run against a real tenant | Not yet. Bodies follow the Graph v1.0 schema; first tenant run goes through Plan and `-WhatIf` before Apply |
 | Terraform | Optional alternative for teams standardised on it: the `azuread` provider has `azuread_access_package*` resources. Kept out of this build to stay on one toolchain |
 
