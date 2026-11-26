@@ -152,6 +152,8 @@ Assert-That ($body.requestApprovalSettings.stages[0].fallbackPrimaryApprovers[0]
 Assert-That ($body.expiration.duration -eq 'P180D') 'assignment expires after 180 days'
 Assert-That ($body.reviewSettings.schedule.recurrence.pattern.interval -eq 3) 'quarterly access review'
 Assert-That ($body.reviewSettings.expirationBehavior -eq 'removeAccess') 'access removed when reviewers do not respond'
+$an = ConvertTo-EmPolicyBody -Policy $config.accessPackages[0].policies[0] -AccessPackageId 'ap-0' -Resolve $fakeResolve
+Assert-That ($an.reviewSettings.primaryReviewers[0].'@odata.type' -eq '#microsoft.graph.targetManager' -and $an.requestApprovalSettings.stages[0].primaryApprovers[0].'@odata.type' -eq '#microsoft.graph.requestorManager') 'manager is targetManager as reviewer, requestorManager as approver'
 Assert-That ($body.specificAllowedTargets[0].groupId -eq 'id-of-group:SG-Dept-Finance') 'only Finance department can request'
 $guest = ConvertTo-EmPolicyBody -Policy $config.accessPackages[3].policies[0] -AccessPackageId 'ap-4' -Resolve $fakeResolve
 Assert-That ($guest.allowedTargetScope -eq 'allConfiguredConnectedOrganizationUsers' -and $guest.specificAllowedTargets.Count -eq 0) 'auditor package targets connected organisations only'

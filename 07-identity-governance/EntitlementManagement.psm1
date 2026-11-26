@@ -241,9 +241,16 @@ function Test-EmConfig {
 }
 
 function ConvertTo-EmSubjectSet {
-    param([Parameter(Mandatory)][string]$Reference, [Parameter(Mandatory)][scriptblock]$Resolve)
+    # 'manager' means a different subject type by context (Graph v1.0 subjectSet):
+    # requestorManager = the requestor's manager as APPROVER; targetManager = the manager of the user who
+    # holds the assignment, the type a REVIEW accepts (requestorManager there fails with InvalidReviewerType).
+    param([Parameter(Mandatory)][string]$Reference, [Parameter(Mandatory)][scriptblock]$Resolve,
+        [ValidateSet('Approval', 'Review')][string]$Context = 'Approval')
     switch -Wildcard ($Reference) {
-        'manager' { return @{ '@odata.type' = '#microsoft.graph.requestorManager'; managerLevel = 1 } }
+        'manager' {
+            $type = if ($Context -eq 'Review') { '#microsoft.graph.targetManager' } else { '#microsoft.graph.requestorManager' }
+            return @{ '@odata.type' = $type; managerLevel = 1 }
+        }
         'user:*' { return @{ '@odata.type' = '#microsoft.graph.singleUser'; userId = (& $Resolve $Reference) } }
         'group:*' { return @{ '@odata.type' = '#microsoft.graph.groupMembers'; groupId = (& $Resolve $Reference) } }
         default { throw "Unsupported approver reference '$Reference'" }
@@ -311,8 +318,8 @@ function ConvertTo-EmPolicyBody {
             isRecommendationEnabled         = $true
             isReviewerJustificationRequired = $true
             isSelfReview                    = $false
-            primaryReviewers                = @(ConvertTo-EmSubjectSet -Reference $rv.reviewer -Resolve $Resolve)
-            fallbackReviewers               = @(if ($fbr) { ConvertTo-EmSubjectSet -Reference $fbr -Resolve $Resolve })
+            primaryReviewers                = @(ConvertTo-EmSubjectSet -Reference $rv.reviewer -Resolve $Resolve -Context Review)
+            fallbackReviewers               = @(if ($fbr) { ConvertTo-EmSubjectSet -Reference $fbr -Resolve $Resolve -Context Review })
             schedule                        = @{
                 startDateTime = $start.ToString("yyyy-MM-dd'T'08':'00':'00'Z'", $inv)
                 expiration    = @{ type = 'afterDuration'; duration = 'P{0}D' -f [int]$rv.durationDays }
