@@ -196,6 +196,9 @@ function Test-EmConfig {
             $pl = "$label policy '$($p.displayName)'"
             $scope = Get-EmProp (Get-EmProp $p 'targets') 'scope'
             if ($scope -notin $script:TargetScopes) { $errors.Add("${pl}: targets.scope '$scope' is not supported") }
+            if ($scope -in 'allConfiguredConnectedOrganizationUsers', 'allExternalUsers' -and -not [bool](Get-EmProp $catalog 'isExternallyVisible' $false)) {
+                $errors.Add("${pl}: targets.scope '$scope' needs catalog.isExternallyVisible = true")
+            }
             if ($scope -eq 'specificDirectoryUsers' -and @(Get-EmProp $p.targets 'groups' @()).Count -eq 0) { $errors.Add("${pl}: specificDirectoryUsers needs at least one group") }
             if ([int](Get-EmProp $p 'expirationDays' 0) -le 0) { $errors.Add("${pl}: expirationDays must be greater than 0") }
             $stages = @(Get-EmProp $p 'approvalStages' @())
@@ -374,6 +377,10 @@ function Sync-EmCatalog {
     $resolve = { param($ref) Resolve-EmPrincipal -Reference $ref }
     function Add-EmChange([string]$Kind, [string]$Name, [string]$Action, [string]$Detail = '') {
         $changes.Add([pscustomobject]@{ Kind = $Kind; Name = $Name; Action = $Action; Detail = $Detail })
+        # Live progress, so an operator can follow (or safely interrupt) a long Apply.
+        $colour = @{ Create = 'Green'; Update = 'Yellow'; Failed = 'Red'; Unmanaged = 'DarkYellow' }[$Action]
+        if (-not $colour) { $colour = 'Gray' }
+        Write-Host ('  {0,-9} {1,-13} {2}' -f $Action, $Kind, $Name) -ForegroundColor $colour
     }
     function Confirm-EmWrite([string]$Target, [string]$Action) {
         $apply -and $PSCmdlet.ShouldProcess($Target, $Action)

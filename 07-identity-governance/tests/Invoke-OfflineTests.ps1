@@ -117,6 +117,10 @@ $bad.accessPackages[2].policies[0].approvalStages += @($bad.accessPackages[2].po
 $bad.accessPackages[3].policies[0].accessReview.onNoResponse = 'deleteEverything'
 $errs = Test-EmConfig -Config $bad
 Assert-That ($errs.Count -eq 4) "broken configuration rejected with 4 errors (got $($errs.Count))"
+$internal = $config | ConvertTo-Json -Depth 20 | ConvertFrom-Json
+$internal.catalog.isExternallyVisible = $false
+$errs = Test-EmConfig -Config $internal
+Assert-That ($errs.Count -eq 1 -and $errs[0] -like '*isExternallyVisible*') 'connected-organisation policy rejected in an internal-only catalog'
 
 Write-Host "`n2. Policy body"
 $body = ConvertTo-EmPolicyBody -Policy $config.accessPackages[1].policies[0] -AccessPackageId 'ap-1' -Resolve $fakeResolve
@@ -187,6 +191,9 @@ $script:FailOn = $null
 $resume = Sync-EmCatalog -Config $config -Mode Apply -Confirm:$false
 Assert-That (@($resume | Where-Object Action -eq 'Failed').Count -eq 0 -and $script:T.policies.Count -eq 4) 're-run resumed and completed'
 Assert-That (@(Sync-EmCatalog -Config $config -Mode Plan | Where-Object Action -ne 'NoChange').Count -eq 0) 'tenant matches the file after recovery'
+
+# Remove the fakes so a real Graph session in the same shell is not shadowed afterwards.
+Remove-Item -Path function:global:Invoke-MgGraphRequest, function:global:Start-Sleep -ErrorAction SilentlyContinue
 
 Write-Host ''
 if ($script:failed) { Write-Host "$script:failed test(s) failed" -ForegroundColor Red; exit 1 }
