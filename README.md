@@ -39,6 +39,7 @@ Languages: English and French. Website: [kydragroup.com](https://kydragroup.com)
 | 04 | [FinOps for AI](04-finops-ai/) | Copilot Credits to CHF per use, capacity caps, cost drivers |
 | 05 | [Secure Score governance](05-secure-score-governance/) | The programme step by step, change log, monthly snapshot |
 | 06 | [Reference agent](06-reference-agent-copilot-studio/) | Field case, reference agent design, 20-case evaluation set |
+| 07 | [Identity governance](07-identity-governance/) | Entitlement Management as code: access packages, approvals, reviews, separation of duties, drift detection, Azure DevOps pipeline |
 | | [Docs](docs/) | Methodology, decision log, lessons learned, lab setup, references |
 
 ```
@@ -55,6 +56,7 @@ Languages: English and French. Website: [kydragroup.com](https://kydragroup.com)
 | 02 registry solution | Specification, build in progress |
 | Python analysers (02, 04) | Run on the synthetic data here, outputs included |
 | PowerShell scripts (01, 02, 05) | Written for the lab tenant, not yet run end to end. Use `-WhatIf` first |
+| 07 Entitlement Management module | Offline tests pass against a fake of the Graph endpoints (idempotency, drift, WhatIf). Not yet run on a tenant |
 | Test matrices and evaluation results | Filled only from real runs |
 
 ## Principles
