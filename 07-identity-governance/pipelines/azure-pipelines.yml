@@ -58,7 +58,7 @@ stages:
                 $secure = if ($t -is [securestring]) { $t } else { ConvertTo-SecureString $t -AsPlainText -Force }
                 Connect-MgGraph -AccessToken $secure -NoWelcome
                 $fail = if ('$(Build.Reason)' -eq 'Schedule') { @{ FailOnDrift = $true } } else { @{} }
-                ./07-identity-governance/Deploy-EntitlementManagement.ps1 -ConfigPath '${{ parameters.catalogFile }}' -Mode Plan -ExpectedTenantId '$(expectedTenantId)' @fail
+                ./07-identity-governance/Deploy-EntitlementManagement.ps1 -ConfigPath '${{ parameters.catalogFile }}' -Mode Plan -ExpectedTenantId '$(expectedTenantId)' -TenantDomain '$(TenantDomain)' @fail
           - publish: output
             artifact: plan-report
             condition: always()
@@ -86,7 +86,7 @@ stages:
                       $t = (Get-AzAccessToken -ResourceTypeName MSGraph).Token
                       $secure = if ($t -is [securestring]) { $t } else { ConvertTo-SecureString $t -AsPlainText -Force }
                       Connect-MgGraph -AccessToken $secure -NoWelcome
-                      ./07-identity-governance/Deploy-EntitlementManagement.ps1 -ConfigPath '${{ parameters.catalogFile }}' -Mode Apply -ExpectedTenantId '$(expectedTenantId)' -Confirm:$false
+                      ./07-identity-governance/Deploy-EntitlementManagement.ps1 -ConfigPath '${{ parameters.catalogFile }}' -Mode Apply -ExpectedTenantId '$(expectedTenantId)' -TenantDomain '$(TenantDomain)' -Confirm:$false
                 - publish: output
                   artifact: apply-report
                   condition: always()

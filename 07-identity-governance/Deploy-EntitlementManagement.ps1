@@ -25,6 +25,7 @@ param(
     [Parameter(Mandatory)][string]$ConfigPath,
     [ValidateSet('Plan', 'Apply')][string]$Mode = 'Plan',
     [string]$ExpectedTenantId,
+    [string]$TenantDomain,
     [switch]$FailOnDrift
 )
 
@@ -33,7 +34,13 @@ $ErrorActionPreference = 'Stop'
 Import-Module (Join-Path $PSScriptRoot 'EntitlementManagement.psm1') -Force
 
 # ---------- PRE-CHECK ----------
-$config = Get-Content -Path $ConfigPath -Raw | ConvertFrom-Json
+$ctx = Get-MgContext
+if (-not $ctx) { throw 'No Microsoft Graph session. Connect first (Connect-LabGraph or Connect-MgGraph).' }
+if ($ExpectedTenantId -and $ctx.TenantId -ne $ExpectedTenantId) {
+    throw "Connected to tenant $($ctx.TenantId), expected $ExpectedTenantId. Stopping."
+}
+if (-not $TenantDomain -and $ctx.Account -like '*@*') { $TenantDomain = ($ctx.Account -split '@')[-1] }
+$config = Import-EmConfig -Path $ConfigPath -TenantDomain $TenantDomain
 $problems = Test-EmConfig -Config $config
 if ($problems.Count) {
     $problems | ForEach-Object { Write-LabLog $_ 'ERROR' }
@@ -41,11 +48,6 @@ if ($problems.Count) {
 }
 Write-LabLog "Configuration valid: catalog '$($config.catalog.displayName)', $(@($config.accessPackages).Count) access packages" 'OK'
 
-$ctx = Get-MgContext
-if (-not $ctx) { throw 'No Microsoft Graph session. Connect first (Connect-LabGraph or Connect-MgGraph).' }
-if ($ExpectedTenantId -and $ctx.TenantId -ne $ExpectedTenantId) {
-    throw "Connected to tenant $($ctx.TenantId), expected $ExpectedTenantId. Stopping."
-}
 if ($Mode -eq 'Apply' -and $ctx.Scopes -and ($ctx.Scopes -notcontains 'EntitlementManagement.ReadWrite.All')) {
     Write-LabLog 'Delegated session without EntitlementManagement.ReadWrite.All: writes will fail.' 'WARN'
 }
@@ -64,6 +66,12 @@ $md = @("# Entitlement Management $Mode - $($config.catalog.displayName)", '', '
 $md += $changes | ForEach-Object { '| {0} | {1} | {2} | {3} |' -f $_.Kind, $_.Action, $_.Name, ($_.Detail -replace '\|', '/') }
 $md | Set-Content -Path "$stem.md"
 
+$failed = @($changes | Where-Object Action -eq 'Failed')
+if ($failed) {
+    Write-LabLog "Stopped at the first failed write: $($failed[0].Detail)" 'ERROR'
+    Write-LabLog 'Objects listed before the failure are in place. Fix the cause and run the same command again: it resumes where it stopped.' 'WARN'
+    exit 1
+}
 $drift = @($changes | Where-Object Action -in 'Create', 'Update')
 $summary = ($changes | Group-Object Action | ForEach-Object { '{0} {1}' -f $_.Count, $_.Name }) -join ', '
 Write-LabLog "$Mode finished: $summary. Report: $stem.md" 'OK'
