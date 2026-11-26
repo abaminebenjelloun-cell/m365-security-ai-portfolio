@@ -106,7 +106,10 @@ $fakeResolve = { param($ref) "id-of-$ref" }
 function Get-Actions($changes) { @($changes | Group-Object Action | ForEach-Object { '{0}={1}' -f $_.Name, $_.Count }) -join ' ' }
 
 Write-Host "`n1. Configuration validation"
-Assert-That ((Test-EmConfig -Config $config).Count -eq 0) 'sample catalog-finance.json is valid'
+foreach ($file in Get-ChildItem (Join-Path $PSScriptRoot '../config') -Filter *.json) {
+    $errs = Test-EmConfig -Config (Import-EmConfig -Path $file.FullName -TenantDomain 'contoso.example')
+    Assert-That ($errs.Count -eq 0) "$($file.Name) is valid $($errs -join '; ')"
+}
 $bad = $config | ConvertTo-Json -Depth 20 | ConvertFrom-Json
 $bad.accessPackages[0].resourceRoles[0].resource = 'does-not-exist'
 $bad.accessPackages[1].incompatibleWith = @('Unknown package')

@@ -1,0 +1,68 @@
+{
+  "$comment": "Second catalog, same model: shows that a new business area is one new file. Synthetic example.",
+  "catalog": {
+    "displayName": "HR",
+    "description": "Access to HR records and payroll. Owned by the HR business owner.",
+    "isExternallyVisible": false
+  },
+  "resources": [
+    { "key": "hr-records", "type": "group", "displayName": "SG-HR-Records-Readers" },
+    { "key": "hr-payroll", "type": "group", "displayName": "SG-HR-Payroll-Editors" }
+  ],
+  "accessPackages": [
+    {
+      "displayName": "HR - Records Reader",
+      "description": "Read access to employee records for HR staff.",
+      "isHidden": false,
+      "resourceRoles": [ { "resource": "hr-records", "role": "Member" } ],
+      "incompatibleWith": [],
+      "policies": [
+        {
+          "displayName": "HR staff - manager approval",
+          "description": "HR department members request; line manager approves.",
+          "targets": { "scope": "specificDirectoryUsers", "groups": ["SG-Dept-HR"] },
+          "expirationDays": 365,
+          "requireJustification": true,
+          "approvalStages": [
+            { "approver": "manager", "fallback": "user:hr.head@{tenantDomain}", "timeoutDays": 7 }
+          ],
+          "accessReview": {
+            "recurrence": "semiannual",
+            "startDate": "2027-01-04",
+            "durationDays": 14,
+            "reviewer": "manager",
+            "fallbackReviewer": "user:hr.head@{tenantDomain}",
+            "onNoResponse": "removeAccess"
+          }
+        }
+      ]
+    },
+    {
+      "displayName": "HR - Payroll Editor",
+      "description": "Edit payroll data. Sensitive: two approvals, 90-day expiry, monthly review.",
+      "isHidden": false,
+      "resourceRoles": [ { "resource": "hr-payroll", "role": "Member" }, { "resource": "hr-records", "role": "Member" } ],
+      "incompatibleWith": [],
+      "policies": [
+        {
+          "displayName": "HR staff - two-stage approval",
+          "description": "Manager, then the HR head.",
+          "targets": { "scope": "specificDirectoryUsers", "groups": ["SG-Dept-HR"] },
+          "expirationDays": 90,
+          "requireJustification": true,
+          "approvalStages": [
+            { "approver": "manager", "fallback": "user:hr.head@{tenantDomain}", "timeoutDays": 5 },
+            { "approver": "user:hr.head@{tenantDomain}", "timeoutDays": 5 }
+          ],
+          "accessReview": {
+            "recurrence": "monthly",
+            "startDate": "2027-01-04",
+            "durationDays": 7,
+            "reviewer": "user:hr.head@{tenantDomain}",
+            "onNoResponse": "removeAccess"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -23,6 +23,7 @@ Synthetic example: a Finance catalog with an analyst package, a payments prepare
 | File | What it does |
 |---|---|
 | [config/catalog-finance.json](config/catalog-finance.json) | The catalog definition: 4 resources, 4 access packages, 4 policies |
+| [config/catalog-hr.json](config/catalog-hr.json) | A second catalog, same model: a new business area is one new file |
 | [EntitlementManagement.psm1](EntitlementManagement.psm1) | `Test-EmConfig`, `ConvertTo-EmPolicyBody`, `Get-EmPolicyFingerprint`, `Sync-EmCatalog` |
 | [Deploy-EntitlementManagement.ps1](Deploy-EntitlementManagement.ps1) | Pre-check (file and tenant), Plan or Apply, JSON and Markdown report in `output/` |
 | [tests/Invoke-OfflineTests.ps1](tests/Invoke-OfflineTests.ps1) | Runs the module against an in-memory fake of the Graph endpoints |
@@ -61,7 +62,7 @@ Permissions: `EntitlementManagement.ReadWrite.All`, `Group.Read.All`, `User.Read
 |---|---|
 | Configuration schema and validation | Done, covered by offline tests |
 | Policy body builder and drift fingerprint | Done, covered by offline tests |
-| Plan / Apply against the fake Graph endpoints | 29 offline checks pass: create, idempotent re-run, drift correction, unmanaged objects, WhatIf, pre-flight, failure and resume |
+| Plan / Apply against the fake Graph endpoints | 30 offline checks pass: create, idempotent re-run, drift correction, unmanaged objects, WhatIf, pre-flight, failure and resume |
 | Error handling | Pre-flight resolves every group and user before any write; throttling (429) and transient 5xx retried with backoff; a failed write stops the run with a `Failed` record and the re-run resumes |
 | Run against a real tenant | Not yet. Bodies follow the Graph v1.0 schema; first tenant run goes through Plan and `-WhatIf` before Apply |
 | Terraform | Optional alternative for teams standardised on it: the `azuread` provider has `azuread_access_package*` resources. Kept out of this build to stay on one toolchain |

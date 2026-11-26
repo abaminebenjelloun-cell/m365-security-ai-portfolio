@@ -15,7 +15,7 @@ Connect-MgGraph -UseDeviceCode -Scopes 'User.ReadWrite.All','Group.ReadWrite.All
 ./07-identity-governance/demo/Initialize-DemoTenant.ps1
 ```
 
-Creates 7 users (with managers, one deliberately without), the 8 groups the Finance catalog uses, memberships, licences, and the app registration the pipeline uses (Graph application permissions `EntitlementManagement.ReadWrite.All`, `Group.Read.All`, `User.Read.All`, 30-day secret shown once). Idempotent.
+Creates 9 users (with managers, one deliberately without), the 11 groups the Finance and HR catalogs use, memberships, licences, and the app registration the pipeline uses (Graph application permissions `EntitlementManagement.ReadWrite.All`, `Group.Read.All`, `User.Read.All`, 30-day secret shown once). Idempotent.
 
 ## 3. Deploy from a workstation
 
@@ -37,7 +37,7 @@ Use [pipelines/azure-pipelines-demo.yml](../pipelines/azure-pipelines-demo.yml):
 | Capability | How |
 |---|---|
 | Configuration model | `config/catalog-finance.json`, `Test-EmConfig` errors on a broken file |
-| End-to-end deployment | Plan, Apply, objects in Entra admin center > ID Governance > Entitlement management |
+| End-to-end deployment | Plan, Apply, objects in Entra admin center > ID Governance > Entitlement management. `config/catalog-hr.json` deploys a second business area from a new file |
 | Approvals and lifecycle | My Access (myaccess.microsoft.com): request as `fin.preparer`, approve as `fin.manager` then `finance.owner`; `fin.nomanager` goes to the fallback approvers; expiry and review schedule on each policy |
 | Separation of duties | `fin.lead` holds Payments Approver, so the Payments Preparer request is blocked |
 | Idempotency | Apply twice: the second run makes no write call |

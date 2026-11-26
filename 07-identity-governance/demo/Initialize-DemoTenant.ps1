@@ -41,7 +41,8 @@ Write-Host "Tenant $($ctx.TenantId), default domain $domain" -ForegroundColor Cy
 # ---------- groups ----------
 $groupNames = @(
     'SG-Finance-Reporting-Readers', 'SG-Finance-Payments-Preparers', 'SG-Finance-Payments-Approvers', 'M365-Finance-Team',
-    'SG-Dept-Finance', 'SG-Finance-Leads', 'SG-Finance-Access-Approvers', 'SG-Internal-Control'
+    'SG-Dept-Finance', 'SG-Finance-Leads', 'SG-Finance-Access-Approvers', 'SG-Internal-Control',
+    'SG-HR-Records-Readers', 'SG-HR-Payroll-Editors', 'SG-Dept-HR'
 )
 $groups = @{}
 foreach ($name in $groupNames) {
@@ -66,7 +67,9 @@ $people = @(
     @('fin.lead', 'Lee Finance-Lead', 'fin.manager', @('SG-Dept-Finance', 'SG-Finance-Leads')),
     @('fin.nomanager', 'Noa No-Manager', $null, @('SG-Dept-Finance')),
     @('finance.owner', 'Finance Resource-Owner', $null, @('SG-Finance-Access-Approvers')),
-    @('ic.reviewer', 'Ian Internal-Control', $null, @('SG-Internal-Control'))
+    @('ic.reviewer', 'Ian Internal-Control', $null, @('SG-Internal-Control')),
+    @('hr.head', 'Harper HR-Head', $null, @('SG-Dept-HR')),
+    @('hr.officer', 'Robin HR-Officer', 'hr.head', @('SG-Dept-HR'))
 )
 $users = @{}
 $created = [System.Collections.Generic.List[object]]::new()
