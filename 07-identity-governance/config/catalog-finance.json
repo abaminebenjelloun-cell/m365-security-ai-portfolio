@@ -3,7 +3,7 @@
   "catalog": {
     "displayName": "Finance",
     "description": "Access to finance reporting, payments and ERP roles. Owned by the Finance business owner.",
-    "isExternallyVisible": false
+    "isExternallyVisible": true
   },
   "resources": [
     { "key": "fin-reporting", "type": "group", "displayName": "SG-Finance-Reporting-Readers" },
