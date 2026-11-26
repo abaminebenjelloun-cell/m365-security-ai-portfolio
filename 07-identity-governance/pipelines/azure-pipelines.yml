@@ -1,0 +1,92 @@
+# Azure DevOps pipeline: validate -> plan (drift report) -> approval gate -> apply.
+# Runs per catalog file. Authentication: workload identity federation service connection
+# (no secrets in the pipeline). The app registration behind it holds Microsoft Graph application
+# permissions EntitlementManagement.ReadWrite.All, Group.Read.All and User.Read.All, granted by an admin.
+# A scheduled run of the Plan stage with -FailOnDrift catches changes made in the portal.
+
+trigger:
+  branches: { include: [ main ] }
+  paths: { include: [ 07-identity-governance/* ] }
+
+schedules:
+  - cron: '0 6 * * 1-5'
+    displayName: Weekday drift check
+    branches: { include: [ main ] }
+    always: true
+
+parameters:
+  - name: catalogFile
+    type: string
+    default: 07-identity-governance/config/catalog-finance.json
+
+variables:
+  serviceConnection: 'sc-entra-governance'   # workload identity federation
+  expectedTenantId: '$(TenantId)'             # pipeline variable, never committed
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: Validate
+    jobs:
+      - job: Test
+        steps:
+          - pwsh: |
+              Install-Module PSScriptAnalyzer -Force -Scope CurrentUser
+              $r = Invoke-ScriptAnalyzer -Path 07-identity-governance -Recurse -Settings ./PSScriptAnalyzerSettings.psd1
+              $r | Format-Table -AutoSize
+              if ($r | Where-Object Severity -eq 'Error') { exit 1 }
+            displayName: PSScriptAnalyzer
+          - pwsh: ./07-identity-governance/tests/Invoke-OfflineTests.ps1
+            displayName: Offline tests (config validation, idempotency, drift)
+
+  - stage: Plan
+    dependsOn: Validate
+    jobs:
+      - job: Plan
+        steps:
+          - task: AzurePowerShell@5
+            displayName: Plan against the tenant (read only)
+            inputs:
+              azureSubscription: $(serviceConnection)
+              azurePowerShellVersion: LatestVersion
+              pwsh: true
+              ScriptType: InlineScript
+              Inline: |
+                Install-Module Microsoft.Graph.Authentication -Scope CurrentUser -Force
+                $t = (Get-AzAccessToken -ResourceTypeName MSGraph).Token
+                $secure = if ($t -is [securestring]) { $t } else { ConvertTo-SecureString $t -AsPlainText -Force }
+                Connect-MgGraph -AccessToken $secure -NoWelcome
+                $fail = if ('$(Build.Reason)' -eq 'Schedule') { @{ FailOnDrift = $true } } else { @{} }
+                ./07-identity-governance/Deploy-EntitlementManagement.ps1 -ConfigPath '${{ parameters.catalogFile }}' -Mode Plan -ExpectedTenantId '$(expectedTenantId)' @fail
+          - publish: output
+            artifact: plan-report
+            condition: always()
+
+  - stage: Apply
+    dependsOn: Plan
+    condition: and(succeeded(), ne(variables['Build.Reason'], 'Schedule'), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - deployment: Apply
+        environment: entra-governance-prod   # add an Approvals check on this environment: the plan report is reviewed before apply
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: AzurePowerShell@5
+                  displayName: Apply configuration
+                  inputs:
+                    azureSubscription: $(serviceConnection)
+                    azurePowerShellVersion: LatestVersion
+                    pwsh: true
+                    ScriptType: InlineScript
+                    Inline: |
+                      Install-Module Microsoft.Graph.Authentication -Scope CurrentUser -Force
+                      $t = (Get-AzAccessToken -ResourceTypeName MSGraph).Token
+                      $secure = if ($t -is [securestring]) { $t } else { ConvertTo-SecureString $t -AsPlainText -Force }
+                      Connect-MgGraph -AccessToken $secure -NoWelcome
+                      ./07-identity-governance/Deploy-EntitlementManagement.ps1 -ConfigPath '${{ parameters.catalogFile }}' -Mode Apply -ExpectedTenantId '$(expectedTenantId)' -Confirm:$false
+                - publish: output
+                  artifact: apply-report
+                  condition: always()

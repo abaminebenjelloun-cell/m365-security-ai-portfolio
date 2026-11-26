@@ -17,6 +17,14 @@ jobs:
           $results | Format-Table -AutoSize
           if ($results | Where-Object Severity -eq 'Error') { exit 1 }
 
+  identity-governance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Entitlement Management offline tests
+        shell: pwsh
+        run: ./07-identity-governance/tests/Invoke-OfflineTests.ps1
+
   python:
     runs-on: ubuntu-latest
     steps:
